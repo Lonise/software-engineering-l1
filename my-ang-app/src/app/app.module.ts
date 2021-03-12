@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { CoursesPageComponent } from './components/main/courses-page/courses-page.component';
 import { CourseComponent } from './components/main/courses-page/course/course.component';
+import { SearchAddComponent } from './components/main/courses-page/search-add/search-add.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CourseComponent } from './components/main/courses-page/course/course.co
     FooterComponent,
     MainComponent,
     CoursesPageComponent,
-    CourseComponent
+    CourseComponent,
+    SearchAddComponent
   ],
   imports: [
     BrowserModule,
