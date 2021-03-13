@@ -12,21 +12,21 @@ import { SearchAddComponent } from './components/main/courses-page/search-add/se
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    CoursesPageComponent,
-    CourseComponent,
-    SearchAddComponent,
-    BreadcrumbsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		FooterComponent,
+		MainComponent,
+		CoursesPageComponent,
+		CourseComponent,
+		SearchAddComponent,
+		BreadcrumbsComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
