@@ -1,6 +1,20 @@
-<h3>Video Course</h3>
-<p> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-  Fugiat iste cum, eveniet iusto perspiciatis maxime voluptatem
-  quisquam quod, facere impedit repudiandae ut, vel consectetur
-  quos blanditiis quaerat ea recusandae animi.
-</p>
+<ul>
+  <li *ngFor='let course of coursesList; let i = index'>
+    <strong>{{course.title}} {{i + 1}}</strong>
+    {{course.duration}}min
+    {{course.creationDate | date:'shortDate'}}
+    <p>
+      {{course.description}}
+      Lorem ipsum dolor sit amet consectetur,
+      adipisicing elit. Inventore, enim cupiditate maiores ad repellendus
+      magni tempore adipisci commodi eveniet voluptate modi placeat s
+      oluta cumque neque totam quis. Nesciunt, voluptatem ipsa.
+    </p>
+    <button>
+      Edit
+    </button>
+    <button>
+      Delete
+    </button>
+  </li>
+</ul>
