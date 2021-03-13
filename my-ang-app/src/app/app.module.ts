@@ -9,6 +9,7 @@ import { MainComponent } from './components/main/main.component';
 import { CoursesPageComponent } from './components/main/courses-page/courses-page.component';
 import { CourseComponent } from './components/main/courses-page/course/course.component';
 import { SearchAddComponent } from './components/main/courses-page/search-add/search-add.component';
+import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchAddComponent } from './components/main/courses-page/search-add/se
     MainComponent,
     CoursesPageComponent,
     CourseComponent,
-    SearchAddComponent
+    SearchAddComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
