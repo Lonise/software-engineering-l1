@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CourseInterface } from '../courses-page.component';
+import { CourseInterface } from '../course';
 
 @Component({
 	selector: 'app-course',
@@ -7,5 +7,5 @@ import { CourseInterface } from '../courses-page.component';
 	styleUrls: ['./course.component.scss']
 })
 export class CourseComponent {
-	@Input() coursesList: CourseInterface[] = [];
+	@Input() coursesCatalog: CourseInterface[] = [];
 }

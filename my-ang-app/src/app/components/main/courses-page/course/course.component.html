@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor='let course of coursesList; let i = index'>
+  <li *ngFor='let course of coursesCatalog; let i = index'>
     <strong>{{course.title}} {{i + 1}}</strong>
     {{course.duration}}min
     {{course.creationDate | date:'shortDate'}}

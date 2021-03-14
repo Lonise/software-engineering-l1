@@ -1,40 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseInterface, Course } from './course';
 
-export interface CourseInterface {
-	id: number;
-	title: string;
-	creationDate: Date;
-	duration: number;
-	description: string;
-}
+const coursesExample: CourseInterface[] = [
+  new Course( 1, 'HTML course', new Date(2020, 1, 28), 45, 'HTML course HTML course' ),
+  new Course( 2, 'CSS course', new Date(2020, 2, 10), 35, 'CSS course CSS course' ),
+  new Course( 3, 'JS course', new Date(2020, 3, 13), 25, 'JS course JS course' ),
+];
 
 @Component({
 	selector: 'app-courses-page',
 	templateUrl: './courses-page.component.html',
 	styleUrls: ['./courses-page.component.scss']
 })
+
 export class CoursesPageComponent {
-	public coursesList: CourseInterface[] = [
-		{
-			id: 1,
-			title: 'HTML course',
-			creationDate: new Date(),
-			duration: 45,
-			description: 'HTML course HTML course',
-		},
-		{
-			id: 2,
-			title: 'CSS course',
-			creationDate: new Date(),
-			duration: 30,
-			description: 'CSS course CSS course',
-		},
-		{
-			id: 3,
-			title: 'JS course',
-			creationDate: new Date(2020, 3, 13),
-			duration: 25,
-			description: 'JS course JS course',
-		},
-	];
+
+  public coursesCatalog: CourseInterface[] = coursesExample;
+
+  constructor() { };
+
+	ngOnInit(): void {
+  };
 }
