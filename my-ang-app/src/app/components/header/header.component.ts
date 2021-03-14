@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserInterface } from '../user/user'
+import { User, UserInterface } from '../user/user';
 
 @Component({
 	selector: 'app-header',
@@ -7,7 +7,7 @@ import { User, UserInterface } from '../user/user'
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public userExample: UserInterface = new User(1, 'Nikita', 'Loshkarev');
+	public userExample: UserInterface = new User(1, 'Nikita', 'Loshkarev');
 	constructor() { }
 
 	ngOnInit(): void {
