@@ -1,0 +1,33 @@
+.courses-list {
+	display: flex;
+	flex-direction: column;
+}
+.courses-list_item {
+	display: flex;
+	justify-content: space-between;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 5px 15px;
+	padding: 10px;
+	list-style: none;
+	background-color: rgba($color: #ffffff, $alpha: 0.5);
+}
+.course-title {
+	display: flex;
+	justify-content: space-between;
+}
+.course-name {
+	font-size: 1.3em;
+}
+.course-buttons {
+	width: 250px;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.course-button {
+	button {
+		width: 100%;
+	}
+}
