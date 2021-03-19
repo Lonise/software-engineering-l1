@@ -1,34 +1,32 @@
-<ul class="courses-list">
-  <li *ngFor='let course of coursesCatalog; let i = index' class="courses-list_item">
-		<div class="course-content">
-			<div class="course-title">
-				<div class="course-name">
-					{{course.title}} {{i + 1}}
-				</div>
-				<div class="course-info">
-					{{course.duration}}min
-				{{course.creationDate | date:'shortDate'}}
-				</div>
+<div class="courses-list_item">
+	<div class="course-content">
+		<div class="course-title">
+			<div class="course-name">
+				{{course.title}}
 			</div>
-			<p>
-				{{course.description}}
-				Lorem ipsum dolor sit amet consectetur,
-				adipisicing elit. Inventore, enim cupiditate maiores ad repellendus
-				magni tempore adipisci commodi eveniet voluptate modi placeat s
-				oluta cumque neque totam quis. Nesciunt, voluptatem ipsa.
-			</p>
-		</div>
-		<div class="course-buttons">
-			<div class="course-button">
-				<button>
-					Edit
-				</button>
-			</div>
-			<div class="course-button" (click)='deleteCourse(course.id)'>
-				<button>
-					Delete
-				</button>
+			<div class="course-info">
+				{{course.duration}}min
+			{{course.creationDate | date:'shortDate'}}
 			</div>
 		</div>
-  </li>
-</ul>
+		<p>
+			{{course.description}}
+			Lorem ipsum dolor sit amet consectetur,
+			adipisicing elit. Inventore, enim cupiditate maiores ad repellendus
+			magni tempore adipisci commodi eveniet voluptate modi placeat s
+			oluta cumque neque totam quis. Nesciunt, voluptatem ipsa.
+		</p>
+	</div>
+	<div class="course-buttons">
+		<div class="course-button">
+			<button>
+				Edit
+			</button>
+		</div>
+		<div class="course-button" (click)='deleteCourse(course.id)'>
+			<button>
+				Delete
+			</button>
+		</div>
+	</div>
+</div>

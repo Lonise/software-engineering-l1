@@ -23,7 +23,6 @@ export class CoursesPageComponent implements OnInit{
 	removeCourse( id: number | string ): void {
 		coursesExample.forEach( (element, index) => {
 			if ( element.id === id ) {
-				console.log('Removed course id ' + id);
 				coursesExample.splice(index, 1);
 				return;
 			};
