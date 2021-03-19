@@ -20,6 +20,16 @@ export class CoursesPageComponent implements OnInit{
 		console.log('Load more')
 	};
 
+	removeCourse( id: number | string ): void {
+		coursesExample.forEach( (element, index) => {
+			if ( element.id === id ) {
+				console.log('Removed course id ' + id);
+				coursesExample.splice(index, 1);
+				return;
+			};
+		});
+	};
+
 	constructor() { }
 
 	ngOnInit(): void {
