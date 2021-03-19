@@ -16,6 +16,10 @@ const coursesExample: CourseInterface[] = [
 export class CoursesPageComponent implements OnInit{
 	public coursesCatalog: CourseInterface[] = coursesExample;
 
+	showMoreCourses(): void {
+		console.log('Load more')
+	};
+
 	constructor() { }
 
 	ngOnInit(): void {
