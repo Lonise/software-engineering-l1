@@ -11,6 +11,7 @@ import { CourseComponent } from './components/main/courses-page/course/course.co
 import { SearchAddComponent } from './components/main/courses-page/search-add/search-add.component';
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
+import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up.component';
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 		SearchAddComponent,
 		BreadcrumbsComponent
 	],
+	entryComponents: [LogInSignUpComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
