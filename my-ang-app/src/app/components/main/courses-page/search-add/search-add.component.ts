@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchAddComponent implements OnInit {
 
-	public inputSearchCourses:string = '';
-	searchingCourses():void {
+	public inputSearchCourses = '';
+	searchingCourses(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 	}
 	constructor() { }

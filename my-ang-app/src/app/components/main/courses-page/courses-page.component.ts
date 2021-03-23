@@ -19,17 +19,17 @@ export class CoursesPageComponent implements OnInit{
 	public coursesCatalog: CourseInterface[] = coursesExample;
 
 	showMoreCourses(): void {
-		console.log('Load more')
-	};
+		console.log('Load more');
+	}
 
 	removeCourse( id: number | string ): void {
 		coursesExample.forEach( (element, index) => {
 			if ( element.id === id ) {
 				coursesExample.splice(index, 1);
 				return;
-			};
+			}
 		});
-	};
+	}
 
 	constructor() { }
 
