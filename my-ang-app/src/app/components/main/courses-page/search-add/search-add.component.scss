@@ -1,0 +1,18 @@
+.search-add {
+	padding: 5px 15px;
+	display: flex;
+	justify-content: space-between;
+
+	button, input {
+		padding: 5px 10px;
+	};
+
+	input {
+		width: 80%;
+	};
+};
+.search-control {
+	width: 50%;
+	display: flex;
+	justify-content: space-between;
+}

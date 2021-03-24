@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchAddComponent implements OnInit {
 
+	public inputSearchCourses = '';
+	searchingCourses(): void {
+		console.log(`Input value \'${this.inputSearchCourses}\'`);
+	}
 	constructor() { }
 
 	ngOnInit(): void {

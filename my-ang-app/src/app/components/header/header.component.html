@@ -1,7 +1,16 @@
-<div>
-  <img class='logo'
-  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/120px-Angular_full_color_logo.svg.png' alt='Angular' width='100'>
-  Super courses
-  User: {{userExample.firstName}} {{userExample.lastName}}
-  <button>Log OFF</button>
+<div class="header">
+	<div class="logo">
+		<div class="logo_image">
+			<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/120px-Angular_full_color_logo.svg.png' alt='Angular' width='50'>
+		</div>
+		<h1 class="logo_title">Super courses</h1>
+	</div>
+	<div class="account">
+		<div class="account_user">
+			User: {{userExample.firstName}} {{userExample.lastName}}
+		</div>
+		<button (click)='toggleLogIn()'>
+			Log In
+		</button>
+	</div>
 </div>
