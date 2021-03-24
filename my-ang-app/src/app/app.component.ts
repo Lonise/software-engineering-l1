@@ -16,11 +16,11 @@ export class AppComponent {
 	private LogInSignUpFactoryComponent = this.componentFactoryResolver.resolveComponentFactory(LogInSignUpComponent);
 	private isLogInSignUpVisible = false;
 
-	public toggleLogInSignUp(): void {
+	public toggleLogInSignUp = (): void => {
 		this.isLogInSignUpVisible = !this.isLogInSignUpVisible;
 		if (this.isLogInSignUpVisible) {
 			const LogInSignUpComponentRef = this.logInSignUpPopup.createComponent(this.LogInSignUpFactoryComponent);
-			((LogInSignUpComponentRef.instance)).toggleLogInSignUp = this.toggleLogInSignUp.bind(this);
+			((LogInSignUpComponentRef.instance)).toggleLogInSignUp = this.toggleLogInSignUp;
 		} else {
 			this.logInSignUpPopup.clear();
 		}
