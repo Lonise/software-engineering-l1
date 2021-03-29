@@ -12,6 +12,7 @@ import { SearchAddComponent } from './components/main/courses-page/search-add/se
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
 import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up.component';
+import { CourseDirective } from './components/main/courses-page/course/course.directive';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up
 		CoursesPageComponent,
 		CourseComponent,
 		SearchAddComponent,
-		BreadcrumbsComponent
+		BreadcrumbsComponent,
+		CourseDirective
 	],
 	entryComponents: [LogInSignUpComponent],
 	imports: [

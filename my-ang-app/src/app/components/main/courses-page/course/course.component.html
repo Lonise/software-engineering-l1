@@ -1,8 +1,9 @@
-<div class="courses-list_item">
-	<div class="course-content">
+<div class="courses-list_item" [ngClass]='{topRatedCourse: course.isTopRated}'>
+	<div class="course-content" appCourse [courseCreationDate]='course.creationDate'>
 		<div class="course-title">
 			<div class="course-name">
 				{{course.title}}
+				<img src="../../../../../assets/starCourse.svg" alt="star" *ngIf='course.isTopRated'>
 			</div>
 			<div class="course-info">
 				{{course.duration}}min

@@ -4,6 +4,7 @@ export interface CourseInterface {
 	creationDate: Date;
 	duration: number;
 	description: string;
+	isTopRated: boolean;
 }
 
 export class Course implements CourseInterface {
@@ -12,12 +13,14 @@ export class Course implements CourseInterface {
 	public creationDate: Date;
 	public duration: number;
 	public description: string;
+	public isTopRated: boolean;
 
-	constructor(id: string | number, title: string, creationDate: Date, duration: number, description: string) {
+	constructor(id: string | number, title: string, creationDate: Date, duration: number, description: string, isTopRated: boolean) {
 		this.id = id;
 		this.title = title;
 		this.creationDate = creationDate;
 		this.duration = duration;
 		this.description = description;
+		this.isTopRated = isTopRated;
 	}
 }

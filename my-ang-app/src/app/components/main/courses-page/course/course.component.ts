@@ -7,13 +7,15 @@ import { CourseInterface } from '../course';
 	styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnDestroy{
+
 	@Input() course!: CourseInterface;
 	@Output() deletedCourse = new EventEmitter<number|string>();
 
 	deleteCourse(id: number | string): void {
 		this.deletedCourse.emit(id);
-	}
+	};
+
 	ngOnDestroy(): void {
 		console.log('Removed course id ' + this.course.id);
-	}
+	};
 }
