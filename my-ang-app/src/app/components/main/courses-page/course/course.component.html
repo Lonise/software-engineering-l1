@@ -2,12 +2,12 @@
 	<div class="course-content" appCourse [courseCreationDate]='course.creationDate'>
 		<div class="course-title">
 			<div class="course-name">
-				{{course.title}}
+				{{course.title | uppercase}}
 				<img src="../../../../../assets/starCourse.svg" alt="star" *ngIf='course.isTopRated'>
 			</div>
 			<div class="course-info">
-				{{course.duration}}min
-			{{course.creationDate | date:'shortDate'}}
+				{{course.duration | durationCourse}}
+			{{course.creationDate | date:'dd.MM.yyyy'}}
 			</div>
 		</div>
 		<p>

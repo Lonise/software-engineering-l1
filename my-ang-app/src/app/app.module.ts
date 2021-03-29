@@ -13,6 +13,9 @@ import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.
 import { FormsModule } from '@angular/forms';
 import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up.component';
 import { CourseDirective } from './components/main/courses-page/course/course.directive';
+import { DurationCoursePipe } from './components/main/courses-page/course/duration-course.pipe';
+import { OrderByCreationDatePipe } from './components/main/courses-page/order-by-creation-date.pipe';
+import { FilterCoursesByInputPipe } from './components/main/courses-page/search-add/filter-courses-by-input.pipe';
 
 @NgModule({
 	declarations: [
@@ -24,7 +27,10 @@ import { CourseDirective } from './components/main/courses-page/course/course.di
 		CourseComponent,
 		SearchAddComponent,
 		BreadcrumbsComponent,
-		CourseDirective
+		CourseDirective,
+		DurationCoursePipe,
+		OrderByCreationDatePipe,
+		FilterCoursesByInputPipe
 	],
 	entryComponents: [LogInSignUpComponent],
 	imports: [
