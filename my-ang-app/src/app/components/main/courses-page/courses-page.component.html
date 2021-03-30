@@ -1,4 +1,4 @@
-<app-search-add></app-search-add>
+<app-search-add [coursesCatalog]='coursesCatalog' (searchCourses)='searchCourses($event)'></app-search-add>
 <div class="courseList">
 	<div class="" *ngIf='isCourseListEmpty'>
 		no data. feel free to add new course
