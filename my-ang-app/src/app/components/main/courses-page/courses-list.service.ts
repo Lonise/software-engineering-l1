@@ -56,14 +56,14 @@ export class CoursesListService {
 
 	public isCourseListDataEmpty = false;
 
-	public getCourseList(): ICourseProperties[] {
+	public getCourseList(): Course[] {
 		return this.courseListData;
 	}
 
 	public getIsEmptyCourseList(): boolean {
 		return this.isCourseListDataEmpty;
 	}
-	// public addCourse(course: CourseInterface) {
+	// public addCourse(course: Course) {
 	// 	this.courseListData.push(course);
 	// };
 
@@ -78,7 +78,7 @@ export class CoursesListService {
 		}
 	}
 
-	public getFilteredCourseList(inputValue: string): ICourseProperties[] {
+	public getFilteredCourseList(inputValue: string): Course[] {
 		if ( inputValue.trim() === '' ) {
 			return this.getCourseList();
 		} else {

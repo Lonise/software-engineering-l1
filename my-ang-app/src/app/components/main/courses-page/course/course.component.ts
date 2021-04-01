@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 
-import { ICourseProperties } from '../course';
+import { Course } from '../course';
 
 @Component({
 	selector: 'app-course',
@@ -9,7 +9,7 @@ import { ICourseProperties } from '../course';
 })
 export class CourseComponent implements OnDestroy{
 
-	@Input() course!: ICourseProperties;
+	@Input() course!: Course;
 	@Output() deletedCourse = new EventEmitter<number|string>();
 
 	public deleteCourse(id: number | string): void {
