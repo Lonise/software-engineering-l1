@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Course } from './course';
 import { CoursesListService } from './courses-list.service';
@@ -11,15 +11,12 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 	providers: [ CoursesListService, FilterCoursesByInputPipe ]
 })
 
-export class CoursesPageComponent implements OnInit{
+export class CoursesPageComponent {
 
 	constructor( private coursesList: CoursesListService ) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
-
-	ngOnInit(): void {
-	}
 
 	public showMoreCourses(): void {
 		console.log('Load more');

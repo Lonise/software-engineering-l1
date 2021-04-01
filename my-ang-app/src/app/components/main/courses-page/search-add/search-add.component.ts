@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ICourseProperties } from '../course';
 
@@ -8,20 +8,15 @@ import { ICourseProperties } from '../course';
 	styleUrls: ['./search-add.component.scss']
 })
 
-export class SearchAddComponent implements OnInit {
+export class SearchAddComponent {
 
 	@Input() coursesCatalog!: ICourseProperties[];
 	@Output() searchCourses = new EventEmitter<string>();
 
 	public inputSearchCourses = '';
-	constructor() { }
 
 	searchingCourses(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 		this.searchCourses.emit(this.inputSearchCourses);
 	}
-
-	ngOnInit(): void {
-	}
-
 }

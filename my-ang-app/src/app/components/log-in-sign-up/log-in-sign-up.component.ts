@@ -17,30 +17,28 @@ export class LogInSignUpComponent {
 
 	public toggleErrorComponent(): void {
 		this.isError = !this.isError;
-	};
+	}
 
 	public toggleLogInSignUp = (): void => {};
 
 	public backDropClick(event: MouseEvent): void {
 		console.log(event.currentTarget);
-	};
+	}
 
 // change any type DRY
 	public onUserNameInputChange(event: any): void {
 		this.userNameInput = event.target.value;
-	};
-//add extends
+	}
+// add extends
 	public onPasswordInputChange(event: any): void {
 		this.userPasswordInput = event.target.value;
-	};
+	}
 
 	public submitAuthorization(): void {
 		if (!this.validationUserName.test(this.userNameInput) || !this.validationPassword.test(this.userPasswordInput)) {
 			this.toggleErrorComponent();
 		} else {
 			this.toggleLogInSignUp();
-		};
-	};
-
-	constructor() { }
+		}
+	}
 }
