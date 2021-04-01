@@ -14,9 +14,9 @@ export class CourseDirective implements AfterViewInit {
 		let differenceDatesInDay: number =  Math.floor((+this.currentDate - +this.courseCreationDate)/86400000);
 
 		if ( differenceDatesInDay > 0 && differenceDatesInDay <= 14 ) {
-			this.elementRef.nativeElement.style.border = '5px solid green'
+			this.elementRef.nativeElement.style.border = '4px solid #34C924'
 		} else if ( differenceDatesInDay < 0 ) {
-			this.elementRef.nativeElement.style.border = '5px solid blue'
+			this.elementRef.nativeElement.style.border = '4px solid #1560BD'
 		}
 	}
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { CourseInterface } from '../course';
 
 @Component({
@@ -12,7 +13,7 @@ export class SearchAddComponent implements OnInit {
 	@Input() coursesCatalog!: CourseInterface[];
 	@Output() searchCourses = new EventEmitter<string>();
 
-	public inputSearchCourses = '';
+	public inputSearchCourses: string = '';
 	constructor() { }
 
 	searchingCourses(): void {

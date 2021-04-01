@@ -1,5 +1,6 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { CourseInterface, Course } from './course';
+import { Component, OnInit } from '@angular/core';
+
+import { CourseInterface} from './course';
 import { CoursesListService } from './courses-list.service';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
@@ -10,12 +11,12 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 	providers: [ CoursesListService, FilterCoursesByInputPipe ]
 })
 
-export class CoursesPageComponent implements OnInit/*, AfterContentChecked*/{
+export class CoursesPageComponent implements OnInit{
 
 	constructor ( private coursesList: CoursesListService ) { }
 
 	public coursesCatalog: CourseInterface[] = this.coursesList.getCourseList();
-	public isCourseListEmpty: boolean = this.coursesList.getIsEmptyCourseList();
+	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 
 	ngOnInit(): void {
 	}
@@ -26,13 +27,10 @@ export class CoursesPageComponent implements OnInit/*, AfterContentChecked*/{
 
 	public removeCourse( id: number | string ): void {
 		this.coursesList.removeCourse(id);
+		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
 	};
 
 	public searchCourses(currentInput: string): void {
 			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
 	};
-
-	// ngAfterContentChecked() {
-	// 	this.isCourseListEmpty = this.coursesList.getIsEmptyCourseList();
-	// };
 }

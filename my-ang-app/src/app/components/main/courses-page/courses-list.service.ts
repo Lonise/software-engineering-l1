@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Course, CourseInterface } from './course';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe'
 
@@ -25,11 +26,10 @@ export class CoursesListService {
 		this.courseListData.forEach( (element, index) => {
 			if ( element.id === id ) {
 				this.courseListData.splice(index, 1);
-				return;
 			}
 		});
 		if (this.courseListData.length === 0) {
-			this.changeIsCourseListDataEmpty(true);
+			this.isCourseListDataEmpty = true;
 		};
 	};
 
@@ -49,10 +49,6 @@ export class CoursesListService {
 		new Course( 5, 'TS course', new Date(2021, 1, 20), 40, 'TS course TS course', true ),
 	];
 
-	private isCourseListDataEmpty: boolean = false;
-
-	private changeIsCourseListDataEmpty(isEmpty: boolean): void {
-		this.isCourseListDataEmpty = isEmpty;
-	};
+	public isCourseListDataEmpty: boolean = false;
 
 }

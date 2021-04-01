@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+
 import { CourseInterface } from '../course';
 
 @Component({
@@ -11,7 +12,7 @@ export class CourseComponent implements OnDestroy{
 	@Input() course!: CourseInterface;
 	@Output() deletedCourse = new EventEmitter<number|string>();
 
-	deleteCourse(id: number | string): void {
+	public deleteCourse(id: number | string): void {
 		this.deletedCourse.emit(id);
 	};
 

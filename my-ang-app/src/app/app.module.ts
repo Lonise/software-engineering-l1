@@ -16,6 +16,8 @@ import { CourseDirective } from './components/main/courses-page/course/course.di
 import { DurationCoursePipe } from './components/main/courses-page/course/duration-course.pipe';
 import { OrderByCreationDatePipe } from './components/main/courses-page/order-by-creation-date.pipe';
 import { FilterCoursesByInputPipe } from './components/main/courses-page/search-add/filter-courses-by-input.pipe';
+import { ValidationDirective } from './components/log-in-sign-up/validation.directive';
+import { AuthorizationErrorComponent } from './components/log-in-sign-up/authorization-error/authorization-error.component';
 
 @NgModule({
 	declarations: [
@@ -30,7 +32,10 @@ import { FilterCoursesByInputPipe } from './components/main/courses-page/search-
 		CourseDirective,
 		DurationCoursePipe,
 		OrderByCreationDatePipe,
-		FilterCoursesByInputPipe
+		FilterCoursesByInputPipe,
+		LogInSignUpComponent,
+		ValidationDirective,
+		AuthorizationErrorComponent
 	],
 	entryComponents: [LogInSignUpComponent],
 	imports: [

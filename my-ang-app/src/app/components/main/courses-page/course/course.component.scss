@@ -3,9 +3,9 @@
 	justify-content: space-between;
 	border: 2px solid black;
 	border-radius: 5px;
-	margin: 5px 15px;
+	margin: 10px 15px;
 	padding: 10px;
-	background-color: rgba($color: #ffffff, $alpha: 0.5);
+	background-color: rgba($color: #ffffff, $alpha: 0.7);
 }
 .course-title {
 	display: flex;
@@ -27,5 +27,5 @@
 	}
 }
 .topRatedCourse {
-	background-color: aqua;
+	background-image: linear-gradient(rgb(68, 249, 255), rgb(56, 167, 149));
 }
