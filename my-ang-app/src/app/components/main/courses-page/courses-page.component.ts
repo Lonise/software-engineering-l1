@@ -13,7 +13,7 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 
 export class CoursesPageComponent implements OnInit{
 
-	constructor ( private coursesList: CoursesListService ) { }
+	constructor( private coursesList: CoursesListService ) { }
 
 	public coursesCatalog: CourseInterface[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
@@ -23,14 +23,14 @@ export class CoursesPageComponent implements OnInit{
 
 	public showMoreCourses(): void {
 		console.log('Load more');
-	};
+	}
 
 	public removeCourse( id: number | string ): void {
 		this.coursesList.removeCourse(id);
 		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
-	};
+	}
 
 	public searchCourses(currentInput: string): void {
 			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
-	};
+	}
 }

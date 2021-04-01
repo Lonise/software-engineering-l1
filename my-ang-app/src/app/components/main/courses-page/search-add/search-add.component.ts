@@ -13,7 +13,7 @@ export class SearchAddComponent implements OnInit {
 	@Input() coursesCatalog!: CourseInterface[];
 	@Output() searchCourses = new EventEmitter<string>();
 
-	public inputSearchCourses: string = '';
+	public inputSearchCourses = '';
 	constructor() { }
 
 	searchingCourses(): void {

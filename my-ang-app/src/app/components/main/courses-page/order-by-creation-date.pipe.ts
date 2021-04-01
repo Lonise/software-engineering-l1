@@ -2,12 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CourseInterface } from './course';
 
 @Pipe({
-  name: 'orderByCreationDate'
+	name: 'orderByCreationDate'
 })
 export class OrderByCreationDatePipe implements PipeTransform {
 
-  transform(coursesList: CourseInterface[]): CourseInterface[] {
-		return coursesList.sort((currentCourse: CourseInterface, nextCourse:CourseInterface) => {
+	transform(coursesList: CourseInterface[]): CourseInterface[] {
+		return coursesList.sort((currentCourse: CourseInterface, nextCourse: CourseInterface) => {
 
 			/*
 			if (currentCourse.creationDate < nextCourse.creationDate) {
@@ -21,6 +21,6 @@ export class OrderByCreationDatePipe implements PipeTransform {
 
 			return (currentCourse.creationDate < nextCourse.creationDate) ? -1
 			: (currentCourse.creationDate > nextCourse.creationDate) ? 1 : 0;
-		})
-  }
+		});
+	}
 }

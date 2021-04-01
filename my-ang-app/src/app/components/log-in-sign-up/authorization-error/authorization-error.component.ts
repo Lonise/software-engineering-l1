@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-authorization-error',
-  templateUrl: './authorization-error.component.html',
-  styleUrls: ['./authorization-error.component.scss']
+	selector: 'app-authorization-error',
+	templateUrl: './authorization-error.component.html',
+	styleUrls: ['./authorization-error.component.scss']
 })
 export class AuthorizationErrorComponent implements OnInit {
 
@@ -12,8 +12,8 @@ export class AuthorizationErrorComponent implements OnInit {
 	public closeError(): void {
 		this.closeErrorComponent.emit();
 	}
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+	constructor() { }
+
+	ngOnInit(): void { }
 }

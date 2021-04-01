@@ -1,4 +1,4 @@
-import { Component, Output, ViewChild, ViewContainerRef, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-log-in-sign-up',
@@ -8,19 +8,16 @@ import { Component, Output, ViewChild, ViewContainerRef, EventEmitter } from '@a
 
 export class LogInSignUpComponent {
 
-	@ViewChild('backdrop', { read: ViewContainerRef }) backdrop!: ViewContainerRef;
-	@Output() userName = new EventEmitter<string>();
-
-	public userNameInput: string = '';
-	public userPasswordInput: string = '';
+	public userNameInput = '';
+	public userPasswordInput = '';
 	public validationUserName: RegExp = new RegExp(/^([\w\-\.])+\@([\w\-\.])+\.([A-Za-z]{2,4})$/);
 	public validationPassword: RegExp = new RegExp(/^\w{1,5}$/);
 
-	public isError: boolean = false;
+	public isError = false;
 
 	public toggleErrorComponent(): void {
 		this.isError = !this.isError;
-	}
+	};
 
 	public toggleLogInSignUp = (): void => {};
 
@@ -28,12 +25,21 @@ export class LogInSignUpComponent {
 		console.log(event.currentTarget);
 	};
 
+// change any type DRY
+	public onUserNameInputChange(event: any): void {
+		this.userNameInput = event.target.value;
+	};
+
+	public onPasswordInputChange(event: any): void {
+		this.userPasswordInput = event.target.value;
+	};
+
 	public submitAuthorization(): void {
 		if (!this.validationUserName.test(this.userNameInput) || !this.validationPassword.test(this.userPasswordInput)) {
 			this.toggleErrorComponent();
 		} else {
 			this.toggleLogInSignUp();
-		}
+		};
 	};
 
 	constructor() { }

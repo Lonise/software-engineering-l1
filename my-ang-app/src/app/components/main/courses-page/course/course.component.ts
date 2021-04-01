@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 
 import { CourseInterface } from '../course';
 
@@ -14,9 +14,9 @@ export class CourseComponent implements OnDestroy{
 
 	public deleteCourse(id: number | string): void {
 		this.deletedCourse.emit(id);
-	};
+	}
 
 	ngOnDestroy(): void {
 		console.log('Removed course id ' + this.course.id);
-	};
+	}
 }

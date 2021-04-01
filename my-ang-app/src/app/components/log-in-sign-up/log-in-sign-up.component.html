@@ -1,15 +1,15 @@
 <app-authorization-error *appValidation='isError' (closeErrorComponent)='toggleErrorComponent()' ></app-authorization-error>
-<div class="backdrop" (click)='backDropClick($event)' #backdrop>
+<div class="backdrop" (click)='backDropClick($event)'>
 	<div class="wrapper">
 		<div class="close" (click)='toggleLogInSignUp()' >+</div>
 		<div class="LogInSignUp__title">Log In</div>
 		<div>
 			<div class="">UserName</div>
-			<input type="text" placeholder="name" [(ngModel)]='userNameInput' required>
+			<input type="text" placeholder="name" (input)='onUserNameInputChange($event)' required>
 		</div>
 		<div>
 			<div class="">Password</div>
-			<input type="text" placeholder="password" [(ngModel)]='userPasswordInput' required>
+			<input type="text" placeholder="password" (input)='onPasswordInputChange($event)' required>
 		</div>
 		<button (click)='submitAuthorization()'>log in</button>
 	</div>
