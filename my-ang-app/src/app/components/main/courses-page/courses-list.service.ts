@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Course, CourseInterface } from './course';
+import { Course, ICourseProperties } from './course';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
 @Injectable({
@@ -11,17 +11,52 @@ export class CoursesListService {
 
 	constructor(private filterCoursesByInputPipe: FilterCoursesByInputPipe) { }
 
-	private courseListData: CourseInterface[] = [
-		new Course( 1, 'HTML course', new Date(2021, 5, 28), 90, 'HTML course HTML course', true ),
-		new Course( 2, 'CSS course', new Date(2021, 2, 25), 115, 'CSS course CSS course', false ),
-		new Course( 3, 'JS course', new Date(2021, 2, 15), 25, 'JS course JS course', true ),
-		new Course( 4, 'JSX course', new Date(2021, 3, 10), 75, 'JSX course JSX course', false ),
-		new Course( 5, 'TS course', new Date(2021, 1, 20), 40, 'TS course TS course', true ),
+	private courseListData: ICourseProperties[] = [
+		new Course({
+			id: 1,
+			title: 'HTML course',
+			creationDate: new Date(2021, 5, 28),
+			duration: 90,
+			description: 'HTML course HTML course',
+			isTopRated: true
+		}),
+		new Course({
+			id: 2,
+			title: 'CSS course',
+			creationDate: new Date(2021, 2, 25),
+			duration: 115,
+			description: 'CSS course CSS course',
+			isTopRated: false
+		}),
+		new Course({
+			id: 3,
+			title: 'JS course',
+			creationDate: new Date(2021, 2, 15),
+			duration: 25,
+			description: 'JS course JS course',
+			isTopRated: true
+		}),
+		new Course({
+			id: 4,
+			title: 'JSX course',
+			creationDate: new Date(2021, 3, 10),
+			duration: 75,
+			description: 'JSX course JSX course',
+			isTopRated: false
+		}),
+		new Course({
+			id: 5,
+			title: 'TS course',
+			creationDate: new Date(2021, 1, 20),
+			duration: 40,
+			description: 'TS course TS course',
+			isTopRated: true
+		}),
 	];
 
 	public isCourseListDataEmpty = false;
 
-	public getCourseList(): CourseInterface[] {
+	public getCourseList(): ICourseProperties[] {
 		return this.courseListData;
 	}
 
@@ -43,7 +78,7 @@ export class CoursesListService {
 		}
 	}
 
-	public getFilteredCourseList(inputValue: string): CourseInterface[] {
+	public getFilteredCourseList(inputValue: string): ICourseProperties[] {
 		if ( inputValue.trim() === '' ) {
 			return this.getCourseList();
 		} else {

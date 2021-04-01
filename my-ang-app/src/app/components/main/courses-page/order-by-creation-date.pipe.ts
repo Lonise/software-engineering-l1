@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CourseInterface } from './course';
+import { ICourseProperties } from './course';
 
 @Pipe({
 	name: 'orderByCreationDate'
 })
 export class OrderByCreationDatePipe implements PipeTransform {
 
-	transform(coursesList: CourseInterface[]): CourseInterface[] {
-		return coursesList.sort((currentCourse: CourseInterface, nextCourse: CourseInterface) => {
+	transform(coursesList: ICourseProperties[]): ICourseProperties[] {
+		return coursesList.sort((currentCourse: ICourseProperties, nextCourse: ICourseProperties) => {
 
 			/*
 			if (currentCourse.creationDate < nextCourse.creationDate) {

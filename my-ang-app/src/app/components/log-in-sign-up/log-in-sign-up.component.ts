@@ -29,7 +29,7 @@ export class LogInSignUpComponent {
 	public onUserNameInputChange(event: any): void {
 		this.userNameInput = event.target.value;
 	};
-
+//add extends
 	public onPasswordInputChange(event: any): void {
 		this.userPasswordInput = event.target.value;
 	};

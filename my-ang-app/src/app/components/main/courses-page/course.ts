@@ -1,4 +1,4 @@
-export interface CourseInterface {
+export interface ICourseProperties {
 	id: string | number;
 	title: string;
 	creationDate: Date;
@@ -7,7 +7,7 @@ export interface CourseInterface {
 	isTopRated: boolean;
 }
 
-export class Course implements CourseInterface {
+export class Course {
 	public id: string | number;
 	public title: string;
 	public creationDate: Date;
@@ -15,12 +15,12 @@ export class Course implements CourseInterface {
 	public description: string;
 	public isTopRated: boolean;
 
-	constructor(id: string | number, title: string, creationDate: Date, duration: number, description: string, isTopRated: boolean) {
-		this.id = id;
-		this.title = title;
-		this.creationDate = creationDate;
-		this.duration = duration;
-		this.description = description;
-		this.isTopRated = isTopRated;
+	constructor( course: ICourseProperties ) {
+		this.id = course.id;
+		this.title = course.title;
+		this.creationDate = course.creationDate;
+		this.duration = course.duration;
+		this.description = course.description;
+		this.isTopRated = course.isTopRated;
 	}
 }

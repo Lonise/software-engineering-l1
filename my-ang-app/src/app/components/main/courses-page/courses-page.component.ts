@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CourseInterface} from './course';
+import { ICourseProperties} from './course';
 import { CoursesListService } from './courses-list.service';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
@@ -15,7 +15,7 @@ export class CoursesPageComponent implements OnInit{
 
 	constructor( private coursesList: CoursesListService ) { }
 
-	public coursesCatalog: CourseInterface[] = this.coursesList.getCourseList();
+	public coursesCatalog: ICourseProperties[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 
 	ngOnInit(): void {
