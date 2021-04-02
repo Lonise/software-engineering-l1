@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
-import { blueBorderStyle, daysInTwoWeek, greenBorderStyle, millisecondsInDay } from 'src/app/constants';
+import { blueBorderClass, daysInTwoWeek, greenBorderClass, millisecondsInDay } from 'src/app/constants';
 
 @Directive({
 	selector: '[appCourse]'
@@ -16,9 +16,9 @@ export class CourseDirective implements AfterViewInit {
 		const differenceDatesInDay: number =  Math.floor((+this.currentDate - +this.courseCreationDate) / millisecondsInDay);
 
 		if ( differenceDatesInDay > 0 && differenceDatesInDay <= daysInTwoWeek ) {
-			this.elementRef.nativeElement.style.border = greenBorderStyle;
+			this.elementRef.nativeElement.className = this.elementRef.nativeElement.className + greenBorderClass;
 		} else if ( differenceDatesInDay < 0 ) {
-			this.elementRef.nativeElement.style.border = blueBorderStyle;
+			this.elementRef.nativeElement.className = this.elementRef.nativeElement.className + blueBorderClass;
 		}
 	}
 }
