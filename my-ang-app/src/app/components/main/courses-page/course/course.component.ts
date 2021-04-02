@@ -1,5 +1,6 @@
-import { Component, Input, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
-import { CourseInterface } from '../course';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+
+import { Course } from '../course';
 
 @Component({
 	selector: 'app-course',
@@ -7,12 +8,14 @@ import { CourseInterface } from '../course';
 	styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnDestroy{
-	@Input() course!: CourseInterface;
+
+	@Input() course!: Course;
 	@Output() deletedCourse = new EventEmitter<number|string>();
 
-	deleteCourse(id: number | string): void {
+	public deleteCourse(id: number | string): void {
 		this.deletedCourse.emit(id);
 	}
+
 	ngOnDestroy(): void {
 		console.log('Removed course id ' + this.course.id);
 	}

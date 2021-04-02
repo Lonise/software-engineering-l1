@@ -17,14 +17,22 @@
 }
 
 .loadMoreButton {
+	height: 5vh;
 	margin: 1vh 15px;
 	width: calc(100% - 30px);
 	text-transform: uppercase;
 }
 
 .courseList {
-	max-height: 70vh;
+	height: 65vh;
+	background-color: rgba(48, 48, 48, 0.116);
 	overflow-y: hidden;
 	overflow-y:scroll;
 	@include scrollStyles();
+}
+.courseList__empty {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

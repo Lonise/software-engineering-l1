@@ -12,6 +12,12 @@ import { SearchAddComponent } from './components/main/courses-page/search-add/se
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
 import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up.component';
+import { CourseDirective } from './components/main/courses-page/course/course.directive';
+import { DurationCoursePipe } from './components/main/courses-page/course/duration-course.pipe';
+import { OrderByCreationDatePipe } from './components/main/courses-page/order-by-creation-date.pipe';
+import { FilterCoursesByInputPipe } from './components/main/courses-page/search-add/filter-courses-by-input.pipe';
+import { ValidationDirective } from './components/log-in-sign-up/validation.directive';
+import { AuthorizationErrorComponent } from './components/log-in-sign-up/authorization-error/authorization-error.component';
 
 @NgModule({
 	declarations: [
@@ -22,7 +28,14 @@ import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up
 		CoursesPageComponent,
 		CourseComponent,
 		SearchAddComponent,
-		BreadcrumbsComponent
+		BreadcrumbsComponent,
+		CourseDirective,
+		DurationCoursePipe,
+		OrderByCreationDatePipe,
+		FilterCoursesByInputPipe,
+		LogInSignUpComponent,
+		ValidationDirective,
+		AuthorizationErrorComponent
 	],
 	entryComponents: [LogInSignUpComponent],
 	imports: [
