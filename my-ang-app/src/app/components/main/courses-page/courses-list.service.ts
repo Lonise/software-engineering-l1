@@ -63,9 +63,10 @@ export class CoursesListService {
 	public getIsEmptyCourseList(): boolean {
 		return this.isCourseListDataEmpty;
 	}
-	// public addCourse(course: Course) {
-	// 	this.courseListData.push(course);
-	// };
+
+	public addCourse(course: ICourseProperties) {
+		this.courseListData.push(new Course(course));
+	};
 
 	public removeCourse( id: number | string ): void {
 		this.courseListData.forEach( (element, index) => {

@@ -3,5 +3,14 @@
 		<input type="text" placeholder="Searching courses" [(ngModel)]='inputSearchCourses'>
 		<button (click)='searchingCourses()'>Search</button>
 	</div>
-	<button>Add course</button>
+	<button (click)='toggleNewCourseForm()'>Add course</button>
+</div>
+<div class="newCourseForm" *ngIf="newCourseFormVisible">
+	<div class="inputContainer">
+		<input type="text" placeholder="title" [(ngModel)]="newCourse.title">
+		<input type="date" placeholder="creationDate" [(ngModel)]="newCourse.creationDate">
+		<input type="number" placeholder="duration min" [(ngModel)]="newCourse.duration">
+		<input type="text" placeholder="description" [(ngModel)]="newCourse.description">
+		<button (click)="createNewCourse()">Create new course</button>
+	</div>
 </div>
