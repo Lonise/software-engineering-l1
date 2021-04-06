@@ -27,18 +27,19 @@ export class SearchAddComponent {
 		description: '',
 		isTopRated: false,
 	};
+	// TO DO
+	// toggleNewCourseForm(): void {
+	// 	this.newCourseFormVisible = !this.newCourseFormVisible;
+	// };
+
+	// createNewCourse(): void {
+	// 	this.coursesListService.addCourse(this.newCourse)
+	// 	this.toggleNewCourseForm();
+	// }
 
 	searchingCourses(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 		this.searchCourses.emit(this.inputSearchCourses);
 	};
 
-	toggleNewCourseForm(): void {
-		this.newCourseFormVisible = !this.newCourseFormVisible;
-	};
-
-	createNewCourse(): void {
-		this.coursesListService.addCourse(this.newCourse)
-		this.toggleNewCourseForm();
-	}
 }

@@ -64,9 +64,10 @@ export class CoursesListService {
 		return this.isCourseListDataEmpty;
 	}
 
-	public addCourse(course: ICourseProperties) {
-		this.courseListData.push(new Course(course));
-	};
+	// TO DO
+	// public addCourse(course: ICourseProperties) {
+	// 	this.courseListData.push(new Course(course));
+	// };
 
 	public getCourseById(courseId: number | string): Course | string {
 		for (let i = 0; i < this.courseListData.length; i++) {
@@ -76,6 +77,10 @@ export class CoursesListService {
 		};
 		return 'incorrect id'
 	}
+
+	public updateCourse( course: ICourseProperties, id: number | string ) {
+
+	};
 
 	public removeCourse( id: number | string ): void {
 		this.courseListData.forEach( (element, index) => {
