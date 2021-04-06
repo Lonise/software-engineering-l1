@@ -72,15 +72,15 @@ export class CoursesListService {
 	public getCourseById(courseId: number | string): Course | string {
 		for (let i = 0; i < this.courseListData.length; i++) {
 			if ( this.courseListData[i].id === courseId ) {
-				return this.courseListData[i]
+				return this.courseListData[i];
 			}
-		};
-		return 'incorrect id'
+		}
+		return 'incorrect id';
 	}
 
 	public updateCourse( course: ICourseProperties, id: number | string ) {
 
-	};
+	}
 
 	public removeCourse( id: number | string ): void {
 		this.courseListData.forEach( (element, index) => {

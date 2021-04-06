@@ -40,6 +40,6 @@ export class SearchAddComponent {
 	searchingCourses(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 		this.searchCourses.emit(this.inputSearchCourses);
-	};
+	}
 
 }
