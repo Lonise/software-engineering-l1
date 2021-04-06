@@ -1,7 +1,8 @@
-<app-authorization-error *appValidation='isError' (closeErrorComponent)='toggleErrorComponent()' ></app-authorization-error>
+<app-authorization-error *appValidation='isError' (closeErrorComponent)='toggleErrorComponent()'>
+</app-authorization-error>
 <div class="backdrop" (click)='backDropClick($event)'>
 	<div class="logInWrapper modalWrapper">
-		<div class="close" (click)='toggleLogInSignUp()' >+</div>
+		<div class="close" (click)='toggleLogIn()' >+</div>
 		<div class="LogInSignUp__title">Log In</div>
 		<div>
 			<div class="">UserName</div>

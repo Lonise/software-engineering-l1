@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'app-log-in-sign-up',
-	templateUrl: './log-in-sign-up.component.html',
-	styleUrls: ['./log-in-sign-up.component.scss']
+	selector: 'app-authorization',
+	templateUrl: './authorization.component.html',
+	styleUrls: ['./authorization.component.scss']
 })
+export class AuthorizationComponent {
 
-export class LogInSignUpComponent {
+	@Input()
+	toggleLogIn!: () => void;
 
 	public userNameInput = '';
 	public userPasswordInput = '';
@@ -38,7 +40,8 @@ export class LogInSignUpComponent {
 		if (!this.validationUserName.test(this.userNameInput) || !this.validationPassword.test(this.userPasswordInput)) {
 			this.toggleErrorComponent();
 		} else {
-			this.toggleLogInSignUp();
+			this.toggleLogIn();
 		}
 	}
+
 }

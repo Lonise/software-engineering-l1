@@ -9,6 +9,6 @@ import { User, UserInterface } from '../user/user';
 })
 
 export class HeaderComponent {
-	@Input() toggleLogIn!: () => void;
+	@Input() logOut!: () => void;
 	public userExample: UserInterface = new User(1, 'Nikita', 'Loshkarev');
 }
