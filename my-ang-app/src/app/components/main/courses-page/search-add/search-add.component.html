@@ -1,7 +1,17 @@
 <div class="search-add">
 	<div class="search-control">
 		<input type="text" placeholder="Searching courses" [(ngModel)]='inputSearchCourses'>
-		<button (click)='searchingCourses()'>Search</button>
+		<button (click)='emitTextForSearching()'>Search</button>
 	</div>
 	<button>Add course</button>
 </div>
+<!-- TO DO
+	 <div class="newCourseForm" *ngIf="newCourseFormVisible">
+	<div class="inputContainer">
+		<input type="text" placeholder="title" [(ngModel)]="newCourse.title">
+		<input type="date" placeholder="creationDate" [(ngModel)]="newCourse.creationDate">
+		<input type="number" placeholder="duration min" [(ngModel)]="newCourse.duration">
+		<input type="text" placeholder="description" [(ngModel)]="newCourse.description">
+		<button (click)="createNewCourse()">Create new course</button>
+	</div>
+</div> -->

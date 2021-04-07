@@ -7,10 +7,10 @@
 	</div>
 	<div class="account">
 		<div class="account_user">
-			User: {{userExample.firstName}} {{userExample.lastName}}
+			{{authorization.getUserInfo()}}
 		</div>
-		<button (click)='toggleLogIn()'>
-			Log In
+		<button (click)="authorization.logout()">
+			Log out
 		</button>
 	</div>
 </div>

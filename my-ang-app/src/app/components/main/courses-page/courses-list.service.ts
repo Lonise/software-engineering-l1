@@ -63,11 +63,26 @@ export class CoursesListService {
 	public getIsEmptyCourseList(): boolean {
 		return this.isCourseListDataEmpty;
 	}
-	// public addCourse(course: Course) {
-	// 	this.courseListData.push(course);
+
+	// TO DO
+	// public addCourse(course: ICourseProperties) {
+	// 	this.courseListData.push(new Course(course));
 	// };
 
-	public removeCourse( id: number | string ): void {
+	public getCourseById(courseId: number): Course | string {
+		for (let i = 0; i < this.courseListData.length; i++) {
+			if ( this.courseListData[i].id === courseId ) {
+				return this.courseListData[i];
+			}
+		}
+		return 'incorrect id';
+	}
+
+	public updateCourse( course: ICourseProperties, id: number ) {
+
+	}
+
+	public removeCourse( id: number ): void {
 		this.courseListData.forEach( (element, index) => {
 			if ( element.id === id ) {
 				this.courseListData.splice(index, 1);

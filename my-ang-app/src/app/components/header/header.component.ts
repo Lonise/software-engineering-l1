@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthorizationService } from '../authorization/authorization.service';
 
-import { User, UserInterface } from '../user/user';
+import { User } from '../user/user';
 
 @Component({
 	selector: 'app-header',
@@ -9,6 +10,8 @@ import { User, UserInterface } from '../user/user';
 })
 
 export class HeaderComponent {
-	@Input() toggleLogIn!: () => void;
-	public userExample: UserInterface = new User(1, 'Nikita', 'Loshkarev');
+
+	constructor( public authorization: AuthorizationService ) { }
+
+	public userExample: User = new User({ id: 1, firstName: 'Nikita', lastName: 'Loshkarev' });
 }

@@ -11,13 +11,14 @@ import { CourseComponent } from './components/main/courses-page/course/course.co
 import { SearchAddComponent } from './components/main/courses-page/search-add/search-add.component';
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
-import { LogInSignUpComponent } from './components/log-in-sign-up/log-in-sign-up.component';
 import { CourseDirective } from './components/main/courses-page/course/course.directive';
 import { DurationCoursePipe } from './components/main/courses-page/course/duration-course.pipe';
 import { OrderByCreationDatePipe } from './components/main/courses-page/order-by-creation-date.pipe';
 import { FilterCoursesByInputPipe } from './components/main/courses-page/search-add/filter-courses-by-input.pipe';
-import { ValidationDirective } from './components/log-in-sign-up/validation.directive';
-import { AuthorizationErrorComponent } from './components/log-in-sign-up/authorization-error/authorization-error.component';
+import { ValidationDirective } from './components/authorization/validation.directive';
+import { AuthorizationErrorComponent } from './components/authorization/authorization-error/authorization-error.component';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { AuthorizationService } from './components/authorization/authorization.service';
 
 @NgModule({
 	declarations: [
@@ -33,17 +34,17 @@ import { AuthorizationErrorComponent } from './components/log-in-sign-up/authori
 		DurationCoursePipe,
 		OrderByCreationDatePipe,
 		FilterCoursesByInputPipe,
-		LogInSignUpComponent,
 		ValidationDirective,
-		AuthorizationErrorComponent
+		AuthorizationErrorComponent,
+		AuthorizationComponent
 	],
-	entryComponents: [LogInSignUpComponent],
+	entryComponents: [AuthorizationComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule
 	],
-	providers: [],
+	providers: [ AuthorizationService ],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

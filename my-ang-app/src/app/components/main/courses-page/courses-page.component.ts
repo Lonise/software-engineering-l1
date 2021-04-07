@@ -17,13 +17,24 @@ export class CoursesPageComponent {
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
+	public isDeleteCourseContainerVisible = false;
+	private currentDeletionCourseId!: number;
 
 	public showMoreCourses(): void {
 		console.log('Load more');
 	}
 
-	public removeCourse( id: number | string ): void {
-		this.coursesList.removeCourse(id);
+	public toggleConfirmModalToDeleteCourse( id?: number ): void {
+		this.isDeleteCourseContainerVisible = !this.isDeleteCourseContainerVisible;
+
+		if ( id ) {
+			this.currentDeletionCourseId = id;
+		}
+	}
+
+	public removeCourse(): void {
+		this.isDeleteCourseContainerVisible = false;
+		this.coursesList.removeCourse(this.currentDeletionCourseId);
 		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
 	}
 

@@ -1,17 +1,17 @@
-export interface UserInterface {
+export interface IUserProperties {
 	id: number | string;
 	firstName: string;
 	lastName: string;
 }
 
-export class User implements UserInterface {
+export class User {
 	public id: string | number;
 	public firstName: string;
 	public lastName: string;
 
-	constructor( id: number | string, firstName: string, lastName: string ) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	constructor( user: IUserProperties ) {
+		this.id = user.id;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
 	}
 }

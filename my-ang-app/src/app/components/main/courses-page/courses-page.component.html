@@ -1,3 +1,13 @@
+<div class="backdrop" *ngIf="isDeleteCourseContainerVisible">
+	<div class="confirmationModal modalWrapper">
+		<div class="close" (click)="toggleConfirmModalToDeleteCourse()">+</div>
+		<div class="confirmationMessage">Do you really want to delete this course?</div>
+		<div class="">
+			<button (click)="removeCourse()">Yes</button>
+			<button (click)="toggleConfirmModalToDeleteCourse()">No</button>
+		</div>
+	</div>
+</div>
 <app-search-add [coursesCatalog]='coursesCatalog' (searchCourses)='searchCourses($event)'></app-search-add>
 <div class="courseList">
 	<div class="courseList__empty" *ngIf='isCourseListEmpty'>
@@ -6,7 +16,7 @@
 	<app-course
 	*ngFor='let course of coursesCatalog | orderByCreationDate; let i = index'
 	[course]='coursesCatalog[i]'
-	(deletedCourse)='removeCourse($event)'>
+	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)">
 	</app-course>
 </div>
 <button class="loadMoreButton" (click)='showMoreCourses()' [disabled]='isCourseListEmpty'>load more</button>
