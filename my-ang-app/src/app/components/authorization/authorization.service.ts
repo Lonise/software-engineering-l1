@@ -4,7 +4,6 @@ export class AuthorizationService {
 	public userLogin!: string | null;
 	public userNameInput = '';
 	public userPasswordInput = '';
-	public isAuthenticated = false;
 	public isErrorModalVisible = false;
 
 	public validationUserName: RegExp = new RegExp(/^([\w\-\.])+\@([\w\-\.])+\.([A-Za-z]{2,4})$/);
@@ -12,11 +11,6 @@ export class AuthorizationService {
 
 	public checkUserIsAuthorized(): void {
 		this.userLogin = window.localStorage.getItem(this.userKey);
-		if ( typeof this.userLogin === 'string' ) {
-			this.isAuthenticated = true;
-		} else {
-			this.isAuthenticated = false;
-		}
 	}
 
 	private validationIsPass(): boolean {
@@ -41,11 +35,9 @@ export class AuthorizationService {
 	public login( login?: string ): void {
 		if (!login) {
 			console.log('isAuthenticated = false');
-			this.isAuthenticated = true;
 			return;
 		} else {
 			window.localStorage.setItem(this.userKey, login);
-			this.isAuthenticated = true;
 			this.userLogin = login;
 			console.log(this.userLogin);
 		}
@@ -53,7 +45,6 @@ export class AuthorizationService {
 
 	public logout(): void {
 		window.localStorage.clear();
-		this.isAuthenticated = false;
 		this.userLogin = null;
 	}
 
