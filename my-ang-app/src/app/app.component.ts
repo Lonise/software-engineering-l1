@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthorizationService } from './components/authorization/authorization.service';
 
 @Component({
 	selector: 'app-root',
@@ -6,11 +7,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	title = 'my-ang-app';
-
-	public isUserNonAuthorized = true;
-
-	public toggleLogInSignUp = (): void => {
-		this.isUserNonAuthorized = !this.isUserNonAuthorized;
+	constructor( public authorization: AuthorizationService) {
+		this.authorization.checkUserIsAuthorized();
 	}
+	title = 'my-ang-app';
 }

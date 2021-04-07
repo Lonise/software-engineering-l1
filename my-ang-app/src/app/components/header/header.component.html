@@ -7,9 +7,9 @@
 	</div>
 	<div class="account">
 		<div class="account_user">
-			User: {{userExample.firstName}} {{userExample.lastName}}
+			{{authorization.getUserInfo()}}
 		</div>
-		<button (click)="logOut()">
+		<button (click)="authorization.logout()">
 			Log out
 		</button>
 	</div>

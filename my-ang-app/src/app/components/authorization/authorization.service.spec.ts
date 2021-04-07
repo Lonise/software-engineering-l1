@@ -8,7 +8,7 @@ describe('AuthorizationService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
 		service = TestBed.inject(AuthorizationService);
-  });
+	});
 
 	it('should be created', () => {
 		expect(service).toBeTruthy();
