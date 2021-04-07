@@ -19,8 +19,15 @@ export class AuthorizationService {
 		}
 	}
 
+	private validationIsPass(): boolean {
+		return (
+			!this.validationUserName.test(this.userNameInput) ||
+			!this.validationPassword.test(this.userPasswordInput)
+		);
+	}
+
 	public submitAuthorization(): void {
-		if (!this.validationUserName.test(this.userNameInput) || !this.validationPassword.test(this.userPasswordInput)) {
+		if ( this.validationIsPass() ) {
 			this.toggleErrorComponent();
 		} else {
 			this.login(this.userNameInput);
