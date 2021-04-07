@@ -37,7 +37,7 @@ export class SearchAddComponent {
 	// 	this.toggleNewCourseForm();
 	// }
 
-	searchingCourses(): void {
+	public emitTextForSearching(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 		this.searchCourses.emit(this.inputSearchCourses);
 	}
