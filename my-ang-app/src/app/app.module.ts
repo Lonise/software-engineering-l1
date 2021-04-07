@@ -18,6 +18,7 @@ import { FilterCoursesByInputPipe } from './components/main/courses-page/search-
 import { ValidationDirective } from './components/authorization/validation.directive';
 import { AuthorizationErrorComponent } from './components/authorization/authorization-error/authorization-error.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { AuthorizationService } from './components/authorization/authorization.service';
 
 @NgModule({
 	declarations: [
@@ -43,7 +44,7 @@ import { AuthorizationComponent } from './components/authorization/authorization
 		AppRoutingModule,
 		FormsModule
 	],
-	providers: [],
+	providers: [ AuthorizationService ],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
