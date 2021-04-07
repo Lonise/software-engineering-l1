@@ -1,5 +1,5 @@
 export interface ICourseProperties {
-	id: string | number;
+	id: number;
 	title: string;
 	creationDate: Date;
 	duration: number;
@@ -8,7 +8,7 @@ export interface ICourseProperties {
 }
 
 export class Course {
-	public id: string | number;
+	public id: number;
 	public title: string;
 	public creationDate: Date;
 	public duration: number;

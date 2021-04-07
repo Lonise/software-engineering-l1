@@ -18,13 +18,13 @@ export class CoursesPageComponent {
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 	public isDeleteCourseContainerVisible = false;
-	private currentDeletionCourseId!: number | string;
+	private currentDeletionCourseId!: number;
 
 	public showMoreCourses(): void {
 		console.log('Load more');
 	}
 
-	public toggleConfirmModalToDeleteCourse( id?: number | string ): void {
+	public toggleConfirmModalToDeleteCourse( id?: number ): void {
 		this.isDeleteCourseContainerVisible = !this.isDeleteCourseContainerVisible;
 
 		if ( id ) {
