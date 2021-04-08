@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
 import { blueBorderClass, daysInTwoWeek, greenBorderClass, millisecondsInDay } from 'src/app/constants';
 
@@ -7,7 +7,7 @@ import { blueBorderClass, daysInTwoWeek, greenBorderClass, millisecondsInDay } f
 })
 export class CourseDirective implements AfterViewInit {
 
-	constructor(private elementRef: ElementRef, render: Renderer2) { }
+	constructor( private elementRef: ElementRef ) { }
 
 	@Input() courseCreationDate!: Date;
 	private currentDate = new Date();
