@@ -1,23 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CoursesPageComponent } from './courses-page.component';
+import { CoursesListService } from './courses-list.service';
+import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
 describe('CoursesPageComponent', () => {
-	let component: CoursesPageComponent;
-	let fixture: ComponentFixture<CoursesPageComponent>;
-
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			declarations: [ CoursesPageComponent ]
-		})
-		.compileComponents();
-	});
-
-	beforeEach(() => {
-		fixture = TestBed.createComponent(CoursesPageComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+	let filterCoursesByInputPipe: FilterCoursesByInputPipe = new FilterCoursesByInputPipe()
+	let coursesListService: CoursesListService = new CoursesListService(filterCoursesByInputPipe);
+	let component: CoursesPageComponent = new CoursesPageComponent(coursesListService);
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
