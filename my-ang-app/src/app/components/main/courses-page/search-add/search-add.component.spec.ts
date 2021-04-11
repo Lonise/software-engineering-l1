@@ -1,24 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchAddComponent } from './search-add.component';
+import { CoursesListService } from '../courses-list.service';
+import { FilterCoursesByInputPipe } from './filter-courses-by-input.pipe';
 
 describe('SearchAddComponent', () => {
-	let component: SearchAddComponent;
-	let fixture: ComponentFixture<SearchAddComponent>;
-
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			declarations: [ SearchAddComponent ]
-		})
-		.compileComponents();
-	});
-
-	beforeEach(() => {
-		fixture = TestBed.createComponent(SearchAddComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
-
+	let filterCoursesByInputPipe: FilterCoursesByInputPipe = new FilterCoursesByInputPipe();
+	let coursesListService: CoursesListService = new CoursesListService(filterCoursesByInputPipe);
+	let component: SearchAddComponent = new SearchAddComponent(coursesListService);
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});

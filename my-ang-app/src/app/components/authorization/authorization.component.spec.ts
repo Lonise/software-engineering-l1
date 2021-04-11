@@ -1,24 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AuthorizationComponent } from './authorization.component';
+import { AuthorizationService } from './authorization.service';
+
 
 describe('AuthorizationComponent', () => {
-	let component: AuthorizationComponent;
-	let fixture: ComponentFixture<AuthorizationComponent>;
-
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			declarations: [ AuthorizationComponent ]
-		})
-		.compileComponents();
-	});
-
-	beforeEach(() => {
-		fixture = TestBed.createComponent(AuthorizationComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
-
+	let authorizationService: AuthorizationService = new AuthorizationService();
+	let component: AuthorizationComponent = new AuthorizationComponent(authorizationService);
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});
