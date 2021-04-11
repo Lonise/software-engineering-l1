@@ -1,9 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { HeaderComponent } from './header.component';
-import { AuthorizationService } from '../authorization/authorization.service';
 
 describe('HeaderComponent', () => {
-	let authorizationService: AuthorizationService = new AuthorizationService()
-	let component: HeaderComponent = new HeaderComponent(authorizationService);
+	let component: HeaderComponent;
+	let fixture: ComponentFixture<HeaderComponent>;
+
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [ HeaderComponent ]
+		})
+		.compileComponents();
+	});
+
+	beforeEach(() => {
+		fixture = TestBed.createComponent(HeaderComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
