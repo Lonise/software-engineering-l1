@@ -1,7 +1,7 @@
 import { FilterCoursesByInputPipe } from './filter-courses-by-input.pipe';
 import { Course } from '../course';
 
-describe('FilterCoursesByInputPipe', () => {
+describe('FilterCoursesByInputPipe transform()', () => {
 	let filterCoursesByInputPip: FilterCoursesByInputPipe;
 	let inputExample: string;
 	let courseListExample: Course[] = [
@@ -35,17 +35,13 @@ describe('FilterCoursesByInputPipe', () => {
 		filterCoursesByInputPip = new FilterCoursesByInputPipe()
 	});
 
-	it('create an instance', () => {
-		expect(filterCoursesByInputPip).toBeTruthy();
-	});
-
 	it('should return courses with current input in the title', () => {
 		inputExample = 's';
 		expect(filterCoursesByInputPip.transform(courseListExample, inputExample).length).toEqual(2);
 	});
 
 	it('should return an empty array if the course list does not contain a course with a title for the current input', () => {
-		inputExample = 'nonexistent course';
+		inputExample = 'nonexistent course title';
 		expect(filterCoursesByInputPip.transform(courseListExample, inputExample)).toEqual([]);
 	});
 
