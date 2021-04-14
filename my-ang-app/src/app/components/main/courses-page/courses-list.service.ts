@@ -61,7 +61,7 @@ export class CoursesListService {
 	}
 
 	public getIsEmptyCourseList(): boolean {
-		this.isCourseListDataEmpty = this.courseListData.length > 0 ? false : true;
+		this.isCourseListDataEmpty = !!this.courseListData.length;
 		return this.isCourseListDataEmpty;
 	}
 

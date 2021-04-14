@@ -4,7 +4,7 @@ import { Course } from '../course';
 describe('FilterCoursesByInputPipe transform()', () => {
 	let filterCoursesByInputPip: FilterCoursesByInputPipe;
 	let inputExample: string;
-	let courseListExample: Course[] = [
+	const courseListExample: Course[] = [
 		{
 			id: 1,
 			title: 'HTML course',
@@ -32,12 +32,12 @@ describe('FilterCoursesByInputPipe transform()', () => {
 	];
 
 	beforeEach(() => {
-		filterCoursesByInputPip = new FilterCoursesByInputPipe()
+		filterCoursesByInputPip = new FilterCoursesByInputPipe();
 	});
 
 	it('should return courses with current input in the title', () => {
 		inputExample = 's';
-		expect(filterCoursesByInputPip.transform(courseListExample, inputExample).length).toEqual(2);
+		expect(filterCoursesByInputPip.transform(courseListExample, inputExample).length).toBe(2);
 	});
 
 	it('should return an empty array if the course list does not contain a course with a title for the current input', () => {
