@@ -4,10 +4,13 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 
 describe('CoursesListService', () => {
 	let coursesListService: CoursesListService;
-	let filterCoursesByInputPipe: FilterCoursesByInputPipe = new FilterCoursesByInputPipe();
+	const fakeFilterCoursesByInputPipe = {
+		transform: (coursesList: Course[], inputValue: string): Course[] => {
+		return coursesList;
+	}};
 
 	beforeEach(() => {
-		coursesListService = new CoursesListService(filterCoursesByInputPipe)
+		coursesListService = new CoursesListService(fakeFilterCoursesByInputPipe);
 	});
 
 	describe('CoursesListService.getCourseList()', () => {
@@ -15,7 +18,7 @@ describe('CoursesListService', () => {
 		it('should return courseListData', () => {
 			expect(coursesListService.getCourseList()).toEqual(coursesListService.courseListData);
 		});
-	})
+	});
 
 	describe('CoursesListService.getIsEmptyCourseList()', () => {
 
@@ -27,7 +30,7 @@ describe('CoursesListService', () => {
 			coursesListService.courseListData = [];
 			expect(coursesListService.getIsEmptyCourseList()).toBeTrue();
 		});
-	})
+	});
 
 	describe('CoursesListService.getCourseById(courseId: number)', () => {
 
@@ -38,9 +41,9 @@ describe('CoursesListService', () => {
 
 		it('should return string "incorrect id" if current id is incorrect', () => {
 			const incorrectId = 0;
-			expect(coursesListService.getCourseById(incorrectId)).toEqual("incorrect id");
+			expect(coursesListService.getCourseById(incorrectId)).toEqual('incorrect id');
 		});
-	})
+	});
 
 	describe('CoursesListService.removeCourse( id: number )', () => {
 
@@ -48,12 +51,12 @@ describe('CoursesListService', () => {
 			const currentId = 5;
 			expect(coursesListService.getCourseById(currentId)).toBeDefined();
 			coursesListService.removeCourse(currentId);
-			expect(coursesListService.getCourseById(currentId)).toEqual("incorrect id");
+			expect(coursesListService.getCourseById(currentId)).toEqual('incorrect id');
 		});
 
 		describe('CoursesListService.removeCourse( id: number ), courseListData contain only one course', () => {
 
-			beforeEach(()=> {
+			beforeEach(() => {
 				coursesListService.courseListData = [{
 						id: 5,
 						title: 'TS course',
@@ -61,16 +64,16 @@ describe('CoursesListService', () => {
 						duration: 40,
 						description: 'TS course TS course',
 						isTopRated: true
-				}]
-			})
+				}];
+			});
 
 			it('should change coursesListService.isCourseListDataEmpty value to true if all courses was be removed', () => {
 				expect(coursesListService.isCourseListDataEmpty).toBeFalse();
 				coursesListService.removeCourse(5);
 				expect(coursesListService.isCourseListDataEmpty).toBeTruthy();
 			});
-		})
-	})
+		});
+	});
 
 	describe('CoursesListService.getFilteredCourseList(inputValue: string)', () => {
 
@@ -86,9 +89,9 @@ describe('CoursesListService', () => {
 
 		it(' should call filterCoursesByInputPipe.transform(this.courseListData, inputValue) if inputValue.trim()  !== "" ', () => {
 			inputValue = 's';
-			spyOn(filterCoursesByInputPipe, 'transform');
+			spyOn(fakeFilterCoursesByInputPipe, 'transform');
 			coursesListService.getFilteredCourseList(inputValue);
-			expect(filterCoursesByInputPipe.transform).toHaveBeenCalledOnceWith(coursesListService.courseListData, inputValue);
+			expect(fakeFilterCoursesByInputPipe.transform).toHaveBeenCalledOnceWith(coursesListService.courseListData, inputValue);
 		});
-	})
+	});
 });
