@@ -1,7 +1,7 @@
 export class AuthorizationService {
 
 	public userKey = 'user';
-	public userLogin: string | null = null;
+	public userLogin!: string | null;
 	public userNameInput = '';
 	public userPasswordInput = '';
 	public isErrorModalVisible = false;
