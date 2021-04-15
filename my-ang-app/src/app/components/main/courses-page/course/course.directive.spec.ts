@@ -1,8 +1,17 @@
+import { ElementRef } from '@angular/core';
+
 import { CourseDirective } from './course.directive';
 
+let elementRef: ElementRef;
 describe('CourseDirective', () => {
-	it('should create an instance', () => {
-		const directive = new CourseDirective();
-		expect(directive).toBeTruthy();
+	let courseDirective: CourseDirective;
+	beforeEach(() => {
+		courseDirective = new CourseDirective(elementRef);
+		spyOn(courseDirective, 'ngAfterViewInit');
+		courseDirective.ngAfterViewInit();
+	})
+
+	it('should call courseDirective.ngAfterViewInit', () => {
+		expect(courseDirective.ngAfterViewInit).toHaveBeenCalled();
 	});
 });

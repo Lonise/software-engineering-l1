@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Course, ICourseProperties } from './course';
+import { Course } from './course';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
 @Injectable({
@@ -9,9 +9,9 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 
 export class CoursesListService {
 
-	constructor(private filterCoursesByInputPipe: FilterCoursesByInputPipe) { }
+	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe ) { }
 
-	private courseListData: ICourseProperties[] = [
+	public courseListData: Course[] = [
 		new Course({
 			id: 1,
 			title: 'HTML course',
@@ -61,6 +61,7 @@ export class CoursesListService {
 	}
 
 	public getIsEmptyCourseList(): boolean {
+		this.isCourseListDataEmpty = !this.courseListData.length;
 		return this.isCourseListDataEmpty;
 	}
 
@@ -78,7 +79,7 @@ export class CoursesListService {
 		return 'incorrect id';
 	}
 
-	public updateCourse( course: ICourseProperties, id: number ) {
+	public updateCourse( course: Course, id: number ) {
 
 	}
 

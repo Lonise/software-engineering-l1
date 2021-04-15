@@ -9,11 +9,11 @@ export class AuthorizationService {
 	public validationUserName: RegExp = new RegExp(/^([\w\-\.])+\@([\w\-\.])+\.([A-Za-z]{2,4})$/);
 	public validationPassword: RegExp = new RegExp(/^\w{1,5}$/);
 
-	public checkUserIsAuthorized(): void {
+	public takeUserLoginFromLocalStorage(): void {
 		this.userLogin = window.localStorage.getItem(this.userKey);
 	}
 
-	private validationIsPass(): boolean {
+	public validationIsNoPass(): boolean {
 		return (
 			!this.validationUserName.test(this.userNameInput) ||
 			!this.validationPassword.test(this.userPasswordInput)
@@ -21,7 +21,7 @@ export class AuthorizationService {
 	}
 
 	public submitAuthorization(): void {
-		if ( this.validationIsPass() ) {
+		if ( this.validationIsNoPass() ) {
 			this.toggleErrorComponent();
 		} else {
 			this.login(this.userNameInput);

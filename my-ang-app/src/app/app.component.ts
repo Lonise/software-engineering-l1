@@ -8,7 +8,7 @@ import { AuthorizationService } from './components/authorization/authorization.s
 })
 export class AppComponent {
 	constructor( public authorization: AuthorizationService) {
-		this.authorization.checkUserIsAuthorized();
+		this.authorization.takeUserLoginFromLocalStorage();
 	}
 	title = 'my-ang-app';
 }

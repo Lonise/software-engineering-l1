@@ -1,7 +1,7 @@
-import { Constans } from './constants';
+import * as Constants  from './constants';
 
-describe('Constans', () => {
+describe('Constants', () => {
 	it('should create an instance', () => {
-		expect(new Constans()).toBeTruthy();
+		expect(Constants).toBeTruthy();
 	});
 });
