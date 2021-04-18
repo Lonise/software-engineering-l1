@@ -18,6 +18,8 @@ export class CoursesPageComponent {
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 	public isDeleteCourseContainerVisible = false;
+	public isCourseListVisible = true;
+	public isAddCourseVisible = false;
 	private currentDeletionCourseId!: number;
 
 	public showMoreCourses(): void {
@@ -40,5 +42,10 @@ export class CoursesPageComponent {
 
 	public searchCourses(currentInput: string): void {
 			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
+	}
+
+	public toggleAddNewCourse(): void {
+		this.isCourseListVisible = !this.isCourseListVisible;
+		this.isAddCourseVisible = !this.isAddCourseVisible;
 	}
 }

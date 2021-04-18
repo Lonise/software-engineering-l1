@@ -3,9 +3,9 @@ import { CoursesListService } from '../courses-list.service';
 import { FilterCoursesByInputPipe } from './filter-courses-by-input.pipe';
 
 describe('SearchAddComponent', () => {
-	let filterCoursesByInputPipe: FilterCoursesByInputPipe = new FilterCoursesByInputPipe();
-	let coursesListService: CoursesListService = new CoursesListService(filterCoursesByInputPipe);
-	let component: SearchAddComponent = new SearchAddComponent(coursesListService);
+	const filterCoursesByInputPipe: FilterCoursesByInputPipe = new FilterCoursesByInputPipe();
+	const coursesListService: CoursesListService = new CoursesListService(filterCoursesByInputPipe);
+	const component: SearchAddComponent = new SearchAddComponent(coursesListService);
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});

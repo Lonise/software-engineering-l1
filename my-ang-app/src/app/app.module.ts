@@ -19,6 +19,7 @@ import { ValidationDirective } from './components/authorization/validation.direc
 import { AuthorizationErrorComponent } from './components/authorization/authorization-error/authorization-error.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { AuthorizationService } from './components/authorization/authorization.service';
+import { AddCoursePageComponent } from './components/main/courses-page/add-course-page/add-course-page.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { AuthorizationService } from './components/authorization/authorization.s
 		FilterCoursesByInputPipe,
 		ValidationDirective,
 		AuthorizationErrorComponent,
-		AuthorizationComponent
+		AuthorizationComponent,
+		AddCoursePageComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [

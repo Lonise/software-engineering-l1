@@ -1,0 +1,28 @@
+.inputContainer {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	width: 30%;
+}
+
+.buttonsContainer {
+	width: 40%;
+	margin: 10px;
+	display: flex;
+	justify-content: space-around;
+
+	&_button {
+		width: 80px;
+	}
+}
+
+.durationCourse {
+	margin: 0 10px;
+}
+
+.wideInput {
+width: 100%;
+}
