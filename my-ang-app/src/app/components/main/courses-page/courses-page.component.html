@@ -1,20 +1,25 @@
-<div class="backdrop" *ngIf="isDeleteCourseContainerVisible">
-	<div class="confirmationModal modalWrapper">
-		<div class="close" (click)="toggleConfirmModalToDeleteCourse()">+</div>
-		<div class="confirmationMessage">Do you really want to delete this course?</div>
-		<div class="">
-			<button (click)="removeCourse()">Yes</button>
-			<button (click)="toggleConfirmModalToDeleteCourse()">No</button>
+<div class="deleteCoursePopup-container">
+	<div class="backdrop" *ngIf="isDeleteCourseContainerVisible">
+		<div class="confirmationModal modalWrapper">
+			<div class="close" (click)="toggleConfirmModalToDeleteCourse()">+</div>
+			<div class="confirmationMessage">Do you really want to delete this course?</div>
+			<div class="">
+				<button (click)="removeCourse()">Yes</button>
+				<button (click)="toggleConfirmModalToDeleteCourse()">No</button>
+			</div>
 		</div>
 	</div>
 </div>
-<app-search-add
-	*ngIf="!isAddCourseVisible"
-	[coursesCatalog]='coursesCatalog'
-	(searchCourses)='searchCourses($event)'
-	(toggleAddNewCourse)='toggleAddNewCourse()'>
-</app-search-add>
-<app-add-course-page *ngIf="isAddCourseVisible" (toggleAddNewCourse)="toggleAddNewCourse()"></app-add-course-page>
+<div class="searchAdd-container" *ngIf="!isAddCourseVisible">
+	<app-search-add
+		[coursesCatalog]='coursesCatalog'
+		(searchCourses)='searchCourses($event)'
+		(toggleAddNewCourse)='toggleAddNewCourse()'>
+	</app-search-add>
+</div>
+<app-add-course-page
+	*ngIf="isAddCourseVisible" (toggleAddNewCourse)="toggleAddNewCourse()">
+</app-add-course-page>
 <div class="courseList" *ngIf="isCourseListVisible">
 	<div class="courseList__empty" *ngIf="isCourseListEmpty">
 		no data. feel free to add new course.
@@ -25,4 +30,6 @@
 	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)">
 	</app-course>
 </div>
-<button class="loadMoreButton" (click)="showMoreCourses()" [disabled]="isCourseListEmpty">load more</button>
+<div class="loadMore-container" *ngIf="!isAddCourseVisible">
+	<button class="loadMoreButton" (click)="showMoreCourses()" [disabled]="isCourseListEmpty">load more</button>
+</div>
