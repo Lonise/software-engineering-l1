@@ -9,6 +9,7 @@
 	</div>
 </div>
 <app-search-add
+	*ngIf="!isAddCourseVisible"
 	[coursesCatalog]='coursesCatalog'
 	(searchCourses)='searchCourses($event)'
 	(toggleAddNewCourse)='toggleAddNewCourse()'>

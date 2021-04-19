@@ -1,12 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { Course } from '../course';
 
 @Component({
 	selector: 'app-course',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: './course.component.html',
-	styleUrls: ['./course.component.scss']
+	styleUrls: ['./course.component.scss'],
 })
+
 export class CourseComponent implements OnDestroy{
 
 	@Input() course!: Course;
