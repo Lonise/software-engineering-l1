@@ -12,9 +12,9 @@
 </div>
 <div class="searchAdd-container" *ngIf="!isAddCourseVisible">
 	<app-search-add
-		[coursesCatalog]='coursesCatalog'
-		(searchCourses)='searchCourses($event)'
-		(toggleAddNewCourse)='toggleAddNewCourse()'>
+		[coursesCatalog]="coursesCatalog"
+		(searchCourses)="searchCourses($event)"
+		(toggleAddNewCourse)="toggleAddNewCourse()">
 	</app-search-add>
 </div>
 <app-add-course-page
