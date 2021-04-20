@@ -4,7 +4,6 @@ import { Course } from '../course';
 
 @Component({
 	selector: 'app-course',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: './course.component.html',
 	styleUrls: ['./course.component.scss'],
 })

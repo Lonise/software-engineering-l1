@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Course } from './course';
 import { CoursesListService } from './courses-list.service';
@@ -7,6 +7,7 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 @Component({
 	selector: 'app-courses-page',
 	templateUrl: './courses-page.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ['./courses-page.component.scss'],
 	providers: [ CoursesListService, FilterCoursesByInputPipe ]
 })
