@@ -78,10 +78,9 @@ export class CoursesListService {
 		}
 		return 'incorrect id';
 	}
-
-	public updateCourse( course: Course, id: number ) {
-
-	}
+	// TO DO
+	// public updateCourse( course: Course, id: number ) {
+	// }
 
 	public removeCourse( id: number ): void {
 		this.courseListData.forEach( (element, index) => {

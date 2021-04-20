@@ -9,7 +9,7 @@ describe('CourseDirective', () => {
 		courseDirective = new CourseDirective(elementRef);
 		spyOn(courseDirective, 'ngAfterViewInit');
 		courseDirective.ngAfterViewInit();
-	})
+	});
 
 	it('should call courseDirective.ngAfterViewInit', () => {
 		expect(courseDirective.ngAfterViewInit).toHaveBeenCalled();
