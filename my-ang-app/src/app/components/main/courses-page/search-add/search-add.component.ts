@@ -13,6 +13,7 @@ import { CoursesListService } from '../courses-list.service';
 export class SearchAddComponent {
 	@Input() coursesCatalog!: ICourseProperties[];
 	@Output() searchCourses = new EventEmitter<string>();
+	@Output() toggleAddNewCourse = new EventEmitter<string>();
 
 	constructor( private coursesListService: CoursesListService ) {}
 
@@ -27,19 +28,13 @@ export class SearchAddComponent {
 		description: '',
 		isTopRated: false,
 	};
-	// TO DO
-	// toggleNewCourseForm(): void {
-	// 	this.newCourseFormVisible = !this.newCourseFormVisible;
-	// };
-
-	// createNewCourse(): void {
-	// 	this.coursesListService.addCourse(this.newCourse)
-	// 	this.toggleNewCourseForm();
-	// }
 
 	public emitTextForSearching(): void {
 		console.log(`Input value \'${this.inputSearchCourses}\'`);
 		this.searchCourses.emit(this.inputSearchCourses);
 	}
 
+	public showAddCoursePage(): void {
+		this.toggleAddNewCourse.emit();
+	}
 }

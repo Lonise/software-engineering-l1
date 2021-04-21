@@ -1,15 +1,15 @@
 <div class="courses-list_item"
-[ngClass]='{topRatedCourse: course.isTopRated}'
-appCourse [courseCreationDate]='course.creationDate'>
+[ngClass]="{topRatedCourse: course.isTopRated}"
+appCourse [courseCreationDate]="course.creationDate">
 	<div class="course-content">
 		<div class="course-title">
 			<div class="course-name">
 				{{course.title | uppercase}}
-				<img src="../../../../../assets/starCourse.svg" alt="star" *ngIf='course.isTopRated'>
+				<img src="../../../../../assets/starCourse.svg" alt="star" *ngIf="course.isTopRated">
 			</div>
 			<div class="course-info">
 				{{course.duration | durationCourse}}
-			{{course.creationDate | date:'dd.MM.yyyy'}}
+			{{course.creationDate | date:"dd.MM.yyyy"}}
 			</div>
 		</div>
 		<p>
@@ -26,7 +26,7 @@ appCourse [courseCreationDate]='course.creationDate'>
 				Edit
 			</button>
 		</div>
-		<div class="course-button" (click)='deleteCourse(course.id)'>
+		<div class="course-button" (click)="deleteCourse(course.id)">
 			<button>
 				Delete
 			</button>

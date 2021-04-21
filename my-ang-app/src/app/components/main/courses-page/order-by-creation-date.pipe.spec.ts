@@ -21,7 +21,7 @@ describe('OrderByCreationDatePipe', () => {
 		isTopRated: true
 };
 
-	let courseListExample: Course[] = [
+	const courseListExample: Course[] = [
 		{
 			id: 1,
 			title: 'HTML course',
@@ -46,7 +46,7 @@ describe('OrderByCreationDatePipe', () => {
 			description: 'JS course JS course',
 			isTopRated: true
 		}
-	];;
+	];
 
 	it('create an instance', () => {
 		expect(orderByCreationDatePipe).toBeTruthy();
@@ -62,7 +62,7 @@ describe('OrderByCreationDatePipe', () => {
 			if ( courseWithMinimalCreationDate.creationDate > course.creationDate ){
 				courseWithMinimalCreationDate = course;
 			}
-		})
+		});
 		expect(orderByCreationDatePipe.transform(courseListExample)[0]).toEqual(courseWithMinimalCreationDate);
 	});
 
@@ -73,7 +73,7 @@ describe('OrderByCreationDatePipe', () => {
 			if ( courseWithMaximalCreationDate.creationDate < course.creationDate ){
 				courseWithMaximalCreationDate = course;
 			}
-		})
+		});
 
 		expect(orderByCreationDatePipe.transform(courseListExample)[lastItemId]).toEqual(courseWithMaximalCreationDate);
 	});

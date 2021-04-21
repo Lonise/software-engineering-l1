@@ -1,0 +1,29 @@
+<div class="newCourseForm">
+	<div class="inputContainer">
+		<div class="inputContainer_input">
+			<p>Title:</p>
+			<input class="wideInput roundedBorders" type="text roundedBorders" placeholder="title" [(ngModel)]="newCourse.title">
+		</div>
+		<div class="inputContainer_input">
+			<p>Description:</p>
+			<textarea rows="5" class="wideInput roundedBorders" placeholder="description" [(ngModel)]="newCourse.description"></textarea>
+		</div>
+		<div class="inputContainer_input">
+			<p>Date:</p>
+			<input class="roundedBorders" type="date" [(ngModel)]="newCourse.creationDate">
+		</div>
+		<div class="inputContainer_input">
+			<p>Duration:</p>
+			<input class="roundedBorders" type="number" placeholder="duration min" [(ngModel)]="newCourse.duration">
+			<span class="durationCourse">{{newCourse.duration | durationCourse}}</span>
+		</div>
+		<div class="inputContainer_input">
+			<p>Authors:</p>
+			<input class="roundedBorders wideInput" type="authors" placeholder="">
+		</div>
+		<div class="buttonsContainer">
+			<button class="buttonsContainer_button" (click)="createNewCourse()">Save</button>
+			<button class="buttonsContainer_button" (click)="closeNewCourseForm()">Cancel</button>
+		</div>
+	</div>
+</div>

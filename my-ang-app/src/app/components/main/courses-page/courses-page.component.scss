@@ -16,10 +16,19 @@
   }
 }
 
-.loadMoreButton {
+.searchAdd-container {
+	height: 7vh;
+	padding: 1vh 15px;
+}
+
+.loadMore-container {
 	height: 5vh;
-	margin: 1vh 15px;
+	padding: 1vh 15px;
 	width: calc(100% - 30px);
+}
+
+.loadMoreButton {
+	width: 100%;
 	text-transform: uppercase;
 }
 
@@ -30,6 +39,7 @@
 	overflow-y:scroll;
 	@include scrollStyles();
 }
+
 .courseList__empty {
 	height: 100%;
 	display: flex;

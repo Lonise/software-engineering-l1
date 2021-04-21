@@ -6,7 +6,14 @@
 	background-color: rgba($color: #ffffff80, $alpha: 0.7);
 }
 
+.header-container {
+	height: 10vh;
+}
+.main-container {
+	height: 85vh;
+}
 .footer-container {
+	height: 5vh;
 	background: bisque;
 	bottom: 0;
 	position: sticky;
@@ -15,5 +22,6 @@
 
 .body {
 	height: 100vh;
+	overflow-y: hidden;
 	background: linear-gradient(rgb(255, 170, 42), rgb(255, 118, 38));
 }

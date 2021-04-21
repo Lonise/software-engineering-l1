@@ -1,4 +1,4 @@
-import * as Constants  from './constants';
+import * as Constants from './constants';
 
 describe('Constants', () => {
 	it('should create an instance', () => {
