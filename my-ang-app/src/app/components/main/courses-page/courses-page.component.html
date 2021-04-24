@@ -10,26 +10,28 @@
 		</div>
 	</div>
 </div>
-<div class="searchAdd-container" *ngIf="!isAddCourseVisible">
+<div class="searchAdd-container" *ngIf="!coursesList.isAddCourseVisible">
 	<app-search-add
-		[coursesCatalog]="coursesCatalog"
-		(searchCourses)="searchCourses($event)"
-		(toggleAddNewCourse)="toggleAddNewCourse()">
-	</app-search-add>
+	[coursesCatalog]="coursesCatalog"
+	(searchCourses)="searchCourses($event)"
+	(toggleAddNewCourse)="coursesList.toggleAddNewCourse()">
+</app-search-add>
 </div>
-<app-add-course-page
-	*ngIf="isAddCourseVisible" (toggleAddNewCourse)="toggleAddNewCourse()">
-</app-add-course-page>
-<div class="courseList" *ngIf="isCourseListVisible">
+
+<router-outlet></router-outlet>
+
+<div class="courseList" *ngIf="coursesList.isCourseListVisible">
 	<div class="courseList__empty" *ngIf="isCourseListEmpty">
 		no data. feel free to add new course.
 	</div>
 	<app-course
 	*ngFor="let course of coursesCatalog | orderByCreationDate; let i = index"
 	[course]="coursesCatalog[i]"
-	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)">
+	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)"
+	(editToCourse)="openEditToCourse(coursesCatalog[i].id)">
 	</app-course>
 </div>
-<div class="loadMore-container" *ngIf="!isAddCourseVisible">
+
+<div class="loadMore-container" *ngIf="!coursesList.isAddCourseVisible">
 	<button class="loadMoreButton" (click)="showMoreCourses()" [disabled]="isCourseListEmpty">load more</button>
 </div>

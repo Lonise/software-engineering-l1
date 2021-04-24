@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Course } from './course';
 import { CoursesListService } from './courses-list.service';
@@ -14,13 +15,11 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 
 export class CoursesPageComponent {
 
-	constructor( private coursesList: CoursesListService ) { }
+	constructor( public coursesList: CoursesListService, private router: Router ) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 	public isDeleteCourseContainerVisible = false;
-	public isCourseListVisible = true;
-	public isAddCourseVisible = false;
 	private currentDeletionCourseId!: number;
 
 	public showMoreCourses(): void {
@@ -35,6 +34,10 @@ export class CoursesPageComponent {
 		}
 	}
 
+	public openEditToCourse( id: number ): void {
+		console.log('open edit to course', id);
+	}
+
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
 		this.coursesList.removeCourse(this.currentDeletionCourseId);
@@ -43,10 +46,5 @@ export class CoursesPageComponent {
 
 	public searchCourses(currentInput: string): void {
 			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
-	}
-
-	public toggleAddNewCourse(): void {
-		this.isCourseListVisible = !this.isCourseListVisible;
-		this.isAddCourseVisible = !this.isAddCourseVisible;
 	}
 }

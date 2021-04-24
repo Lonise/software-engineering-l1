@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Course } from './course';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
@@ -9,7 +10,22 @@ import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.p
 
 export class CoursesListService {
 
-	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe ) { }
+	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe, private router: Router ) { }
+
+	public isCourseListVisible = true;
+	public isAddCourseVisible = false;
+
+	public toggleAddNewCourse(): void {
+		this.isCourseListVisible = !this.isCourseListVisible;
+		this.isAddCourseVisible = !this.isAddCourseVisible;
+
+		if (this.isCourseListVisible) {
+			this.router.navigate(['courses']);
+		} else {
+			this.router.navigate(['courses/new']);
+		}
+	}
+
 
 	public courseListData: Course[] = [
 		new Course({
