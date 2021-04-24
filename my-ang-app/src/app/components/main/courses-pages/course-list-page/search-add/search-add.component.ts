@@ -7,7 +7,6 @@ import { CoursesListService } from '../../courses-list.service';
 	selector: 'app-search-add',
 	templateUrl: './search-add.component.html',
 	styleUrls: ['./search-add.component.scss'],
-	providers: [ CoursesListService ],
 })
 
 export class SearchAddComponent {

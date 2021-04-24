@@ -4,13 +4,11 @@ import { Router } from '@angular/router';
 import { Course } from './course';
 import { FilterCoursesByInputPipe } from './course-list-page/search-add/filter-courses-by-input.pipe';
 
-@Injectable({
-		providedIn: 'root'
-})
+@Injectable()
 
 export class CoursesListService {
 
-	constructor( /*private filterCoursesByInputPipe: FilterCoursesByInputPipe,*/ private router: Router ) { }
+	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe, private router: Router ) { }
 
 	public isCourseListVisible = true;
 	public isAddCourseVisible = false;
@@ -113,7 +111,7 @@ export class CoursesListService {
 		if ( inputValue.trim() === '' ) {
 			return this.getCourseList();
 		} else {
-			return this.courseListData //this.filterCoursesByInputPipe.transform(this.courseListData, inputValue);
+			return this.filterCoursesByInputPipe.transform(this.courseListData, inputValue);
 		}
 	}
 }
