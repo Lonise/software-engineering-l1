@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
 
-import { CourseDirective } from './course.directive';
+import { CourseDirective } from './coming-courses.directive';
 
 let elementRef: ElementRef;
 describe('CourseDirective', () => {

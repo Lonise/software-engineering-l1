@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ICourseProperties } from '../course';
-import { CoursesListService } from '../courses-list.service';
+import { ICourseProperties } from '../../course';
+import { CoursesListService } from '../../courses-list.service';
 
 @Component({
 	selector: 'app-search-add',

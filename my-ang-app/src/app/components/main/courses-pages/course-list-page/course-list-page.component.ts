@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Course } from './course';
-import { CoursesListService } from './courses-list.service';
+import { Course } from '../course';
+import { CoursesListService } from '../courses-list.service';
 import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
 @Component({
-	selector: 'app-courses-page',
-	templateUrl: './courses-page.component.html',
+	selector: 'app-course-list-page',
+	templateUrl: './course-list-page.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: ['./courses-page.component.scss'],
-	providers: [ CoursesListService, FilterCoursesByInputPipe ]
+	styleUrls: ['./course-list-page.component.scss'],
+	// providers: [ CoursesListService, FilterCoursesByInputPipe ]
 })
 
-export class CoursesPageComponent {
+export class CoursesListPageComponent {
 
 	constructor( public coursesList: CoursesListService, private router: Router ) { }
 

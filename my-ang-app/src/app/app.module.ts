@@ -6,20 +6,22 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
-import { CoursesPageComponent } from './components/main/courses-page/courses-page.component';
-import { CourseComponent } from './components/main/courses-page/course/course.component';
-import { SearchAddComponent } from './components/main/courses-page/search-add/search-add.component';
+import { CoursesListPageComponent } from './components/main/courses-pages/course-list-page/course-list-page.component';
+import { CourseComponent } from './components/main/courses-pages/course/course.component';
+import { SearchAddComponent } from './components/main/courses-pages/course-list-page/search-add/search-add.component';
 import { BreadcrumbsComponent } from './components/main/breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
-import { CourseDirective } from './components/main/courses-page/course/course.directive';
-import { DurationCoursePipe } from './components/main/courses-page/course/duration-course.pipe';
-import { OrderByCreationDatePipe } from './components/main/courses-page/order-by-creation-date.pipe';
-import { FilterCoursesByInputPipe } from './components/main/courses-page/search-add/filter-courses-by-input.pipe';
+import { CourseDirective } from './components/main/courses-pages/course/coming-courses.directive';
+import { DurationCoursePipe } from './components/main/courses-pages/course/duration-course.pipe';
+import { OrderByCreationDatePipe } from './components/main/courses-pages/course-list-page/order-by-creation-date.pipe';
+import { FilterCoursesByInputPipe } from './components/main/courses-pages/course-list-page/search-add/filter-courses-by-input.pipe';
 import { ValidationDirective } from './components/authorization/validation.directive';
 import { AuthorizationErrorComponent } from './components/authorization/authorization-error/authorization-error.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { AuthorizationService } from './components/authorization/authorization.service';
-import { AddCoursePageComponent } from './components/main/courses-page/add-course-page/add-course-page.component';
+import { AddCoursePageComponent } from './components/main/courses-pages/add-course-page/add-course-page.component';
+import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
+import { CoursesPagesComponent } from './components/main/courses-pages/courses-pages.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +29,7 @@ import { AddCoursePageComponent } from './components/main/courses-page/add-cours
 		HeaderComponent,
 		FooterComponent,
 		MainComponent,
-		CoursesPageComponent,
+		CoursesListPageComponent,
 		CourseComponent,
 		SearchAddComponent,
 		BreadcrumbsComponent,
@@ -38,7 +40,9 @@ import { AddCoursePageComponent } from './components/main/courses-page/add-cours
 		ValidationDirective,
 		AuthorizationErrorComponent,
 		AuthorizationComponent,
-		AddCoursePageComponent
+		AddCoursePageComponent,
+		NotFoundPageComponent,
+		CoursesPagesComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [

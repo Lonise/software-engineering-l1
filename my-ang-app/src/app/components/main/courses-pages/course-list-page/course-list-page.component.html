@@ -10,7 +10,7 @@
 		</div>
 	</div>
 </div>
-<div class="searchAdd-container" *ngIf="!coursesList.isAddCourseVisible">
+<div class="searchAdd-container">
 	<app-search-add
 	[coursesCatalog]="coursesCatalog"
 	(searchCourses)="searchCourses($event)"
@@ -18,9 +18,7 @@
 </app-search-add>
 </div>
 
-<router-outlet></router-outlet>
-
-<div class="courseList" *ngIf="coursesList.isCourseListVisible">
+<div class="courseList">
 	<div class="courseList__empty" *ngIf="isCourseListEmpty">
 		no data. feel free to add new course.
 	</div>

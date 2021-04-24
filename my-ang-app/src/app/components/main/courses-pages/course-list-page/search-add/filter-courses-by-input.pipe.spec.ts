@@ -1,5 +1,5 @@
 import { FilterCoursesByInputPipe } from './filter-courses-by-input.pipe';
-import { Course } from '../course';
+import { Course } from '../../course';
 
 describe('FilterCoursesByInputPipe transform()', () => {
 	let filterCoursesByInputPip: FilterCoursesByInputPipe;
