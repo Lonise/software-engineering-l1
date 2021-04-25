@@ -3,19 +3,17 @@ import { Router } from '@angular/router';
 
 import { Course } from '../course';
 import { CoursesListService } from '../courses-list.service';
-import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
 
 @Component({
 	selector: 'app-course-list-page',
 	templateUrl: './course-list-page.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: ['./course-list-page.component.scss'],
-	// providers: [ CoursesListService, FilterCoursesByInputPipe ]
+	styleUrls: ['./course-list-page.component.scss']
 })
 
 export class CoursesListPageComponent {
 
-	constructor( public coursesList: CoursesListService, private router: Router ) { }
+	constructor( public coursesList: CoursesListService ) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
@@ -34,8 +32,8 @@ export class CoursesListPageComponent {
 		}
 	}
 
-	public openEditToCourse( id: number ): void {
-		console.log('open edit to course', id);
+	public openEditToCourse( course: Course ): void {
+		this.coursesList.openEditCourse(course);
 	}
 
 	public removeCourse(): void {
@@ -46,5 +44,9 @@ export class CoursesListPageComponent {
 
 	public searchCourses(currentInput: string): void {
 			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
+	}
+
+	public toggleAddNewCourse(): void {
+		this.coursesList.toggleAddNewCourse()
 	}
 }

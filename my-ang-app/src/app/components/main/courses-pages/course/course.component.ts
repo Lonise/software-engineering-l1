@@ -5,6 +5,7 @@ import { Course } from '../course';
 @Component({
 	selector: 'app-course',
 	templateUrl: './course.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ['./course.component.scss'],
 })
 
@@ -12,16 +13,14 @@ export class CourseComponent implements OnDestroy {
 
 	@Input() course!: Course;
 	@Output() deletedCourse = new EventEmitter<number|string>();
-	@Output() editToCourse = new EventEmitter<number|string>();
+	@Output() editToCourse = new EventEmitter<Course>();
 
 	public deleteCourse(id: number | string): void {
 		this.deletedCourse.emit(id);
 	}
 
-	public editCourse(id: number | string): void {
-		console.log(id);
-
-		this.editToCourse.emit(id);
+	public editCourse(course: Course): void {
+		this.editToCourse.emit(course);
 	}
 
 	ngOnDestroy(): void {

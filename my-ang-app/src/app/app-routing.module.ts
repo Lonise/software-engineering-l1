@@ -8,8 +8,8 @@ import { NotFoundPageComponent } from './components/main/not-found-page/not-foun
 const routes: Routes = [
 	// { path: '', redirectTo: 'courses', pathMatch:'full' },
 	{ path: 'courses', component: CoursesListPageComponent },
-	// { path: 'courses/:id', component: },
 	{ path: 'courses/new', component: AddCoursePageComponent },
+	{ path: 'courses/:id', component: AddCoursePageComponent},
 //	{ path: '**', component: NotFoundPageComponent },
 ];
 @NgModule({

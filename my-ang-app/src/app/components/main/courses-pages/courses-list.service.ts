@@ -25,6 +25,14 @@ export class CoursesListService {
 	}
 
 
+	public openEditCourse(course: Course): void {
+	this.isAddCourseVisible = true;
+	this.isCourseListVisible = false;
+		this.router.navigate(['courses', `${course.id}`]);
+	}
+
+
+
 	public courseListData: Course[] = [
 		new Course({
 			id: 1,
@@ -79,10 +87,9 @@ export class CoursesListService {
 		return this.isCourseListDataEmpty;
 	}
 
-	// TO DO
-	// public addCourse(course: ICourseProperties) {
-	// 	this.courseListData.push(new Course(course));
-	// };
+	public addCourse(course: Course) {
+		this.courseListData.push(course);
+	};
 
 	public getCourseById(courseId: number): Course | string {
 		for (let i = 0; i < this.courseListData.length; i++) {
@@ -92,9 +99,6 @@ export class CoursesListService {
 		}
 		return 'incorrect id';
 	}
-	// TO DO
-	// public updateCourse( course: Course, id: number ) {
-	// }
 
 	public removeCourse( id: number ): void {
 		this.courseListData.forEach( (element, index) => {

@@ -10,12 +10,12 @@
 		</div>
 	</div>
 </div>
+
 <div class="searchAdd-container">
 	<app-search-add
-	[coursesCatalog]="coursesCatalog"
-	(searchCourses)="searchCourses($event)"
-	(toggleAddNewCourse)="coursesList.toggleAddNewCourse()">
-</app-search-add>
+		(searchCourses)="searchCourses($event)"
+		(toggleAddNewCourse)="toggleAddNewCourse()">
+	</app-search-add>
 </div>
 
 <div class="courseList">
@@ -26,10 +26,10 @@
 	*ngFor="let course of coursesCatalog | orderByCreationDate; let i = index"
 	[course]="coursesCatalog[i]"
 	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)"
-	(editToCourse)="openEditToCourse(coursesCatalog[i].id)">
+	(editToCourse)="openEditToCourse(coursesCatalog[i])">
 	</app-course>
 </div>
 
-<div class="loadMore-container" *ngIf="!coursesList.isAddCourseVisible">
+<div class="loadMore-container">
 	<button class="loadMoreButton" (click)="showMoreCourses()" [disabled]="isCourseListEmpty">load more</button>
 </div>
