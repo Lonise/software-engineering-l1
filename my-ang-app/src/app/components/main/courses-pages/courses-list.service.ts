@@ -89,6 +89,7 @@ export class CoursesListService {
 
 	public addCourse(course: Course): void {
 		this.courseListData.push(course);
+		this.isCourseListDataEmpty = false;
 	}
 
 	public getCourseById(courseId: number): Course | string {
