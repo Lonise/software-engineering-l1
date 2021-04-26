@@ -24,6 +24,9 @@ export class AddCoursePageComponent implements OnInit {
 	private isNewCourse = true;
 
 	private checkCurrentRoute(id: string | undefined): void {
+		this.coursesListService.isAddCourseVisible = true;
+		this.coursesListService.isCourseListVisible = false;
+
 		if ( typeof id !== 'undefined' ) {
 			this.currentCourse = this.coursesListService.getCourseById(+id);
 			if ( typeof this.currentCourse !== 'string') {

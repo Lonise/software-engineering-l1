@@ -6,11 +6,11 @@ import { CoursesListPageComponent } from './components/main/courses-pages/course
 import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-	// { path: '', redirectTo: 'courses', pathMatch:'full' },
+	{ path: '', redirectTo: 'courses', pathMatch:'full' },
 	{ path: 'courses', component: CoursesListPageComponent },
 	{ path: 'courses/new', component: AddCoursePageComponent },
 	{ path: 'courses/:id', component: AddCoursePageComponent},
-//	{ path: '**', component: NotFoundPageComponent },
+	{ path: '**', component: NotFoundPageComponent },
 ];
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],

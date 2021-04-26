@@ -30,12 +30,8 @@ export class CoursesListService {
 
 
 	public openEditCourse(course: Course): void {
-	this.isAddCourseVisible = true;
-	this.isCourseListVisible = false;
 	this.router.navigate(['courses', `${course.id}`]);
 	}
-
-
 
 	public courseListData: Course[] = [
 		new Course({
