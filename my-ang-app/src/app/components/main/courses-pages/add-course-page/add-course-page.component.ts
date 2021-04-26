@@ -12,8 +12,8 @@ export class AddCoursePageComponent implements OnInit {
 
 	constructor( public coursesListService: CoursesListService, private route: ActivatedRoute ) {}
 
-	public newCourse: Course = {
-		id: 0,
+	public newCourse: ICourseProperties = {
+		id: this.coursesListService.getCourseListLength() + 1,
 		title: '',
 		description: '',
 		creationDate: new Date(),
@@ -21,30 +21,31 @@ export class AddCoursePageComponent implements OnInit {
 		isTopRated: false,
 	};
 	private currentCourse!: string | Course;
-	private isNewCourse: boolean = true;
+	private isNewCourse = true;
 
-	private checkCurrentRoute(id: string | undefined) {
-		if( typeof id !== 'undefined' ) {
+	private checkCurrentRoute(id: string | undefined): void {
+		if ( typeof id !== 'undefined' ) {
 			this.currentCourse = this.coursesListService.getCourseById(+id);
-			if( typeof this.currentCourse !== 'string') {
+			if ( typeof this.currentCourse !== 'string') {
 				this.isNewCourse = false;
 				this.newCourse = this.currentCourse;
 			}
 		}
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.route.params.subscribe(params => {
-			this.checkCurrentRoute(params.id)
+			this.checkCurrentRoute(params.id);
 		});
 	}
 
 	public createNewCourse(): void {
 		if (this.isNewCourse) {
-			this.coursesListService.addCourse(this.newCourse)
+			this.coursesListService.addCourse(new Course(this.newCourse));
 		} else {
-			this.currentCourse = this.newCourse;
+			this.newCourse.creationDate = new Date(this.newCourse.creationDate);
 		}
-		this.coursesListService.toggleAddNewCourse()
+
+		this.coursesListService.toggleAddNewCourse();
 	}
 }

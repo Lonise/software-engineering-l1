@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Course } from '../course';
@@ -13,7 +13,7 @@ import { CoursesListService } from '../courses-list.service';
 
 export class CoursesListPageComponent {
 
-	constructor( public coursesList: CoursesListService ) { }
+	constructor( public coursesList: CoursesListService, private changeDetectorRef: ChangeDetectorRef) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
@@ -47,6 +47,6 @@ export class CoursesListPageComponent {
 	}
 
 	public toggleAddNewCourse(): void {
-		this.coursesList.toggleAddNewCourse()
+		this.coursesList.toggleAddNewCourse();
 	}
 }
