@@ -24,6 +24,7 @@ import { NotFoundPageComponent } from './components/main/not-found-page/not-foun
 import { CoursesPagesComponent } from './components/main/courses-pages/courses-pages.component';
 import { CoursesListService } from './components/main/courses-pages/courses-list.service';
 import { AuthGuard } from './auth-guard';
+import { CoursesModule } from './modules/courses.module';
 
 @NgModule({
 	declarations: [
@@ -31,28 +32,19 @@ import { AuthGuard } from './auth-guard';
 		HeaderComponent,
 		FooterComponent,
 		MainComponent,
-		CoursesListPageComponent,
-		CourseComponent,
-		SearchAddComponent,
 		BreadcrumbsComponent,
-		CourseDirective,
-		DurationCoursePipe,
-		OrderByCreationDatePipe,
-		FilterCoursesByInputPipe,
 		ValidationDirective,
 		AuthorizationErrorComponent,
 		AuthorizationComponent,
-		AddCoursePageComponent,
 		NotFoundPageComponent,
-		CoursesPagesComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [
+		CoursesModule,
 		BrowserModule,
-		AppRoutingModule,
 		FormsModule
 	],
-	providers: [ AuthorizationService, CoursesListService, FilterCoursesByInputPipe, AuthGuard ],
+	providers: [ AuthorizationService, CoursesListService ],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
