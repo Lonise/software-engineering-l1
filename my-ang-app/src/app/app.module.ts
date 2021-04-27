@@ -23,6 +23,7 @@ import { AddCoursePageComponent } from './components/main/courses-pages/add-cour
 import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
 import { CoursesPagesComponent } from './components/main/courses-pages/courses-pages.component';
 import { CoursesListService } from './components/main/courses-pages/courses-list.service';
+import { AuthGuard } from './auth-guard';
 
 @NgModule({
 	declarations: [
@@ -51,7 +52,7 @@ import { CoursesListService } from './components/main/courses-pages/courses-list
 		AppRoutingModule,
 		FormsModule
 	],
-	providers: [ AuthorizationService, CoursesListService, FilterCoursesByInputPipe ],
+	providers: [ AuthorizationService, CoursesListService, FilterCoursesByInputPipe, AuthGuard ],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,11 +9,11 @@ import { NavigationEnd, Router, Event } from '@angular/router';
 export class BreadcrumbsComponent implements OnInit {
 
 	constructor ( private router: Router ) {}
-	public breadcrumbsPass!: string;
+	public breadcrumbsPath!: string;
 
 	public updateBreadcrumbsPath(event: Event) {
 		if (event instanceof NavigationEnd) {
-			this.breadcrumbsPass = event.urlAfterRedirects.slice(1).split('/').join(' > ').toUpperCase();
+			this.breadcrumbsPath = event.urlAfterRedirects.slice(1).split('/').join(' > ').toUpperCase();
 		}
 	}
 
