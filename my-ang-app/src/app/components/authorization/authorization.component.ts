@@ -17,4 +17,10 @@ export class AuthorizationComponent {
 	public toggleLogIn(): void {
 		this.authorization.login();
 	}
+
+	public closeLogIn(): void {
+		if ( this.authorization.isAuthorized) {
+			this.authorization.closeLogIn();
+		}
+	}
 }

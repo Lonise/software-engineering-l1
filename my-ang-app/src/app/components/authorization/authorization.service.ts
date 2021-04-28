@@ -1,4 +1,10 @@
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+
+@Injectable()
 export class AuthorizationService {
+
+	constructor( private router: Router ) {}
 
 	public userKey = 'user';
 	public userLogin!: string | null;
@@ -22,12 +28,17 @@ export class AuthorizationService {
 		);
 	}
 
+	public closeLogIn(): void {
+		this.router.navigate(['']);
+	}
+
 	public submitAuthorization(): void {
 		if ( this.validationIsNoPass() ) {
 			this.toggleErrorComponent();
 		} else {
 			this.login(this.userNameInput);
 			this.isAuthorized = true;
+			this.closeLogIn();
 		}
 	}
 
@@ -49,6 +60,7 @@ export class AuthorizationService {
 		window.localStorage.clear();
 		this.userLogin = null;
 		this.isAuthorized = false;
+		this.router.navigate(['authorization']);
 	}
 
 	public getUserInfo(): string | null {
