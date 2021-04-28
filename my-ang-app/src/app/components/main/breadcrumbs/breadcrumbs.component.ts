@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, Event } from '@angular/router';
+import { CoursesListService } from '../courses-pages/courses-list.service';
 
 @Component({
 	selector: 'app-breadcrumbs',
@@ -8,12 +9,18 @@ import { NavigationEnd, Router, Event } from '@angular/router';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-	constructor ( private router: Router ) {}
-	public breadcrumbsPath!: string;
+	constructor ( private router: Router, private coursesListService: CoursesListService ) {}
+	public breadcrumbsPath!: string | string[];
 
 	public updateBreadcrumbsPath(event: Event) {
+
 		if (event instanceof NavigationEnd) {
-			this.breadcrumbsPath = event.urlAfterRedirects.slice(1).split('/').join(' > ').toUpperCase();
+			this.breadcrumbsPath = event.urlAfterRedirects.slice(1).split('/');
+
+			if ( this.coursesListService.activeCourse ) {
+				this.breadcrumbsPath[this.breadcrumbsPath.length - 1] = this.coursesListService.activeCourse.title;
+			}
+			this.breadcrumbsPath = this.breadcrumbsPath.join(' > ').toUpperCase()
 		}
 	}
 

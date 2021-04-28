@@ -12,12 +12,14 @@ export class CoursesListService {
 
 	public isCourseListVisible = true;
 	public isAddCourseVisible = false;
+	public activeCourse: Course | undefined;
 
 	public getCourseListLength(): number {
 		return this.courseListData.length;
 	}
 
 	public toggleAddNewCourse(): void {
+		this.activeCourse = undefined;
 		this.isCourseListVisible = !this.isCourseListVisible;
 		this.isAddCourseVisible = !this.isAddCourseVisible;
 
@@ -28,9 +30,9 @@ export class CoursesListService {
 		}
 	}
 
-
 	public openEditCourse(course: Course): void {
-	this.router.navigate(['courses', `${course.id}`]);
+		this.activeCourse = course;
+		this.router.navigate(['courses', `${course.id}`]);
 	}
 
 	public courseListData: Course[] = [
