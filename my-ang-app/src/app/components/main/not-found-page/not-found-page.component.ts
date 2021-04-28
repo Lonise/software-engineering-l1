@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-not-found-page',
   templateUrl: './not-found-page.component.html',
   styleUrls: ['./not-found-page.component.scss']
 })
-export class NotFoundPageComponent implements OnInit {
+export class NotFoundPageComponent {
 
-  constructor() { }
+  constructor( private location: Location ) { }
 
-  ngOnInit(): void {
-  }
-
+	public goToPreviousPage(): void {
+		this.location.back()
+	}
 }
