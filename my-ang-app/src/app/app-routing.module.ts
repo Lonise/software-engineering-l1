@@ -8,7 +8,8 @@ import { NotFoundPageComponent } from './components/main/not-found-page/not-foun
 const routes: Routes = [
 	{ path: '', redirectTo: 'courses', pathMatch:'full' },
 	{ path: 'courses', loadChildren: () => import('./modules/courses-routing.module')
-		.then(module => module.CoursesRoutingModule )
+		.then(module => module.CoursesRoutingModule ),
+		canLoad: [AuthGuard]
 	},
 	{ path: 'authorization', component: AuthorizationComponent },
 	{ path: '**', component: NotFoundPageComponent },

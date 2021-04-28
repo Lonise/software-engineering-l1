@@ -12,6 +12,7 @@ export class AuthorizationService {
 
 	public takeUserLoginFromLocalStorage(): void {
 		this.userLogin = window.localStorage.getItem(this.userKey);
+		this.isAuthorized = !!this.userLogin;
 	}
 
 	public validationIsNoPass(): boolean {

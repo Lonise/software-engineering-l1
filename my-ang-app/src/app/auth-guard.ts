@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { CanActivate } from "@angular/router";
+import { CanLoad } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthorizationService } from "./components/authorization/authorization.service";
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanLoad{
 		constructor(private authorizationService: AuthorizationService) {}
 
-		canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-				return true//this.authorizationService.isAuthorized;
+		canLoad(): Observable<boolean> | Promise<boolean> | boolean {
+			return this.authorizationService.isAuthorized;
 		}
 }
