@@ -1,4 +1,4 @@
-<div class="" *ngIf="!authorization.userLogin">
+<div class="" *ngIf="!authorizationService.userLogin">
 	<app-authorization></app-authorization>
 </div>
 <div class="body" >
@@ -7,7 +7,7 @@
 			<app-header></app-header>
 		</div>
 		<div class="main-container">
-			<app-main *ngIf="authorization.userLogin"></app-main>
+			<app-main *ngIf="authorizationService.userLogin"></app-main>
 		</div>
 		<div class="footer-container">
 			<app-footer></app-footer>

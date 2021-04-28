@@ -32,7 +32,7 @@ import { AuthGuard } from '../auth-guard';
 		AppRoutingModule,
 		FormsModule
 	],
-	exports:[CoursesPagesComponent],
+	exports: [CoursesPagesComponent],
 	providers: [ FilterCoursesByInputPipe, AuthGuard ],
 })
 export class CoursesModule { }

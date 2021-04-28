@@ -8,9 +8,9 @@ import { AuthorizationService } from './components/authorization/authorization.s
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	constructor( public authorization: AuthorizationService, private router: Router) {
-		this.authorization.takeUserLoginFromLocalStorage();
-		if ( !this.authorization.isAuthorized ) {
+	constructor( public authorizationService: AuthorizationService, private router: Router) {
+		this.authorizationService.takeUserLoginFromLocalStorage();
+		if ( !this.authorizationService.isAuthorized ) {
 			this.router.navigate(['authorization']);
 		}
 	}

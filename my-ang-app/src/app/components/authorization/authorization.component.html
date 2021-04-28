@@ -1,4 +1,6 @@
-<app-authorization-error *appValidation="authorization.isErrorModalVisible" (closeErrorComponent)="authorization.toggleErrorComponent()">
+<app-authorization-error
+	*appValidation="authorizationService.isErrorModalVisible"
+	(closeErrorComponent)="authorizationService.toggleErrorComponent()">
 </app-authorization-error>
 <div class="backdrop" (click)="backDropClick($event)">
 	<div class="logInWrapper modalWrapper">
@@ -6,12 +8,12 @@
 		<div class="LogInSignUp__title">Log In</div>
 		<div>
 			<div class="">UserName</div>
-			<input type="text" placeholder="name" [(ngModel)]="authorization.userNameInput" required>
+			<input type="text" placeholder="name" [(ngModel)]="authorizationService.userNameInput" required>
 		</div>
 		<div>
 			<div class="">Password</div>
-			<input type="text" placeholder="password" [(ngModel)]="authorization.userPasswordInput" required>
+			<input type="text" placeholder="password" [(ngModel)]="authorizationService.userPasswordInput" required>
 		</div>
-		<button (click)="authorization.submitAuthorization()">log in</button>
+		<button (click)="authorizationService.submitAuthorization()">log in</button>
 	</div>
 </div>

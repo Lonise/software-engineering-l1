@@ -13,7 +13,7 @@ import { CoursesListService } from '../courses-list.service';
 
 export class CoursesListPageComponent {
 
-	constructor( public coursesList: CoursesListService, private changeDetectorRef: ChangeDetectorRef) { }
+	constructor( public coursesList: CoursesListService ) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;

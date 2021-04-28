@@ -10,8 +10,8 @@ const coursesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(coursesRoutes)
+	imports: [
+		RouterModule.forChild(coursesRoutes)
 	],
 	exports: [RouterModule]
 })

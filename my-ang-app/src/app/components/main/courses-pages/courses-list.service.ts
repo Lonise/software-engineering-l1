@@ -10,31 +10,6 @@ export class CoursesListService {
 
 	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe, private router: Router ) { }
 
-	public isCourseListVisible = true;
-	public isAddCourseVisible = false;
-	public activeCourse: Course | undefined;
-
-	public getCourseListLength(): number {
-		return this.courseListData.length;
-	}
-
-	public toggleAddNewCourse(): void {
-		this.activeCourse = undefined;
-		this.isCourseListVisible = !this.isCourseListVisible;
-		this.isAddCourseVisible = !this.isAddCourseVisible;
-
-		if (this.isCourseListVisible) {
-			this.router.navigate(['courses']);
-		} else {
-			this.router.navigate(['courses/new']);
-		}
-	}
-
-	public openEditCourse(course: Course): void {
-		this.activeCourse = course;
-		this.router.navigate(['courses', `${course.id}`]);
-	}
-
 	public courseListData: Course[] = [
 		new Course({
 			id: 1,
@@ -78,10 +53,30 @@ export class CoursesListService {
 		}),
 	];
 
+	public activeCourse: Course | undefined;
+	public isCourseListVisible = true;
+	public isAddCourseVisible = false;
 	public isCourseListDataEmpty = false;
 
-	public getCourseList(): Course[] {
-		return this.courseListData;
+	public getCourseListLength(): number {
+		return this.courseListData.length;
+	}
+
+	public toggleAddNewCourse(): void {
+		this.activeCourse = undefined;
+		this.isCourseListVisible = !this.isCourseListVisible;
+		this.isAddCourseVisible = !this.isAddCourseVisible;
+
+		if (this.isCourseListVisible) {
+			this.router.navigate(['courses']);
+		} else {
+			this.router.navigate(['courses/new']);
+		}
+	}
+
+	public openEditCourse(course: Course): void {
+		this.activeCourse = course;
+		this.router.navigate(['courses', `${course.id}`]);
 	}
 
 	public getIsEmptyCourseList(): boolean {
@@ -112,6 +107,10 @@ export class CoursesListService {
 		if (this.courseListData.length === 0) {
 			this.isCourseListDataEmpty = true;
 		}
+	}
+
+	public getCourseList(): Course[] {
+		return this.courseListData;
 	}
 
 	public getFilteredCourseList(inputValue: string): Course[] {

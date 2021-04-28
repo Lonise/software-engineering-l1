@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthorizationService {
@@ -28,6 +28,10 @@ export class AuthorizationService {
 		);
 	}
 
+	public toggleErrorComponent(): void {
+		this.isErrorModalVisible = !this.isErrorModalVisible;
+	}
+
 	public closeLogIn(): void {
 		this.router.navigate(['']);
 	}
@@ -42,15 +46,8 @@ export class AuthorizationService {
 		}
 	}
 
-	public toggleErrorComponent(): void {
-		this.isErrorModalVisible = !this.isErrorModalVisible;
-	}
-
 	public login( login?: string ): void {
-		if (!login) {
-			console.log('isAuthenticated = false');
-			return;
-		} else {
+		if (login) {
 			window.localStorage.setItem(this.userKey, login);
 			this.userLogin = login;
 		}

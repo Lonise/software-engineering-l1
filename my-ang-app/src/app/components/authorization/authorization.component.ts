@@ -8,19 +8,19 @@ import { AuthorizationService } from './authorization.service';
 })
 export class AuthorizationComponent {
 
-	constructor( public authorization: AuthorizationService ) { }
+	constructor( public authorizationService: AuthorizationService ) { }
 
 	public backDropClick(event: MouseEvent): void {
 		console.log(event.currentTarget);
 	}
 
 	public toggleLogIn(): void {
-		this.authorization.login();
+		this.authorizationService.login();
 	}
 
 	public closeLogIn(): void {
-		if ( this.authorization.isAuthorized) {
-			this.authorization.closeLogIn();
+		if ( this.authorizationService.isAuthorized) {
+			this.authorizationService.closeLogIn();
 		}
 	}
 }

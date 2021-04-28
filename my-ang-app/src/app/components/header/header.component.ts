@@ -9,6 +9,6 @@ import { AuthorizationService } from '../authorization/authorization.service';
 
 export class HeaderComponent {
 
-	constructor( public authorization: AuthorizationService ) { }
+	constructor( public authorizationService: AuthorizationService ) { }
 
 }

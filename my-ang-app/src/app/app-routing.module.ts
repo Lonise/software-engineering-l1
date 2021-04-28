@@ -6,7 +6,7 @@ import { AuthorizationComponent } from './components/authorization/authorization
 import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: 'courses', pathMatch:'full' },
+	{ path: '', redirectTo: 'courses', pathMatch: 'full' },
 	{ path: 'courses', loadChildren: () => import('./modules/courses-routing.module')
 		.then(module => module.CoursesRoutingModule ),
 		canLoad: [AuthGuard]
