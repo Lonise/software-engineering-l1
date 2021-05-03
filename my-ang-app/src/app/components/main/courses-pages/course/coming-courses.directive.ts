@@ -17,7 +17,7 @@ export class CourseDirective implements AfterViewInit {
 
 		if ( differenceDatesInDay > 0 && differenceDatesInDay <= daysInTwoWeek ) {
 			this.elementRef.nativeElement.className = this.elementRef.nativeElement.className + greenBorderClass;
-		} else if ( differenceDatesInDay < 0 ) {
+		} else if ( differenceDatesInDay <= 0 ) {
 			this.elementRef.nativeElement.className = this.elementRef.nativeElement.className + blueBorderClass;
 		}
 	}

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Course } from './course';
-import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
+import { FilterCoursesByInputPipe } from './course-list-page/search-add/filter-courses-by-input.pipe';
 
-@Injectable({
-		providedIn: 'root'
-})
+@Injectable()
 
 export class CoursesListService {
 
-	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe ) { }
+	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe, private router: Router ) { }
 
 	public courseListData: Course[] = [
 		new Course({
@@ -54,10 +53,30 @@ export class CoursesListService {
 		}),
 	];
 
+	public activeCourse: Course | undefined;
+	public isCourseListVisible = true;
+	public isAddCourseVisible = false;
 	public isCourseListDataEmpty = false;
 
-	public getCourseList(): Course[] {
-		return this.courseListData;
+	public getCourseListLength(): number {
+		return this.courseListData.length;
+	}
+
+	public toggleAddNewCourse(): void {
+		this.activeCourse = undefined;
+		this.isCourseListVisible = !this.isCourseListVisible;
+		this.isAddCourseVisible = !this.isAddCourseVisible;
+
+		if (this.isCourseListVisible) {
+			this.router.navigate(['courses']);
+		} else {
+			this.router.navigate(['courses/new']);
+		}
+	}
+
+	public openEditCourse(course: Course): void {
+		this.activeCourse = course;
+		this.router.navigate(['courses', `${course.id}`]);
 	}
 
 	public getIsEmptyCourseList(): boolean {
@@ -65,10 +84,10 @@ export class CoursesListService {
 		return this.isCourseListDataEmpty;
 	}
 
-	// TO DO
-	// public addCourse(course: ICourseProperties) {
-	// 	this.courseListData.push(new Course(course));
-	// };
+	public addCourse(course: Course): void {
+		this.courseListData.push(course);
+		this.isCourseListDataEmpty = false;
+	}
 
 	public getCourseById(courseId: number): Course | string {
 		for (let i = 0; i < this.courseListData.length; i++) {
@@ -78,9 +97,6 @@ export class CoursesListService {
 		}
 		return 'incorrect id';
 	}
-	// TO DO
-	// public updateCourse( course: Course, id: number ) {
-	// }
 
 	public removeCourse( id: number ): void {
 		this.courseListData.forEach( (element, index) => {
@@ -91,6 +107,10 @@ export class CoursesListService {
 		if (this.courseListData.length === 0) {
 			this.isCourseListDataEmpty = true;
 		}
+	}
+
+	public getCourseList(): Course[] {
+		return this.courseListData;
 	}
 
 	public getFilteredCourseList(inputValue: string): Course[] {
