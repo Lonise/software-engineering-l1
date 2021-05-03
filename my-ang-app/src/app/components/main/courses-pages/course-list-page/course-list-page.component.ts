@@ -1,26 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Course } from './course';
-import { CoursesListService } from './courses-list.service';
-import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
+import { Course } from '../course';
+import { CoursesListService } from '../courses-list.service';
 
 @Component({
-	selector: 'app-courses-page',
-	templateUrl: './courses-page.component.html',
+	selector: 'app-course-list-page',
+	templateUrl: './course-list-page.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: ['./courses-page.component.scss'],
-	providers: [ CoursesListService, FilterCoursesByInputPipe ]
+	styleUrls: ['./course-list-page.component.scss']
 })
 
-export class CoursesPageComponent {
+export class CoursesListPageComponent {
 
-	constructor( private coursesList: CoursesListService ) { }
+	constructor( public coursesList: CoursesListService ) { }
 
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 	public isDeleteCourseContainerVisible = false;
-	public isCourseListVisible = true;
-	public isAddCourseVisible = false;
 	private currentDeletionCourseId!: number;
 
 	public showMoreCourses(): void {
@@ -35,6 +32,10 @@ export class CoursesPageComponent {
 		}
 	}
 
+	public openEditToCourse( course: Course ): void {
+		this.coursesList.openEditCourse(course);
+	}
+
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
 		this.coursesList.removeCourse(this.currentDeletionCourseId);
@@ -46,7 +47,6 @@ export class CoursesPageComponent {
 	}
 
 	public toggleAddNewCourse(): void {
-		this.isCourseListVisible = !this.isCourseListVisible;
-		this.isAddCourseVisible = !this.isAddCourseVisible;
+		this.coursesList.toggleAddNewCourse();
 	}
 }

@@ -8,9 +8,9 @@
 	</div>
 	<div class="account">
 		<div class="account_user">
-			{{authorization.getUserInfo()}}
+			{{authorizationService.getUserInfo()}}
 		</div>
-		<button (click)="authorization.logout()">
+		<button (click)="authorizationService.logout()">
 			Log out
 		</button>
 	</div>

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthorizationService } from '../authorization/authorization.service';
 
-import { User } from '../user/user';
-
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -11,7 +9,6 @@ import { User } from '../user/user';
 
 export class HeaderComponent {
 
-	constructor( public authorization: AuthorizationService ) { }
+	constructor( public authorizationService: AuthorizationService ) { }
 
-	public userExample: User = new User({ id: 1, firstName: 'Nikita', lastName: 'Loshkarev' });
 }

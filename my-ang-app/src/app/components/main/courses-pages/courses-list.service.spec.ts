@@ -1,6 +1,6 @@
 import { Course } from './course';
 import { CoursesListService } from './courses-list.service';
-import { FilterCoursesByInputPipe } from './search-add/filter-courses-by-input.pipe';
+import { FilterCoursesByInputPipe } from './course-list-page/search-add/filter-courses-by-input.pipe';
 
 describe('CoursesListService', () => {
 	let coursesListService: CoursesListService;
@@ -9,9 +9,9 @@ describe('CoursesListService', () => {
 		return coursesList;
 	}};
 
-	beforeEach(() => {
-		coursesListService = new CoursesListService(fakeFilterCoursesByInputPipe);
-	});
+	// beforeEach(() => {
+	// 	coursesListService = new CoursesListService(fakeFilterCoursesByInputPipe);
+	// });
 
 	describe('CoursesListService.getCourseList()', () => {
 
