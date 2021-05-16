@@ -10,12 +10,13 @@ export class AuthorizationComponent {
 
 	constructor( public authorizationService: AuthorizationService ) { }
 
-	public backDropClick(event: MouseEvent): void {
-		console.log(event.currentTarget);
+	public switchCheckbox() {
+		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
+		console.log('isLogIn',this.authorizationService.isLogIn);
 	}
 
 	public toggleLogIn(): void {
-		this.authorizationService.login();
+
 	}
 
 	public closeLogIn(): void {

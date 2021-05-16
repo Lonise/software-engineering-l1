@@ -15,7 +15,7 @@ import { AuthorizationService } from './components/authorization/authorization.s
 import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
 import { CoursesListService } from './components/main/courses-pages/courses-list.service';
 import { CoursesModule } from './modules/courses.module';
-import { HttpService } from './http-service.service';
+import { AuthorizationHttpService } from './http/authorization-http.service';
 
 @NgModule({
 	declarations: [
@@ -36,7 +36,7 @@ import { HttpService } from './http-service.service';
 		FormsModule,
 		HttpClientModule
 	],
-	providers: [ AuthorizationService, CoursesListService, HttpService ],
+	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService ],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

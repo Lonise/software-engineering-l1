@@ -1,31 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthorizationHttpService } from 'src/app/http/authorization-http.service';
+import { IUserProperties } from '../Interfaces-and-classes/user/user';
 
 @Injectable()
 export class AuthorizationService {
 
-	constructor( private router: Router ) {}
+	constructor( private router: Router, private authorizationHttpService:AuthorizationHttpService ) {}
 
+	private nameTokenInCookie = 'coursesCookie';
 	public userKey = 'user';
 	public userLogin!: string | null;
-	public userNameInput = '';
-	public userPasswordInput = '';
+	public userInput: IUserProperties = {
+		id: '',
+		name: '',
+		email: '',
+		password: '',
+	};
+  public user: any;
 	public isErrorModalVisible = false;
 	public isAuthorized = false;
+	public isLogIn = true;
 
-	public validationUserName: RegExp = new RegExp(/^([\w\-\.])+\@([\w\-\.])+\.([A-Za-z]{2,4})$/);
+	public validationUserEmail: RegExp = new RegExp(/^([\w\-\.])+\@([\w\-\.])+\.([A-Za-z]{2,4})$/);
+	public validationUserName: RegExp = new RegExp(/^\w{1,5}$/);
 	public validationPassword: RegExp = new RegExp(/^\w{1,5}$/);
 
-	public takeUserLoginFromLocalStorage(): void {
-		this.userLogin = window.localStorage.getItem(this.userKey);
-		this.isAuthorized = !!this.userLogin;
+	public getTokenInCookie(): string | undefined {
+		const currentCookies = document.cookie.match( new RegExp("(?:^|; )" + this.nameTokenInCookie.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"))
+		return  currentCookies ? decodeURIComponent(currentCookies[1]) : undefined;
 	}
 
 	public validationIsNoPass(): boolean {
-		return (
-			!this.validationUserName.test(this.userNameInput) ||
-			!this.validationPassword.test(this.userPasswordInput)
+		let resultValidation = (
+			!this.validationUserEmail.test(this.userInput.email) ||
+			!this.validationPassword.test(this.userInput.password)
 		);
+		if (!this.isLogIn) {
+			resultValidation = resultValidation || !this.validationUserName.test(this.userInput.name)
+		}
+		return resultValidation;
 	}
 
 	public toggleErrorComponent(): void {
@@ -33,28 +47,44 @@ export class AuthorizationService {
 	}
 
 	public closeLogIn(): void {
-		this.router.navigate(['']);
+		this.router.navigate(['courses']);
 	}
 
-	public submitAuthorization(): void {
+	public submitAuth( isLogIn: boolean ): void {
+
 		if ( this.validationIsNoPass() ) {
 			this.toggleErrorComponent();
-		} else {
-			this.login(this.userNameInput);
-			this.isAuthorized = true;
-			this.closeLogIn();
+			return
 		}
-	}
 
-	public login( login?: string ): void {
-		if (login) {
-			window.localStorage.setItem(this.userKey, login);
-			this.userLogin = login;
+		if ( !isLogIn ) {
+
+			this.authorizationHttpService.postAuthentication( this.userInput ).subscribe( value => {
+				if ( value === 'login') {
+				} else {
+					this.toggleErrorComponent();
+				}
+			},
+			error => {
+				console.log('authentication error ', error);
+				this.toggleErrorComponent()
+			})
+
+		} else {
+
+			this.authorizationHttpService.postAuthorization( this.userInput).subscribe( value => {
+				this.userLogin = this.userInput.email;
+				this.isAuthorized = true;
+				this.closeLogIn();
+			},
+			error => {
+				console.log('authorization error ', error);
+				this.toggleErrorComponent()
+			})
 		}
 	}
 
 	public logout(): void {
-		window.localStorage.clear();
 		this.userLogin = null;
 		this.isAuthorized = false;
 		this.router.navigate(['authorization']);
