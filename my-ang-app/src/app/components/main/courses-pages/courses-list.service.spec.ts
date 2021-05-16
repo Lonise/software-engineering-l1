@@ -1,4 +1,4 @@
-import { Course } from './course';
+import { Course } from '../../Interfaces-and-classes/course/course';
 import { CoursesListService } from './courses-list.service';
 import { FilterCoursesByInputPipe } from './course-list-page/search-add/filter-courses-by-input.pipe';
 

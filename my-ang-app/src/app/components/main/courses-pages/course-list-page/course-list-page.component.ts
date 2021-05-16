@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Course } from '../course';
+import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
 
 @Component({
@@ -18,13 +18,13 @@ export class CoursesListPageComponent {
 	public coursesCatalog: Course[] = this.coursesList.getCourseList();
 	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 	public isDeleteCourseContainerVisible = false;
-	private currentDeletionCourseId!: number;
+	private currentDeletionCourseId!: string;
 
 	public showMoreCourses(): void {
 		console.log('Load more');
 	}
 
-	public toggleConfirmModalToDeleteCourse( id?: number ): void {
+	public toggleConfirmModalToDeleteCourse( id?: string ): void {
 		this.isDeleteCourseContainerVisible = !this.isDeleteCourseContainerVisible;
 
 		if ( id ) {

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
-import { Course } from '../course';
+import { Course } from '../../../Interfaces-and-classes/course/course';
 
 @Component({
 	selector: 'app-course',
@@ -10,12 +10,12 @@ import { Course } from '../course';
 })
 
 export class CourseComponent implements OnDestroy {
-
+constructor () {}
 	@Input() course!: Course;
-	@Output() deletedCourse = new EventEmitter<number|string>();
+	@Output() deletedCourse = new EventEmitter<string>();
 	@Output() editToCourse = new EventEmitter<Course>();
 
-	public deleteCourse(id: number | string): void {
+	public deleteCourse(id: string): void {
 		this.deletedCourse.emit(id);
 	}
 

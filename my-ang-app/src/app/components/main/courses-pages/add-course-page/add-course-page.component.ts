@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Course, ICourseProperties } from '../course';
+import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AddCoursePageComponent implements OnInit {
 	constructor( public coursesListService: CoursesListService, private route: ActivatedRoute ) {}
 
 	public newCourse: ICourseProperties = {
-		id: this.coursesListService.getCourseListLength() + 1,
+		id: `${this.coursesListService.getCourseListLength() + 1}`,
 		title: '',
 		description: '',
 		creationDate: new Date(),
@@ -28,7 +28,7 @@ export class AddCoursePageComponent implements OnInit {
 		this.coursesListService.isCourseListVisible = false;
 
 		if ( typeof id !== 'undefined' ) {
-			this.currentCourse = this.coursesListService.getCourseById(+id);
+			this.currentCourse = this.coursesListService.getCourseById(id+1);
 			if ( typeof this.currentCourse !== 'string') {
 				this.isNewCourse = false;
 				this.newCourse = this.currentCourse;

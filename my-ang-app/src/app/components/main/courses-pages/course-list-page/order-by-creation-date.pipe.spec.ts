@@ -1,5 +1,5 @@
 import { OrderByCreationDatePipe } from './order-by-creation-date.pipe';
-import { Course } from '../course';
+import { Course } from '../../../Interfaces-and-classes/course/course';
 
 describe('OrderByCreationDatePipe', () => {
 	const orderByCreationDatePipe = new OrderByCreationDatePipe();
