@@ -4,7 +4,7 @@ import { AuthorizationService } from './authorization.service';
 @Component({
 	selector: 'app-authorization',
 	templateUrl: './authorization.component.html',
-	styleUrls: ['./authorization.component.scss']
+	styleUrls: ['./authorization.component.scss', './login-signup-toggle.scss']
 })
 export class AuthorizationComponent {
 
