@@ -9,7 +9,6 @@ export class AuthorizationService {
 	constructor( private router: Router, private authorizationHttpService:AuthorizationHttpService ) {}
 
 	private nameTokenInCookie = 'coursesCookie';
-	public userKey = 'user';
 	public userLogin!: string | null;
 	public userInput: IUserProperties = {
 		id: '',
@@ -17,7 +16,7 @@ export class AuthorizationService {
 		email: '',
 		password: '',
 	};
-  public user: any;
+  public userDataFromBE: any;
 	public isErrorModalVisible = false;
 	public isAuthorized = false;
 	public isLogIn = true;
@@ -27,8 +26,12 @@ export class AuthorizationService {
 	public validationPassword: RegExp = new RegExp(/^\w{1,5}$/);
 
 	public getTokenInCookie(): string | undefined {
-		const currentCookies = document.cookie.match( new RegExp("(?:^|; )" + this.nameTokenInCookie.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"))
-		return  currentCookies ? decodeURIComponent(currentCookies[1]) : undefined;
+
+		const currentCookies = document.cookie
+				.match( new RegExp("(?:^|; )" +
+				this.nameTokenInCookie.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+
+		return currentCookies ? decodeURIComponent(currentCookies[1]) : undefined;
 	}
 
 	public validationIsNoPass(): boolean {
@@ -50,47 +53,49 @@ export class AuthorizationService {
 		this.router.navigate(['courses']);
 	}
 
+	private verifiedAuth(): void {
+		this.userLogin = this.userInput.email;
+		this.isAuthorized = true;
+		this.closeLogIn();
+	}
+
 	public submitAuth( isLogIn: boolean ): void {
 
 		if ( this.validationIsNoPass() ) {
 			this.toggleErrorComponent();
-			return
+			return;
 		}
 
 		if ( !isLogIn ) {
 
 			this.authorizationHttpService.postAuthentication( this.userInput ).subscribe( value => {
-				if ( value === 'login') {
-				} else {
-					this.toggleErrorComponent();
-				}
+				document.cookie = `${this.nameTokenInCookie}=${value}`
+				this.verifiedAuth();
 			},
 			error => {
 				console.log('authentication error ', error);
-				this.toggleErrorComponent()
-			})
+				this.toggleErrorComponent();
+			});
 
 		} else {
 
-			this.authorizationHttpService.postAuthorization( this.userInput).subscribe( value => {
-				this.userLogin = this.userInput.email;
-				this.isAuthorized = true;
-				this.closeLogIn();
+			this.authorizationHttpService.postAuthorization( this.userInput ).subscribe( value => {
+				document.cookie = `${this.nameTokenInCookie}=${value}`;
+				this.verifiedAuth();
 			},
 			error => {
 				console.log('authorization error ', error);
 				this.toggleErrorComponent()
-			})
+			});
 		}
 	}
 
 	public logout(): void {
-		this.userLogin = null;
-		this.isAuthorized = false;
-		this.router.navigate(['authorization']);
-	}
-
-	public getUserInfo(): string | null {
-		return this.userLogin;
+		this.authorizationHttpService.deleteActiveSession().subscribe( () => {
+			this.userLogin = null;
+			this.isAuthorized = false;
+			document.cookie = `${this.nameTokenInCookie}==;expires=Thu, 01 Jan 1970 00:00:00 GMT`
+			this.router.navigate(['authorization']);
+		});
 	}
 }

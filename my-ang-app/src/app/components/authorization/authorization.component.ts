@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthorizationService } from './authorization.service';
 
 @Component({
@@ -12,11 +12,6 @@ export class AuthorizationComponent {
 
 	public switchCheckbox() {
 		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
-		console.log('isLogIn',this.authorizationService.isLogIn);
-	}
-
-	public toggleLogIn(): void {
-
 	}
 
 	public closeLogIn(): void {
