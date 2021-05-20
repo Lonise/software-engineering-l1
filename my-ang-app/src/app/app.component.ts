@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { AuthorizationService } from './components/authorization/authorization.service';
-import { AuthorizationHttpService } from './http/authorization-http.service';
+import { AppService } from './app.service';
+import { CoursesHttpService } from './http/courses-http.service';
 
 @Component({
 	selector: 'app-root',
@@ -11,24 +11,10 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 })
 export class AppComponent {
 	constructor(	public authorizationService: AuthorizationService,
-								private router: Router,
-								private authorizationHttpService:AuthorizationHttpService) {
+								public coursesHttpService: CoursesHttpService,
+								private appService: AppService ) {
 
-		const cookieToken: string | undefined = this.authorizationService.getTokenInCookie();
-
-		if ( typeof cookieToken !== 'undefined' ) {
-			this.authorizationHttpService.getUserByActiveSessionToken( cookieToken ).subscribe( userData => {
-				console.log('current user is ', userData);
-				this.authorizationService.user = userData;
-				this.router.navigate(['courses']);
-			},
-			error => {
-				console.log('current error is ', error);
-				this.router.navigate(['authorization']);
-			})
-		} else {
-				this.router.navigate(['authorization']);
-		}
+		this.appService.appStart();
 	}
 	title = 'my-ang-app';
 }

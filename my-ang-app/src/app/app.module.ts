@@ -16,6 +16,9 @@ import { NotFoundPageComponent } from './components/main/not-found-page/not-foun
 import { CoursesListService } from './components/main/courses-pages/courses-list.service';
 import { CoursesModule } from './modules/courses.module';
 import { AuthorizationHttpService } from './http/authorization-http.service';
+import { LoadingBlockComponent } from './components/loading-block/loading-block.component';
+import { Interceptors } from './http/interceptors/Interceptors';
+import { AppService } from './app.service';
 
 @NgModule({
 	declarations: [
@@ -28,6 +31,7 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 		AuthorizationErrorComponent,
 		AuthorizationComponent,
 		NotFoundPageComponent,
+		LoadingBlockComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [
@@ -36,7 +40,7 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 		FormsModule,
 		HttpClientModule
 	],
-	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService ],
+	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService, AppService, Interceptors],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
