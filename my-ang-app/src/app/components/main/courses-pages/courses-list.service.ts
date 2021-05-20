@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CoursesHttpService } from 'src/app/http/courses-http.service';
+import { CoursesStreamService } from 'src/app/http/courses-stream.service';
 import { Course } from '../../Interfaces-and-classes/course/course';
-import { FilterCoursesByInputPipe } from './course-list-page/search-add/filter-courses-by-input.pipe';
 
 @Injectable()
 
 export class CoursesListService {
 
-	constructor( private filterCoursesByInputPipe: FilterCoursesByInputPipe, private router: Router ) { }
+	constructor( private router: Router,
+		private coursesHttpService: CoursesHttpService, private coursesStreamService: CoursesStreamService ) { }
 
-	public courseListData: any
+	public courseListData: Course[] = []
 
 	public activeCourse: Course | undefined;
 	public isCourseListVisible = true;
 	public isAddCourseVisible = false;
 	public isCourseListDataEmpty = false;
-
-	public getCourseListLength(): number {
-		return this.courseListData.length;
-	}
 
 	public toggleAddNewCourse(): void {
 		this.activeCourse = undefined;
@@ -44,41 +42,31 @@ export class CoursesListService {
 	}
 
 	public addCourse(course: Course): void {
-		this.courseListData.push(course);
-		this.isCourseListDataEmpty = false;
+		course.creationDate = new Date(course.creationDate);
+		this.coursesHttpService.postCourse(course).subscribe(
+			val => {
+				this.coursesStreamService.Courses$.next('#getAllCourses')
+				this.router.navigate(['courses']);
+			}
+		)
 	}
 
-	public getCourseById(courseId: string): Course | string {
-		for (let i = 0; i < this.courseListData.length; i++) {
-			if ( this.courseListData[i].id === courseId ) {
-				return this.courseListData[i];
-			}
+	public getActiveCourse(): Course | string {
+		if ( typeof this.activeCourse !== 'undefined') {
+			return this.activeCourse;
+		} else {
+			return 'incorrect id';
 		}
-		return 'incorrect id';
 	}
 
 	public removeCourse( id: string ): void {
-		if(Array.isArray( this.courseListData)) {
-			this.courseListData.forEach( (element, index) => {
-				if ( element.id === id ) {
-					this.courseListData.splice(index, 1);
-				}
-			});
+		if (this.courseListData.length -1 <= 0) {
+			this.isCourseListDataEmpty = false;
 		}
-		if (this.courseListData.length === 0) {
-			this.isCourseListDataEmpty = true;
-		}
-	}
-
-	public getCourseList(): Course[] {
-		return this.courseListData;
-	}
-
-	public getFilteredCourseList(inputValue: string): Course[] {
-		if ( inputValue.trim() === '' ) {
-			return this.getCourseList();
-		} else {
-			return this.filterCoursesByInputPipe.transform(this.courseListData, inputValue);
-		}
+		this.coursesHttpService.deleteCourse(id).subscribe(
+			val => {
+				this.coursesStreamService.Courses$.next('#getAllCourses');
+			}
+		)
 	}
 }
