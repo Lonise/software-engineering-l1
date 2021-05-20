@@ -11,22 +11,15 @@
 	</div>
 </div>
 
-<div class="searchAdd-container">
-	<app-search-add
-		(searchCourses)="searchCourses($event)"
-		(toggleAddNewCourse)="toggleAddNewCourse()">
-	</app-search-add>
-</div>
-
 <div class="courseList">
 	<div class="courseList__empty" *ngIf="isCourseListEmpty">
 		no data. feel free to add new course.
 	</div>
 	<app-course
-	*ngFor="let course of coursesCatalog | orderByCreationDate; let i = index"
-	[course]="coursesCatalog[i]"
-	(deletedCourse)="toggleConfirmModalToDeleteCourse(coursesCatalog[i].id)"
-	(editToCourse)="openEditToCourse(coursesCatalog[i])">
+	*ngFor ="let course of CourseList; let i = index"
+	[course]="course"
+	(deletedCourse)="toggleConfirmModalToDeleteCourse(course.id)"
+	(editToCourse)="openEditToCourse(course)">
 	</app-course>
 </div>
 
