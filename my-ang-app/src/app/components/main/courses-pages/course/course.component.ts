@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
 
@@ -9,11 +9,16 @@ import { Course } from '../../../Interfaces-and-classes/course/course';
 	styleUrls: ['./course.component.scss'],
 })
 
-export class CourseComponent implements OnDestroy {
+export class CourseComponent implements OnInit {
 constructor () {}
+
 	@Input() course!: Course;
 	@Output() deletedCourse = new EventEmitter<string>();
 	@Output() editToCourse = new EventEmitter<Course>();
+
+	ngOnInit() {
+		this.course.creationDate = new Date(this.course.creationDate)
+	}
 
 	public deleteCourse(id: string): void {
 		this.deletedCourse.emit(id);
@@ -21,9 +26,5 @@ constructor () {}
 
 	public editCourse(course: Course): void {
 		this.editToCourse.emit(course);
-	}
-
-	ngOnDestroy(): void {
-		console.log('Removed course id ' + this.course.id);
 	}
 }
