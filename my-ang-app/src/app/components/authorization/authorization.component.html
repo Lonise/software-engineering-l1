@@ -2,18 +2,27 @@
 	*appValidation="authorizationService.isErrorModalVisible"
 	(closeErrorComponent)="authorizationService.toggleErrorComponent()">
 </app-authorization-error>
-<div class="backdrop" (click)="backDropClick($event)">
+<div class="backdrop">
 	<div class="logInWrapper modalWrapper">
 		<div class="close" (click)='closeLogIn()'>+</div>
-		<div class="LogInSignUp__title">Log In</div>
-		<div>
+		<div class="LogInSignUp__title">
+			<input type="checkbox" class="toggle" (click)="switchCheckbox()">
+		</div>
+		<div *ngIf="!authorizationService.isLogIn">
 			<div class="">UserName</div>
-			<input type="text" placeholder="name" [(ngModel)]="authorizationService.userNameInput" required>
+			<input type="text" placeholder="name" [(ngModel)]="authorizationService.userInput.name" required>
+		</div>
+		<div>
+			<div class="">Email</div>
+			<input type="text" placeholder="name" [(ngModel)]="authorizationService.userInput.email" required>
 		</div>
 		<div>
 			<div class="">Password</div>
-			<input type="text" placeholder="password" [(ngModel)]="authorizationService.userPasswordInput" required>
+			<input type="text" placeholder="password" [(ngModel)]="authorizationService.userInput.password" required>
 		</div>
-		<button (click)="authorizationService.submitAuthorization()">log in</button>
+		<button (click)="authorizationService.submitAuth(authorizationService.isLogIn)">
+			<span *ngIf="authorizationService.isLogIn">Log In</span>
+			<span *ngIf="!authorizationService.isLogIn">Sign Up</span>
+		</button>
 	</div>
 </div>

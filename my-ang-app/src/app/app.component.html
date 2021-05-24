@@ -2,6 +2,7 @@
 	<app-authorization></app-authorization>
 </div>
 <div class="body" >
+	<app-loading-block *ngIf="coursesHttpService.isLoading"></app-loading-block>
 	<div class="wrapper">
 		<div class="header-container">
 			<app-header></app-header>

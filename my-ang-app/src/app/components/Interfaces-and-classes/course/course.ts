@@ -1,5 +1,6 @@
 export interface ICourseProperties {
-	id: number;
+	_id?: string;
+	id: string;
 	title: string;
 	creationDate: Date;
 	duration: number;
@@ -8,7 +9,8 @@ export interface ICourseProperties {
 }
 
 export class Course {
-	public id: number;
+	public _id?: string;
+	public id: string;
 	public title: string;
 	public creationDate: Date;
 	public duration: number;
@@ -16,6 +18,7 @@ export class Course {
 	public isTopRated: boolean;
 
 	constructor( course: ICourseProperties ) {
+		this._id = course._id;
 		this.id = course.id;
 		this.title = course.title;
 		this.creationDate = new Date(course.creationDate);

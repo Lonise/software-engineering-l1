@@ -1,0 +1,10 @@
+<div class="searchAdd-container">
+	<app-search-add
+		(searchCourses)="searchCourses($event)"
+		(toggleAddNewCourse)="toggleAddNewCourse()">
+	</app-search-add>
+</div>
+
+<app-course-list-page
+	[CourseList]="coursesStreamService.cC$">
+</app-course-list-page>

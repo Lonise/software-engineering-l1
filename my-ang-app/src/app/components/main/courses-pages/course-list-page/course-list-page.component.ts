@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Course } from '../course';
+import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
 
 @Component({
@@ -11,20 +10,23 @@ import { CoursesListService } from '../courses-list.service';
 	styleUrls: ['./course-list-page.component.scss']
 })
 
+
 export class CoursesListPageComponent {
+	@Input() CourseList: Course[] | undefined;
 
-	constructor( public coursesList: CoursesListService ) { }
+	public coursesCatalog: Course[] = [];
 
-	public coursesCatalog: Course[] = this.coursesList.getCourseList();
-	public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
-	public isDeleteCourseContainerVisible = false;
-	private currentDeletionCourseId!: number;
+	constructor( public coursesList: CoursesListService ) {}
+
+		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
+		public isDeleteCourseContainerVisible = false;
+		private currentDeletionCourseId!: string;
 
 	public showMoreCourses(): void {
 		console.log('Load more');
 	}
 
-	public toggleConfirmModalToDeleteCourse( id?: number ): void {
+	public toggleConfirmModalToDeleteCourse( id?: string ): void {
 		this.isDeleteCourseContainerVisible = !this.isDeleteCourseContainerVisible;
 
 		if ( id ) {
@@ -40,13 +42,5 @@ export class CoursesListPageComponent {
 		this.isDeleteCourseContainerVisible = false;
 		this.coursesList.removeCourse(this.currentDeletionCourseId);
 		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
-	}
-
-	public searchCourses(currentInput: string): void {
-			this.coursesCatalog = this.coursesList.getFilteredCourseList(currentInput);
-	}
-
-	public toggleAddNewCourse(): void {
-		this.coursesList.toggleAddNewCourse();
 	}
 }

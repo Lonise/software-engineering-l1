@@ -1,10 +1,19 @@
 .logInWrapper {
-	width: 250px;
-	height: 300px;
+	width: 300px;
+	height: 450px;
 	background-color: rgb(108, 189, 255);
 }
+
 .LogInSignUp__title {
+	display: flex;
+	width: 80%;
+	justify-content: space-around;
 	text-align: center;
+}
+
+.active {
+	background-color: rgba(43, 255, 0, 0.671);
+	border: 2px solid black;
 }
 
 input {

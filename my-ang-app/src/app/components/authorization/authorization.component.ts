@@ -1,21 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthorizationService } from './authorization.service';
 
 @Component({
 	selector: 'app-authorization',
 	templateUrl: './authorization.component.html',
-	styleUrls: ['./authorization.component.scss']
+	styleUrls: ['./authorization.component.scss', './login-signup-toggle.scss']
 })
 export class AuthorizationComponent {
 
 	constructor( public authorizationService: AuthorizationService ) { }
 
-	public backDropClick(event: MouseEvent): void {
-		console.log(event.currentTarget);
-	}
-
-	public toggleLogIn(): void {
-		this.authorizationService.login();
+	public switchCheckbox(): void {
+		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
 	}
 
 	public closeLogIn(): void {

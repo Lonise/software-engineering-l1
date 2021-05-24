@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -14,6 +15,10 @@ import { AuthorizationService } from './components/authorization/authorization.s
 import { NotFoundPageComponent } from './components/main/not-found-page/not-found-page.component';
 import { CoursesListService } from './components/main/courses-pages/courses-list.service';
 import { CoursesModule } from './modules/courses.module';
+import { AuthorizationHttpService } from './http/authorization-http.service';
+import { LoadingBlockComponent } from './components/loading-block/loading-block.component';
+import { Interceptors } from './http/interceptors/Interceptors';
+import { AppService } from './app.service';
 
 @NgModule({
 	declarations: [
@@ -26,14 +31,16 @@ import { CoursesModule } from './modules/courses.module';
 		AuthorizationErrorComponent,
 		AuthorizationComponent,
 		NotFoundPageComponent,
+		LoadingBlockComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [
 		CoursesModule,
 		BrowserModule,
-		FormsModule
+		FormsModule,
+		HttpClientModule
 	],
-	providers: [ AuthorizationService, CoursesListService ],
+	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService, AppService, Interceptors],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
