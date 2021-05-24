@@ -6,15 +6,15 @@ import { AuthorizationService } from '../../components/authorization/authorizati
 @Injectable()
 export class CookieInterceptorService {
 
-  constructor(public authorizationService: AuthorizationService) { }
+	constructor(public authorizationService: AuthorizationService) { }
 
 	intercept( request: HttpRequest<unknown>, next: HttpHandler ): Observable<HttpEvent<unknown>> {
 
-		const customHeader = this.authorizationService.getTokenInCookie()
-		const customHeaderValue = typeof customHeader === 'undefined' ? '' : customHeader
+		const customHeader = this.authorizationService.getTokenInCookie();
+		const customHeaderValue = typeof customHeader === 'undefined' ? '' : customHeader;
 		const authReq = request.clone({
-      headers: request.headers.set('Session-token', customHeaderValue),
-    })
-		return next.handle(authReq)
+			headers: request.headers.set('Session-token', customHeaderValue),
+		});
+		return next.handle(authReq);
 	}
 }

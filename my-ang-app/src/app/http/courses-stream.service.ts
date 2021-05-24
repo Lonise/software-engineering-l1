@@ -9,12 +9,12 @@ import { CoursesHttpService } from './courses-http.service';
 export class CoursesStreamService {
 
 	private BaseUrl = 'https://super-courses.herokuapp.com/courses';
-	private coursesSearchUrl = `search=`
+	private coursesSearchUrl = `search=`;
 
-	public cC$: Course[] | undefined
+	public cC$: Course[] | undefined;
 	public Courses$: Subject<string> = new BehaviorSubject('');
 
-  constructor( private coursesHttpService: CoursesHttpService ) {
+	constructor( private coursesHttpService: CoursesHttpService ) {
 
 		this.Courses$.pipe(
 			debounceTime(1000),
@@ -24,6 +24,6 @@ export class CoursesStreamService {
 				this.coursesHttpService.getCourses(`${this.BaseUrl}?${this.coursesSearchUrl}${v}`))
 		).subscribe(
 			val => this.cC$ = val
-		)
-	 }
+		);
+	}
 }

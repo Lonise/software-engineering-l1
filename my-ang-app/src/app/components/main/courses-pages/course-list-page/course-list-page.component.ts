@@ -14,13 +14,13 @@ import { CoursesListService } from '../courses-list.service';
 export class CoursesListPageComponent {
 	@Input() CourseList: Course[] | undefined;
 
-	public coursesCatalog: Course[] = []
+	public coursesCatalog: Course[] = [];
 
 	constructor( public coursesList: CoursesListService ) {}
 
-	 public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
-	 public isDeleteCourseContainerVisible = false;
-	 private currentDeletionCourseId!: string;
+		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
+		public isDeleteCourseContainerVisible = false;
+		private currentDeletionCourseId!: string;
 
 	public showMoreCourses(): void {
 		console.log('Load more');

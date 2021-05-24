@@ -6,7 +6,7 @@ import { IUserProperties } from '../Interfaces-and-classes/user/user';
 @Injectable()
 export class AuthorizationService {
 
-	constructor( private router: Router, private authorizationHttpService:AuthorizationHttpService ) {}
+	constructor( private router: Router, private authorizationHttpService: AuthorizationHttpService ) {}
 
 	private nameTokenInCookie = 'coursesCookie';
 	public userLogin!: string | null;
@@ -16,7 +16,7 @@ export class AuthorizationService {
 		email: '',
 		password: '',
 	};
-  public userDataFromBE: any;
+	public userDataFromBE: any;
 	public isErrorModalVisible = false;
 	public isAuthorized = false;
 	public isLogIn = true;
@@ -28,8 +28,8 @@ export class AuthorizationService {
 	public getTokenInCookie(): string | undefined {
 
 		const currentCookies = document.cookie
-				.match( new RegExp("(?:^|; )" +
-				this.nameTokenInCookie.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+				.match( new RegExp('(?:^|; )' +
+				this.nameTokenInCookie.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
 
 		return currentCookies ? decodeURIComponent(currentCookies[1]) : undefined;
 	}
@@ -40,7 +40,7 @@ export class AuthorizationService {
 			!this.validationPassword.test(this.userInput.password)
 		);
 		if (!this.isLogIn) {
-			resultValidation = resultValidation || !this.validationUserName.test(this.userInput.name)
+			resultValidation = resultValidation || !this.validationUserName.test(this.userInput.name);
 		}
 		return resultValidation;
 	}
@@ -69,7 +69,7 @@ export class AuthorizationService {
 		if ( !isLogIn ) {
 
 			this.authorizationHttpService.postAuthentication( this.userInput ).subscribe( value => {
-				document.cookie = `${this.nameTokenInCookie}=${value}`
+				document.cookie = `${this.nameTokenInCookie}=${value}`;
 				this.verifiedAuth();
 			},
 			error => {
@@ -85,7 +85,7 @@ export class AuthorizationService {
 			},
 			error => {
 				console.log('authorization error ', error);
-				this.toggleErrorComponent()
+				this.toggleErrorComponent();
 			});
 		}
 	}
@@ -94,7 +94,7 @@ export class AuthorizationService {
 		this.authorizationHttpService.deleteActiveSession().subscribe( () => {
 			this.userLogin = null;
 			this.isAuthorized = false;
-			document.cookie = `${this.nameTokenInCookie}==;expires=Thu, 01 Jan 1970 00:00:00 GMT`
+			document.cookie = `${this.nameTokenInCookie}==;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 			this.router.navigate(['authorization']);
 		});
 	}

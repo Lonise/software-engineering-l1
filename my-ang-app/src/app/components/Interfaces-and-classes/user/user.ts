@@ -1,5 +1,5 @@
 export interface IUserProperties {
-	id:  string;
+	id: string;
 	name: string;
 	email: string;
 	password: string;
@@ -15,6 +15,6 @@ export class User {
 		this.id = user.id;
 		this.password = user.password;
 		this.email = user.email;
-		this.name = user.name
+		this.name = user.name;
 	}
 }

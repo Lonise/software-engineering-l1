@@ -6,18 +6,18 @@ import { IUserProperties } from '../components/Interfaces-and-classes/user/user'
 @Injectable()
 export class AuthorizationHttpService {
 
-  constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { }
 
 	private url = 'https://super-courses.herokuapp.com/authorization/';
-	private loginPath ='login';
-	private signUpPath ='signup';
-	private logoutUpPath ='logout';
+	private loginPath = 'login';
+	private signUpPath = 'signup';
+	private logoutUpPath = 'logout';
 	private options = {
 		headers: new HttpHeaders({
 			'Access-Control-Allow-Credentials': 'true',
-			'withCredentials': 'true'
+			withCredentials: 'true'
 		})
-	}
+	};
 
 	public getUserByActiveSessionToken( token: string ): Observable<any>{
     return this.httpClient.get( this.url + token );

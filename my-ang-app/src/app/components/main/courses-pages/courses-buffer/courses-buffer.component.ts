@@ -4,13 +4,15 @@ import { CoursesStreamService } from 'src/app/http/courses-stream.service';
 import { CoursesListService } from '../courses-list.service';
 
 @Component({
-  selector: 'app-courses-buffer',
-  templateUrl: './courses-buffer.component.html',
-  styleUrls: ['./courses-buffer.component.scss']
+	selector: 'app-courses-buffer',
+	templateUrl: './courses-buffer.component.html',
+	styleUrls: ['./courses-buffer.component.scss']
 })
 export class CoursesBufferComponent {
 
-  constructor( public coursesStreamService : CoursesStreamService, public coursesList: CoursesListService) { }
+	constructor(
+		public coursesStreamService: CoursesStreamService,
+		public coursesList: CoursesListService ) { }
 
 	public searchCourses(currentInput: string): void {
 		this.coursesStreamService.Courses$.next(currentInput);

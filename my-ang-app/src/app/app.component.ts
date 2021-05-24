@@ -10,9 +10,10 @@ import { CoursesHttpService } from './http/courses-http.service';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	constructor(	public authorizationService: AuthorizationService,
-								public coursesHttpService: CoursesHttpService,
-								private appService: AppService ) {
+	constructor(
+		public authorizationService: AuthorizationService,
+		public coursesHttpService: CoursesHttpService,
+		private appService: AppService ) {
 
 		this.appService.appStart();
 	}

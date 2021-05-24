@@ -10,7 +10,7 @@ export class AuthorizationComponent {
 
 	constructor( public authorizationService: AuthorizationService ) { }
 
-	public switchCheckbox() {
+	public switchCheckbox(): void {
 		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
 	}
 

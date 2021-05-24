@@ -8,7 +8,7 @@ import { CoursesHttpService } from '../courses-http.service';
 
 export class LoadingInterceptor implements HttpInterceptor {
 
-  constructor( private coursesHttpService: CoursesHttpService ) { }
+	constructor( private coursesHttpService: CoursesHttpService ) { }
 
 	intercept( request: HttpRequest<unknown>, next: HttpHandler ): Observable<HttpEvent<unknown>> {
 		this.coursesHttpService.show();
@@ -16,6 +16,6 @@ export class LoadingInterceptor implements HttpInterceptor {
 			finalize( () => {
 				this.coursesHttpService.hide();
 			})
-		)
+		);
 	}
 }

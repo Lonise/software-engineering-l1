@@ -11,9 +11,10 @@ import { CoursesListService } from '../courses-list.service';
 })
 export class AddCoursePageComponent implements OnInit {
 
-	constructor(public coursesListService: CoursesListService,
-							private route: ActivatedRoute,
-							private coursesHttpService: CoursesHttpService ) {}
+	constructor(
+		public coursesListService: CoursesListService,
+		private route: ActivatedRoute,
+		private coursesHttpService: CoursesHttpService ) {}
 
 	public newCourse: ICourseProperties = {
 		id: '',
@@ -53,9 +54,9 @@ export class AddCoursePageComponent implements OnInit {
 			this.newCourse.creationDate = new Date(this.newCourse.creationDate);
 			this.coursesHttpService.putCourse(this.newCourse.id, this.newCourse).subscribe(
 				val => {
-					this.coursesListService.toggleAddNewCourse()
+					this.coursesListService.toggleAddNewCourse();
 				}
-			)
+			);
 		}
 	}
 }

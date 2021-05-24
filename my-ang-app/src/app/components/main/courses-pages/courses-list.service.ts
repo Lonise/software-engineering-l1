@@ -9,10 +9,12 @@ import { Course } from '../../Interfaces-and-classes/course/course';
 
 export class CoursesListService {
 
-	constructor( private router: Router,
-		private coursesHttpService: CoursesHttpService, private coursesStreamService: CoursesStreamService ) { }
+	constructor(
+		private router: Router,
+		private coursesHttpService: CoursesHttpService,
+		private coursesStreamService: CoursesStreamService ) { }
 
-	public courseListData: Course[] = []
+	public courseListData: Course[] = [];
 
 	public activeCourse: Course | undefined;
 	public isCourseListVisible = true;
@@ -45,10 +47,10 @@ export class CoursesListService {
 		course.creationDate = new Date(course.creationDate);
 		this.coursesHttpService.postCourse(course).subscribe(
 			val => {
-				this.coursesStreamService.Courses$.next('#getAllCourses')
+				this.coursesStreamService.Courses$.next('#getAllCourses');
 				this.router.navigate(['courses']);
 			}
-		)
+		);
 	}
 
 	public getActiveCourse(): Course | string {
@@ -60,13 +62,13 @@ export class CoursesListService {
 	}
 
 	public removeCourse( id: string ): void {
-		if (this.courseListData.length -1 <= 0) {
+		if (this.courseListData.length - 1 <= 0) {
 			this.isCourseListDataEmpty = false;
 		}
 		this.coursesHttpService.deleteCourse(id).subscribe(
 			val => {
 				this.coursesStreamService.Courses$.next('#getAllCourses');
 			}
-		)
+		);
 	}
 }
