@@ -23,7 +23,7 @@ button {
 		transition: all 150ms ease-in-out;
 		outline:none;
 
-		&:hover {
+		&:hover:enabled {
 			color: rgb(0, 0, 0);
 			background-color: $white;
 			box-shadow: 0 0 10px 0 $red inset, 0 0 10px 4px $red;
