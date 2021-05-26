@@ -19,16 +19,16 @@
 						invalid description
 					</span>
 				</div>
-				<input formControlName="description"  type="text" placeholder="description">
+				<textarea formControlName="description"  type="text" placeholder="description"></textarea>
 			</div>
 			<div class="inputContainer_input">
 				<div>
 					<label>Date:</label>
 					<span *ngIf="_date?.invalid && (_date?.touched || _date?.dirty)">
-						invalid date
+						invalid year
 					</span>
+					<app-input-date [dateControl]="dateControl"></app-input-date>
 				</div>
-				<input formControlName="date"  type="text" placeholder="date">
 			</div>
 			<div class="inputContainer_input">
 				<div>

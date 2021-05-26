@@ -17,6 +17,8 @@ import { AuthGuard } from '../auth-guard';
 import { CoursesHttpService } from '../http/courses-http.service';
 import { CoursesBufferComponent } from '../components/main/courses-pages/courses-buffer/courses-buffer.component';
 import { CoursesStreamService } from '../http/courses-stream.service';
+import { InputDateComponent } from '../components/main/courses-pages/add-course-page/input-date/input-date.component';
+import { DateValidatorDirective } from '../components/main/courses-pages/add-course-page/input-date/date-validator.directive';
 
 @NgModule({
 	declarations: [
@@ -29,7 +31,8 @@ import { CoursesStreamService } from '../http/courses-stream.service';
 		DurationCoursePipe,
 		OrderByCreationDatePipe,
 		FilterCoursesByInputPipe,
-		AddCoursePageComponent
+		AddCoursePageComponent,
+		InputDateComponent
 	],
 	imports: [
 		CommonModule,
@@ -39,6 +42,6 @@ import { CoursesStreamService } from '../http/courses-stream.service';
 		ReactiveFormsModule
 	],
 	exports: [CoursesPagesComponent],
-	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService ],
+	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService, DateValidatorDirective ],
 })
 export class CoursesModule { }

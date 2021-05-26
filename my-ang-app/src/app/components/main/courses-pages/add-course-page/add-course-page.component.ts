@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CoursesHttpService } from 'src/app/http/courses-http.service';
 import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
+import { DateValidatorDirective } from './input-date/date-validator.directive';
 
 @Component({
 	selector: 'app-add-course-page',
@@ -14,12 +15,14 @@ import { CoursesListService } from '../courses-list.service';
 export class AddCoursePageComponent implements OnInit {
 
 	public courseControl!: FormGroup;
+	public dateControl!: FormControl;
 
 	constructor(
 		public coursesListService: CoursesListService,
 		private route: ActivatedRoute,
 		private coursesHttpService: CoursesHttpService,
-		private formBuilder: FormBuilder ) {
+		private formBuilder: FormBuilder,
+		private dateValidatorDirective: DateValidatorDirective ) {
 
 			this.courseControl = this.formBuilder.group({
 				title: ['',[
@@ -30,10 +33,6 @@ export class AddCoursePageComponent implements OnInit {
 					Validators.required,
 					Validators.maxLength(500)
 				]],
-				date: ['',[
-					Validators.required,
-					Validators.minLength(5)
-				]],
 				duration: ['',[
 					Validators.required,
 					Validators.minLength(5)
@@ -43,6 +42,8 @@ export class AddCoursePageComponent implements OnInit {
 					Validators.minLength(5)
 				]]
 			 })
+
+			 this.dateControl = new FormControl('', [Validators.required, this.dateValidatorDirective.validate]);
 		}
 
 		get _title() {
@@ -52,7 +53,7 @@ export class AddCoursePageComponent implements OnInit {
 			return this.courseControl.get('description')
 		}
 		get _date() {
-			return this.courseControl.get('date')
+			return this.dateControl
 		}
 		get _duration() {
 			return this.courseControl.get('duration')
