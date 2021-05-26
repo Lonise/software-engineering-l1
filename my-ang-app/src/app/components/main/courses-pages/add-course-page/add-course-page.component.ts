@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CoursesHttpService } from 'src/app/http/courses-http.service';
 import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
-import { DateValidatorDirective } from './input-date/date-validator.directive';
+import { DateValidator } from './input-date/date-validator';
 
 @Component({
 	selector: 'app-add-course-page',
@@ -21,8 +21,8 @@ export class AddCoursePageComponent implements OnInit {
 		public coursesListService: CoursesListService,
 		private route: ActivatedRoute,
 		private coursesHttpService: CoursesHttpService,
-		private formBuilder: FormBuilder,
-		private dateValidatorDirective: DateValidatorDirective ) {
+		private formBuilder: FormBuilder
+		) {
 
 			this.courseControl = this.formBuilder.group({
 				title: ['',[
@@ -43,7 +43,7 @@ export class AddCoursePageComponent implements OnInit {
 				]]
 			 })
 
-			 this.dateControl = new FormControl('', [Validators.required, this.dateValidatorDirective.validate]);
+			 this.dateControl = new FormControl('', [Validators.required, DateValidator()]);
 		}
 
 		get _title() {
