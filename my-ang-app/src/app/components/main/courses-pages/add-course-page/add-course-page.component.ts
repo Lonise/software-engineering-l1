@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { CoursesHttpService } from 'src/app/http/courses-http.service';
 import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
@@ -11,10 +13,54 @@ import { CoursesListService } from '../courses-list.service';
 })
 export class AddCoursePageComponent implements OnInit {
 
+	public courseControl!: FormGroup;
+
 	constructor(
 		public coursesListService: CoursesListService,
 		private route: ActivatedRoute,
-		private coursesHttpService: CoursesHttpService ) {}
+		private coursesHttpService: CoursesHttpService,
+		private formBuilder: FormBuilder ) {
+
+			this.courseControl = this.formBuilder.group({
+				title: ['',[
+					Validators.required,
+					Validators.maxLength(50)
+				]],
+				description: ['',[
+					Validators.required,
+					Validators.maxLength(500)
+				]],
+				date: ['',[
+					Validators.required,
+					Validators.minLength(5)
+				]],
+				duration: ['',[
+					Validators.required,
+					Validators.minLength(5)
+				]],
+				authors: ['',[
+					Validators.required,
+					Validators.minLength(5)
+				]]
+			 })
+		}
+
+		get _title() {
+			return this.courseControl.get('title')
+		}
+		get _description() {
+			return this.courseControl.get('description')
+		}
+		get _date() {
+			return this.courseControl.get('date')
+		}
+		get _duration() {
+			return this.courseControl.get('duration')
+		}
+		get _authors() {
+			return this.courseControl.get('authors')
+		}
+
 
 	public newCourse: ICourseProperties = {
 		id: '',

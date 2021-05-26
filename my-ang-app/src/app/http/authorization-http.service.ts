@@ -7,8 +7,8 @@ import { IUserProperties } from '../components/Interfaces-and-classes/user/user'
 export class AuthorizationHttpService {
 
 	constructor(private httpClient: HttpClient) { }
-
-	private url = 'https://super-courses.herokuapp.com/authorization/';
+	private url = 'http://localhost:3000/authorization/';
+// 	private url = 'https://super-courses.herokuapp.com/authorization/';
 	private loginPath = 'login';
 	private signUpPath = 'signup';
 	private logoutUpPath = 'logout';

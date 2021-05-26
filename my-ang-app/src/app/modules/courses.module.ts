@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoursesListPageComponent } from '../components/main/courses-pages/course-list-page/course-list-page.component';
 import { CourseComponent } from '../components/main/courses-pages/course/course.component';
@@ -35,7 +35,8 @@ import { CoursesStreamService } from '../http/courses-stream.service';
 		CommonModule,
 		BrowserModule,
 		AppRoutingModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	exports: [CoursesPagesComponent],
 	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService ],

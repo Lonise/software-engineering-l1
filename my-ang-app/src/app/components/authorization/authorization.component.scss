@@ -38,9 +38,3 @@ input:valid {
 .closeErrorMessageButton {
 	padding: 10px;
 }
-
-button:disabled,
-button[disabled] {
-	background-color: rgb(206, 206, 206);
-	color: rgb(53, 53, 53);
-}

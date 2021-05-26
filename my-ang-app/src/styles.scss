@@ -63,3 +63,9 @@ button {
 	padding: 10px;
 	border: 2px solid black;
 }
+
+button:disabled,
+button[disabled] {
+	background-color: rgb(206, 206, 206);
+	color: rgb(53, 53, 53);
+}
