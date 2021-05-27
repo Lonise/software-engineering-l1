@@ -34,7 +34,6 @@ import { InputAuthorsComponent } from './components/main/courses-pages/add-cours
 		AuthorizationComponent,
 		NotFoundPageComponent,
 		LoadingBlockComponent,
-		InputDurationComponent,
 		InputAuthorsComponent
 	],
 	entryComponents: [AuthorizationComponent],

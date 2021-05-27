@@ -37,7 +37,7 @@
 						invalid duration
 					</span>
 				</div>
-				<input formControlName="duration"  type="text" placeholder="duration">
+				<app-input-duration [durationControl]="durationControl"></app-input-duration>
 				<span class="durationCourse">{{newCourse.duration | durationCourse}}</span>
 			</div>
 			<div class="inputContainer_input">

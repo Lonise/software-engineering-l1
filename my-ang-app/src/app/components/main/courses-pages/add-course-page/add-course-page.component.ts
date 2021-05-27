@@ -6,6 +6,7 @@ import { CoursesHttpService } from 'src/app/http/courses-http.service';
 import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
 import { DateValidator } from './input-date/date-validator';
+import { DurationValidator } from './input-duration/duration-validator';
 
 @Component({
 	selector: 'app-add-course-page',
@@ -16,6 +17,7 @@ export class AddCoursePageComponent implements OnInit {
 
 	public courseControl!: FormGroup;
 	public dateControl!: FormControl;
+	public durationControl!: FormControl;
 
 	constructor(
 		public coursesListService: CoursesListService,
@@ -33,10 +35,6 @@ export class AddCoursePageComponent implements OnInit {
 					Validators.required,
 					Validators.maxLength(500)
 				]],
-				duration: ['',[
-					Validators.required,
-					Validators.minLength(5)
-				]],
 				authors: ['',[
 					Validators.required,
 					Validators.minLength(5)
@@ -44,6 +42,17 @@ export class AddCoursePageComponent implements OnInit {
 			 })
 
 			 this.dateControl = new FormControl('', [Validators.required, DateValidator()]);
+			 this.durationControl = new FormControl('', [Validators.required, DurationValidator()]);
+		}
+
+		ngOnInit(): void {
+			this.route.params.subscribe(params => {
+				this.checkCurrentRoute(params.id);
+			});
+
+			this.durationControl.valueChanges.subscribe( duration => {
+				this.newCourse.duration = duration;
+			});
 		}
 
 		get _title() {
@@ -56,7 +65,7 @@ export class AddCoursePageComponent implements OnInit {
 			return this.dateControl
 		}
 		get _duration() {
-			return this.courseControl.get('duration')
+			return this.durationControl
 		}
 		get _authors() {
 			return this.courseControl.get('authors')
@@ -87,11 +96,7 @@ export class AddCoursePageComponent implements OnInit {
 		}
 	}
 
-	ngOnInit(): void {
-		this.route.params.subscribe(params => {
-			this.checkCurrentRoute(params.id);
-		});
-	}
+
 
 	public createNewCourse(): void {
 		if (this.isNewCourse) {

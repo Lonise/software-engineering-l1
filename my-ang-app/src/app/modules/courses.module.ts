@@ -18,6 +18,7 @@ import { CoursesHttpService } from '../http/courses-http.service';
 import { CoursesBufferComponent } from '../components/main/courses-pages/courses-buffer/courses-buffer.component';
 import { CoursesStreamService } from '../http/courses-stream.service';
 import { InputDateComponent } from '../components/main/courses-pages/add-course-page/input-date/input-date.component';
+import { InputDurationComponent } from '../components/main/courses-pages/add-course-page/input-duration/input-duration.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,8 @@ import { InputDateComponent } from '../components/main/courses-pages/add-course-
 		OrderByCreationDatePipe,
 		FilterCoursesByInputPipe,
 		AddCoursePageComponent,
-		InputDateComponent
+		InputDateComponent,
+		InputDurationComponent
 	],
 	imports: [
 		CommonModule,
