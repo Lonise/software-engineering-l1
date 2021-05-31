@@ -8,8 +8,7 @@ import { Course } from '../components/Interfaces-and-classes/course/course';
 export class CoursesHttpService {
 
 	constructor( private httpClient: HttpClient ) { }
-	// private url = 'https://super-courses.herokuapp.com/courses/';
-	private url = 'http://localhost:3000/courses/';
+	private url = 'https://super-courses.herokuapp.com/courses/';
 
 	public isLoading = false;
 

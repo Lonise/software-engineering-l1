@@ -8,8 +8,7 @@ import { CoursesHttpService } from './courses-http.service';
 @Injectable()
 export class CoursesStreamService {
 
-	// private BaseUrl = 'https://super-courses.herokuapp.com/courses';
-	private BaseUrl = 'http://localhost:3000/courses';
+	private BaseUrl = 'https://super-courses.herokuapp.com/courses';
 
 	private coursesSearchUrl = `search=`;
 
