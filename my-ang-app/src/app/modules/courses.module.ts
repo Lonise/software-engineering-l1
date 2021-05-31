@@ -19,6 +19,8 @@ import { CoursesBufferComponent } from '../components/main/courses-pages/courses
 import { CoursesStreamService } from '../http/courses-stream.service';
 import { InputDateComponent } from '../components/main/courses-pages/add-course-page/input-date/input-date.component';
 import { InputDurationComponent } from '../components/main/courses-pages/add-course-page/input-duration/input-duration.component';
+import { InputAuthorsComponent } from '../components/main/courses-pages/add-course-page/input-authors/input-authors.component';
+import { AuthorsHttpService } from '../http/authors-http.service';
 
 @NgModule({
 	declarations: [
@@ -33,7 +35,8 @@ import { InputDurationComponent } from '../components/main/courses-pages/add-cou
 		FilterCoursesByInputPipe,
 		AddCoursePageComponent,
 		InputDateComponent,
-		InputDurationComponent
+		InputDurationComponent,
+		InputAuthorsComponent
 	],
 	imports: [
 		CommonModule,
@@ -43,6 +46,6 @@ import { InputDurationComponent } from '../components/main/courses-pages/add-cou
 		ReactiveFormsModule
 	],
 	exports: [CoursesPagesComponent],
-	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService ],
+	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService, AuthorsHttpService ],
 })
 export class CoursesModule { }

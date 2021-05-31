@@ -19,8 +19,6 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 import { LoadingBlockComponent } from './components/loading-block/loading-block.component';
 import { Interceptors } from './http/interceptors/Interceptors';
 import { AppService } from './app.service';
-import { InputDurationComponent } from './components/main/courses-pages/add-course-page/input-duration/input-duration.component';
-import { InputAuthorsComponent } from './components/main/courses-pages/add-course-page/input-authors/input-authors.component';
 
 @NgModule({
 	declarations: [
@@ -33,8 +31,7 @@ import { InputAuthorsComponent } from './components/main/courses-pages/add-cours
 		AuthorizationErrorComponent,
 		AuthorizationComponent,
 		NotFoundPageComponent,
-		LoadingBlockComponent,
-		InputAuthorsComponent
+		LoadingBlockComponent
 	],
 	entryComponents: [AuthorizationComponent],
 	imports: [

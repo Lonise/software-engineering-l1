@@ -27,6 +27,7 @@ export class CoursesListService {
 		this.isAddCourseVisible = !this.isAddCourseVisible;
 
 		if (this.isCourseListVisible) {
+			this.coursesStreamService.Courses$.next('#getAllCourses');
 			this.router.navigate(['courses']);
 		} else {
 			this.router.navigate(['courses/new']);
@@ -44,7 +45,6 @@ export class CoursesListService {
 	}
 
 	public addCourse(course: Course): void {
-		course.creationDate = new Date(course.creationDate);
 		this.coursesHttpService.postCourse(course).subscribe(
 			val => {
 				this.coursesStreamService.Courses$.next('#getAllCourses');

@@ -1,8 +1,6 @@
 <div class="newCourseForm">
 	<div class="inputContainer">
-
 		<form [formGroup]="courseControl">
-
 			<div class="inputContainer_input">
 				<div>
 					<label>Title:</label>
@@ -38,20 +36,21 @@
 					</span>
 				</div>
 				<app-input-duration [durationControl]="durationControl"></app-input-duration>
-				<span class="durationCourse">{{newCourse.duration | durationCourse}}</span>
+				<span class="durationCourse">{{ this.courseControl.controls['duration'].value | durationCourse }}</span>
 			</div>
 			<div class="inputContainer_input">
 				<div>
 					<label>Authors:</label>
-					<span *ngIf="_authors?.invalid && (_authors?.touched || _authors?.dirty)">
+					<span *ngIf="_authors?.invalid ">
 						invalid authors
 					</span>
 				</div>
-				<input formControlName="authors" type="text" placeholder="authors">
+				<app-input-authors
+					[authorsArray]="authorsArray"
+					[authorsControl]="authorsControl">
+				</app-input-authors>
 			</div>
-
 		</form>
-
 		<div class="buttonsContainer">
 			<button class="buttonsContainer_button" (click)="createNewCourse()" [disabled]="!courseControl.valid">Save</button>
 			<button class="buttonsContainer_button" (click)="coursesListService.toggleAddNewCourse()">Cancel</button>
