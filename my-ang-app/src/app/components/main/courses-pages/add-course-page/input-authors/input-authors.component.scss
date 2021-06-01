@@ -1,0 +1,45 @@
+.authors {
+	margin: 10px;
+	background: white;
+}
+
+.tagContainer {
+	border: 1px solid black;
+	padding: 5px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.authors_tag {
+	margin: 2px;
+	padding: 2px;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	border-radius: 3px;
+	background: rgb(255, 189, 102);
+}
+
+.authors_tag:hover {
+	cursor: pointer;
+}
+
+.authors_tag_remove {
+	transform: rotate(45deg);
+}
+
+.authors_input {
+	flex: 1;
+	padding: 5px;
+	outline: none;
+	border: 0;
+}
+
+.authors_suggested {
+	border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.authors_suggested:hover {
+	cursor: pointer;
+	border-bottom: 1px solid black;
+}

@@ -7,7 +7,6 @@ import { IUserProperties } from '../components/Interfaces-and-classes/user/user'
 export class AuthorizationHttpService {
 
 	constructor(private httpClient: HttpClient) { }
-
 	private url = 'https://super-courses.herokuapp.com/authorization/';
 	private loginPath = 'login';
 	private signUpPath = 'signup';
@@ -20,22 +19,22 @@ export class AuthorizationHttpService {
 	};
 
 	public getUserByActiveSessionToken( token: string ): Observable<any>{
-    return this.httpClient.get( this.url + token );
+		return this.httpClient.get( this.url + token );
 	}
 
 	public postAuthorization( userData: IUserProperties ): Observable<any>{
-    return this.httpClient.post( this.url + this.loginPath, userData, this.options);
+		return this.httpClient.post( this.url + this.loginPath, userData, this.options);
 	}
 
 	public postAuthentication( userData: IUserProperties ): Observable<any>{
-    return this.httpClient.post(this.url + this.signUpPath, userData, this.options );
+		return this.httpClient.post(this.url + this.signUpPath, userData, this.options );
 	}
 
 	public putUpdateUser( token: string, userData: IUserProperties ): Observable<any>{
-    return this.httpClient.put( this.url + token, userData );
+		return this.httpClient.put( this.url + token, userData );
 	}
 
 	public deleteActiveSession(): Observable<any>{
-    return this.httpClient.delete( this.url + this.logoutUpPath );
+		return this.httpClient.delete( this.url + this.logoutUpPath );
 	}
 }

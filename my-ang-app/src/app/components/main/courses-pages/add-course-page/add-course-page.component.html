@@ -1,28 +1,58 @@
 <div class="newCourseForm">
 	<div class="inputContainer">
-		<div class="inputContainer_input">
-			<p>Title:</p>
-			<input class="wideInput roundedBorders" type="text roundedBorders" placeholder="title" [(ngModel)]="newCourse.title">
-		</div>
-		<div class="inputContainer_input">
-			<p>Description:</p>
-			<textarea rows="5" class="wideInput roundedBorders" placeholder="description" [(ngModel)]="newCourse.description"></textarea>
-		</div>
-		<div class="inputContainer_input">
-			<p>Date:</p>
-			<input class="roundedBorders" type="date" [(ngModel)]="newCourse.creationDate">
-		</div>
-		<div class="inputContainer_input">
-			<p>Duration:</p>
-			<input class="roundedBorders" type="number" placeholder="duration min" [(ngModel)]="newCourse.duration">
-			<span class="durationCourse">{{newCourse.duration | durationCourse}}</span>
-		</div>
-		<div class="inputContainer_input">
-			<p>Authors:</p>
-			<input class="roundedBorders wideInput" type="authors" placeholder="">
-		</div>
+		<form [formGroup]="courseControl">
+			<div class="inputContainer_input">
+				<div>
+					<label>Title:</label>
+					<span *ngIf="_title?.invalid && (_title?.touched || _title?.dirty)">
+						invalid title
+					</span>
+				</div>
+				<input formControlName="title"  type="text" placeholder="title">
+			</div>
+			<div class="inputContainer_input">
+				<div>
+					<label>Description:</label>
+					<span *ngIf="_description?.invalid && (_description?.touched || _description?.dirty)">
+						invalid description
+					</span>
+				</div>
+				<textarea formControlName="description"  type="text" placeholder="description"></textarea>
+			</div>
+			<div class="inputContainer_input">
+				<div>
+					<label>Date:</label>
+					<span *ngIf="_date?.invalid && (_date?.touched || _date?.dirty)">
+						invalid year
+					</span>
+					<app-input-date [dateControl]="dateControl"></app-input-date>
+				</div>
+			</div>
+			<div class="inputContainer_input">
+				<div>
+					<label>Duration:</label>
+					<span *ngIf="_duration?.invalid && (_duration?.touched || _duration?.dirty)">
+						invalid duration
+					</span>
+				</div>
+				<app-input-duration [durationControl]="durationControl"></app-input-duration>
+				<span class="durationCourse">{{ this.courseControl.controls['duration'].value | durationCourse }}</span>
+			</div>
+			<div class="inputContainer_input">
+				<div>
+					<label>Authors:</label>
+					<span *ngIf="_authors?.invalid ">
+						invalid authors
+					</span>
+				</div>
+				<app-input-authors
+					[authorsArray]="authorsArray"
+					[authorsControl]="authorsControl">
+				</app-input-authors>
+			</div>
+		</form>
 		<div class="buttonsContainer">
-			<button class="buttonsContainer_button" (click)="createNewCourse()">Save</button>
+			<button class="buttonsContainer_button" (click)="createNewCourse()" [disabled]="!courseControl.valid">Save</button>
 			<button class="buttonsContainer_button" (click)="coursesListService.toggleAddNewCourse()">Cancel</button>
 		</div>
 	</div>

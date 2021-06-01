@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthorizationHttpService } from 'src/app/http/authorization-http.service';
+import { AuthorizationHttpService } from '../../http/authorization-http.service';
 import { IUserProperties } from '../Interfaces-and-classes/user/user';
 
 @Injectable()
@@ -59,14 +60,13 @@ export class AuthorizationService {
 		this.closeLogIn();
 	}
 
-	public submitAuth( isLogIn: boolean ): void {
+	public submitAuth( authControl: FormGroup ): void {
 
-		if ( this.validationIsNoPass() ) {
-			this.toggleErrorComponent();
-			return;
-		}
+		this.userInput.email = authControl.value.userEmail;
+		this.userInput.password = authControl.value.userPassword;
 
-		if ( !isLogIn ) {
+		if ( !this.isLogIn ) {
+			this.userInput.name = authControl.value.userName;
 
 			this.authorizationHttpService.postAuthentication( this.userInput ).subscribe( value => {
 				document.cookie = `${this.nameTokenInCookie}=${value}`;

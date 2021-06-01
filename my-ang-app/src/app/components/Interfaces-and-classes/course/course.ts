@@ -1,3 +1,5 @@
+import { IAuthorProperties } from '../author/author';
+
 export interface ICourseProperties {
 	_id?: string;
 	id: string;
@@ -6,6 +8,7 @@ export interface ICourseProperties {
 	duration: number;
 	description: string;
 	isTopRated: boolean;
+	authors: IAuthorProperties[];
 }
 
 export class Course {
@@ -16,6 +19,8 @@ export class Course {
 	public duration: number;
 	public description: string;
 	public isTopRated: boolean;
+	public authors: IAuthorProperties[];
+
 
 	constructor( course: ICourseProperties ) {
 		this._id = course._id;
@@ -25,5 +30,6 @@ export class Course {
 		this.duration = course.duration;
 		this.description = course.description;
 		this.isTopRated = course.isTopRated;
+		this.authors = course.authors;
 	}
 }

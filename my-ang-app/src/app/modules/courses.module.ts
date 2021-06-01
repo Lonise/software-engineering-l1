@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoursesListPageComponent } from '../components/main/courses-pages/course-list-page/course-list-page.component';
 import { CourseComponent } from '../components/main/courses-pages/course/course.component';
@@ -17,6 +17,10 @@ import { AuthGuard } from '../auth-guard';
 import { CoursesHttpService } from '../http/courses-http.service';
 import { CoursesBufferComponent } from '../components/main/courses-pages/courses-buffer/courses-buffer.component';
 import { CoursesStreamService } from '../http/courses-stream.service';
+import { InputDateComponent } from '../components/main/courses-pages/add-course-page/input-date/input-date.component';
+import { InputDurationComponent } from '../components/main/courses-pages/add-course-page/input-duration/input-duration.component';
+import { InputAuthorsComponent } from '../components/main/courses-pages/add-course-page/input-authors/input-authors.component';
+import { AuthorsHttpService } from '../http/authors-http.service';
 
 @NgModule({
 	declarations: [
@@ -29,15 +33,19 @@ import { CoursesStreamService } from '../http/courses-stream.service';
 		DurationCoursePipe,
 		OrderByCreationDatePipe,
 		FilterCoursesByInputPipe,
-		AddCoursePageComponent
+		AddCoursePageComponent,
+		InputDateComponent,
+		InputDurationComponent,
+		InputAuthorsComponent
 	],
 	imports: [
 		CommonModule,
 		BrowserModule,
 		AppRoutingModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	exports: [CoursesPagesComponent],
-	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService ],
+	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService, AuthorsHttpService ],
 })
 export class CoursesModule { }
