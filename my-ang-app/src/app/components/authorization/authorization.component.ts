@@ -8,53 +8,53 @@ import { AuthorizationService } from './authorization.service';
 	styleUrls: ['./authorization.component.scss', './login-signup-toggle.scss']
 })
 export class AuthorizationComponent {
-	public authControl!: FormGroup;
 
 	constructor(
 		public authorizationService: AuthorizationService,
 		private formBuilder: FormBuilder ) {
 
 		this.authControl = this.formBuilder.group({
-		 userName: ['',[
-			 Validators.required,
-			 Validators.minLength(5)
-		 ]],
-		 userEmail: ['',[
-			 Validators.required,
-			 Validators.email,
-			 Validators.pattern(this.authorizationService.validationUserEmail)
-		 ]],
-		 userPassword: ['',[
-			 Validators.required,
-			 Validators.minLength(5)
-		 ]],
-		})
-	 }
+			userName: ['', [
+				Validators.required,
+				Validators.minLength(5)
+			]],
+			userEmail: ['', [
+				Validators.required,
+				Validators.email,
+				Validators.pattern(this.authorizationService.validationUserEmail)
+			]],
+			userPassword: ['', [
+				Validators.required,
+				Validators.minLength(5)
+			]],
+		});
+	}
 
 	get _name() {
-		return this.authControl.get('userName')
+		return this.authControl.get('userName');
 	}
 
 	get _email() {
-		return this.authControl.get('userEmail')
+		return this.authControl.get('userEmail');
 	}
 
 	get _password() {
-		return this.authControl.get('userPassword')
+		return this.authControl.get('userPassword');
 	}
-
-	public switchCheckbox(): void {
-		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
-		this.checkUserInput()
-	}
+	public authControl!: FormGroup;
 
 	public isButtonDisabled = true;
 
+	public switchCheckbox(): void {
+		this.authorizationService.isLogIn = !this.authorizationService.isLogIn;
+		this.checkUserInput();
+	}
+
 	public checkUserInput(): void {
 		this.isButtonDisabled = !!this._password?.invalid;
-		this.isButtonDisabled = this.isButtonDisabled || !!this._email?.invalid
+		this.isButtonDisabled = this.isButtonDisabled || !!this._email?.invalid;
 		if (! this.authorizationService.isLogIn ) {
-			this.isButtonDisabled = this.isButtonDisabled || !!this._name?.invalid
+			this.isButtonDisabled = this.isButtonDisabled || !!this._name?.invalid;
 		}
 	}
 

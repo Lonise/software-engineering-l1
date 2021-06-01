@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function DurationValidator(): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
@@ -8,6 +8,6 @@ export function DurationValidator(): ValidatorFn {
 		return (
 			incomingValue > maximumDuration ||
 			incomingValue < minimumDuration
-		) ? {incomingValue:{'invalid': true}} : null;
+		) ? { incomingValue: {'invalid': true} } : null;
 	};
 }

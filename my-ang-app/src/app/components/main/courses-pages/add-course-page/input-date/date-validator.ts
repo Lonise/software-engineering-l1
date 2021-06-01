@@ -4,9 +4,9 @@ export function DateValidator(): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
 		const currentYear = (new Date()).getFullYear();
 		const incomingValue = new Date( control.value );
-    return (
+		return (
 			incomingValue.getFullYear() < currentYear ||
 			incomingValue.getFullYear() > (currentYear + 2)
-		) ? {incomingValue:{'invalid': true}} : null;
+		) ? {incomingValue: {invalid: true}} : null;
 	};
 }

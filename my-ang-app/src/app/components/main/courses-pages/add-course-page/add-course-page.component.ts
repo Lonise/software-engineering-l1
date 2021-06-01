@@ -22,7 +22,7 @@ export class AddCoursePageComponent implements OnInit {
 	public durationControl!: FormControl;
 	public authorsInputControl!: FormControl;
 	public authorsControl!: FormArray;
-	public authorsArray:IAuthorProperties[]=[];
+	public authorsArray: IAuthorProperties[] = [];
 
 	private currentCourse!: string | Course;
 	private isNewCourse = true;
@@ -36,30 +36,30 @@ export class AddCoursePageComponent implements OnInit {
 		private authorsHttpService: AuthorsHttpService
 		) {
 			this.courseControl = this.formBuilder.group({
-				_id:[''],
-				id:[''],
-				title: ['',[
+				_id: [''],
+				id: [''],
+				title: ['', [
 					Validators.required,
 					Validators.maxLength(50)
 				]],
-				description: ['',[
+				description: ['', [
 					Validators.required,
 					Validators.maxLength(500)
 				]],
 				creationDate: ['', [Validators.required, DateValidator()]],
-				duration:['', [Validators.required, DurationValidator()]],
-				authors: this.formBuilder.array([],[Validators.required]),
-				isTopRated:[false],
-			 })
+				duration: ['', [Validators.required, DurationValidator()]],
+				authors: this.formBuilder.array([], [Validators.required]),
+				isTopRated: [false],
+			});
 
-				this.dateControl = this.courseControl.controls.creationDate as FormControl;
-			 	this.durationControl = this.courseControl.controls.duration as FormControl;
-				this.authorsControl = this.courseControl.controls['authors'] as FormArray;
+			this.dateControl = this.courseControl.controls.creationDate as FormControl;
+			this.durationControl = this.courseControl.controls.duration as FormControl;
+			this.authorsControl = this.courseControl.controls.authors as FormArray;
 
-				this.authorsFromBackEnd.subscribe( value => {
+			this.authorsFromBackEnd.subscribe( value => {
 					value.forEach(author => {
 						this.authorsArray.push(author);
-					})
+					});
 				});
 		}
 
@@ -70,22 +70,22 @@ export class AddCoursePageComponent implements OnInit {
 		}
 
 		get _title() {
-			return this.courseControl.get('title')
+			return this.courseControl.get('title');
 		}
 		get _description() {
-			return this.courseControl.get('description')
+			return this.courseControl.get('description');
 		}
 		get _date() {
-			return this.courseControl.get('creationDate')
+			return this.courseControl.get('creationDate');
 		}
 		get _duration() {
-			return this.courseControl.get('duration')
+			return this.courseControl.get('duration');
 		}
 		get _authors() {
-			return this.courseControl.get('authors')
+			return this.courseControl.get('authors');
 		}
 		get _isTopRated() {
-			return this.courseControl.get('isTopRated')
+			return this.courseControl.get('isTopRated');
 		}
 
 	private checkCurrentRoute(id: string | undefined): void {
@@ -98,15 +98,14 @@ export class AddCoursePageComponent implements OnInit {
 			if ( typeof this.currentCourse !== 'string') {
 
 				this.isNewCourse = false;
-// this.courseControl.setValue(this.currentCourse)
-				this.courseControl.controls['id'].setValue(this.currentCourse.id);
-				this.courseControl.controls['title'].setValue(this.currentCourse.title);
-				this.courseControl.controls['description'].setValue(this.currentCourse.description);
-				this.courseControl.controls['creationDate'].setValue(this.currentCourse.creationDate);
-				this.courseControl.controls['duration'].setValue(this.currentCourse.duration);
-				this.courseControl.controls['isTopRated'].setValue(this.currentCourse.isTopRated);
+				this.courseControl.controls.id.setValue(this.currentCourse.id);
+				this.courseControl.controls.title.setValue(this.currentCourse.title);
+				this.courseControl.controls.description.setValue(this.currentCourse.description);
+				this.courseControl.controls.creationDate.setValue(this.currentCourse.creationDate);
+				this.courseControl.controls.duration.setValue(this.currentCourse.duration);
+				this.courseControl.controls.isTopRated.setValue(this.currentCourse.isTopRated);
 				this.currentCourse.authors.forEach(author => {
-					(this.courseControl.controls['authors'] as FormArray ).controls.push(new FormControl(author));
+					(this.courseControl.controls.authors as FormArray ).controls.push(new FormControl(author));
 				});
 			}
 		}

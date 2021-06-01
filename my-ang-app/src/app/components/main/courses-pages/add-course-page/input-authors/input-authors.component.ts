@@ -28,26 +28,26 @@ export class InputAuthorsComponent implements ControlValueAccessor {
 		this.suggestAuthors.splice(index, 1);
 	}
 
-	private isSuggestAuthor(value:string, author:IAuthorProperties): boolean {
+	private isSuggestAuthor( value: string, author: IAuthorProperties ): boolean {
 
 		let resultOfFirstName: boolean = !!author.firstName.match(new RegExp(value, 'i'));
 		resultOfFirstName = resultOfFirstName && !this.authorsControl.value.includes(author.firstName);
 
-		let resultOfSecondName: boolean = !!author.lastName.match(new RegExp(value, 'i'))
-		resultOfSecondName = resultOfSecondName  && !this.authorsControl.value.includes(author.lastName)
+		let resultOfSecondName: boolean = !!author.lastName.match(new RegExp(value, 'i'));
+		resultOfSecondName = resultOfSecondName  && !this.authorsControl.value.includes(author.lastName);
 
 		return resultOfFirstName || resultOfSecondName;
 	}
 
-	public searchAuthorsInArray( searchingValue:string ): void {
-		if( searchingValue.trim() === '') {
+	public searchAuthorsInArray( searchingValue: string ): void {
+		if ( searchingValue.trim() === '') {
 			this.suggestAuthors = [];
 		} else {
 			this.suggestAuthors = this.authorsArray.filter( author => this.isSuggestAuthor( searchingValue, author ) );
 		}
 	}
 
-	writeValue(): void {};
-	registerOnChange(fn: any): void {};
-	registerOnTouched(fn: any): void {};
+	writeValue(): void {}
+	registerOnChange(fn: any): void {}
+	registerOnTouched(fn: any): void {}
 }

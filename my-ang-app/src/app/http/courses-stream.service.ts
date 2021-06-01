@@ -10,9 +10,7 @@ export class CoursesStreamService {
 
 	private BaseUrl = 'https://super-courses.herokuapp.com/courses';
 
-	private coursesSearchUrl = `search=`;
-
-	public cC$: Course[] | undefined;
+	public coursesData$: Course[] | undefined;
 	public Courses$: Subject<string> = new BehaviorSubject('');
 
 	constructor( private coursesHttpService: CoursesHttpService ) {
@@ -22,9 +20,9 @@ export class CoursesStreamService {
 			distinctUntilChanged((prev, curr) => curr === '#getAllCourses' ? false : prev === curr),
 			switchMap( v => v.trim() === '' ?
 				this.coursesHttpService.getCourses() :
-				this.coursesHttpService.getCourses(`${this.BaseUrl}?${this.coursesSearchUrl}${v}`))
+				this.coursesHttpService.getCourses(`${this.BaseUrl}?search=${v}`))
 		).subscribe(
-			val => this.cC$ = val
+			val => this.coursesData$ = val
 		);
 	}
 }

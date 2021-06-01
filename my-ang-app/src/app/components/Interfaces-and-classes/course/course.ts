@@ -1,4 +1,4 @@
-import { IAuthorProperties } from "../author/author";
+import { IAuthorProperties } from '../author/author';
 
 export interface ICourseProperties {
 	_id?: string;
