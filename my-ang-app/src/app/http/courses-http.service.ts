@@ -25,8 +25,8 @@ export class CoursesHttpService {
 	}
 
 	public putCourse( courseId: string, course: Course ): Observable<Course[]>{
-		course._id = undefined;
-		return this.httpClient.put<Course[]>( this.url + courseId, course );
+		const changedCourse = new Course({...course, _id:undefined})
+		return this.httpClient.put<Course[]>( this.url + courseId, changedCourse );
 	}
 
 	public deleteCourse( courseId: string ): Observable<Course[]>{
