@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ExampleActions } from 'src/app/store/courses.action';
+import { ExampleSelectors } from 'src/app/store/courses.selector';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
@@ -10,13 +14,16 @@ import { CoursesListService } from '../courses-list.service';
 	styleUrls: ['./course-list-page.component.scss']
 })
 
-
 export class CoursesListPageComponent {
-	@Input() CourseList: Course[] | undefined;
 
-	public coursesCatalog: Course[] = [];
+	public courseStream$!: Observable<Course[]>;
 
-	constructor( public coursesList: CoursesListService ) {}
+	constructor( public coursesList: CoursesListService, private store: Store ) {
+
+		this.courseStream$ = this.store.select(ExampleSelectors.courses);
+
+		this.store.dispatch(ExampleActions.getCoursesData());
+	}
 
 		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
 		public isDeleteCourseContainerVisible = false;
@@ -40,7 +47,7 @@ export class CoursesListPageComponent {
 
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
-		this.coursesList.removeCourse(this.currentDeletionCourseId);
+		this.store.dispatch(ExampleActions.deleteCourse({courseId: this.currentDeletionCourseId}));
 		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
 	}
 }

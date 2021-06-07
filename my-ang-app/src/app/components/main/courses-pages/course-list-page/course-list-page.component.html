@@ -16,7 +16,7 @@
 		no data. feel free to add new course.
 	</div>
 	<app-course
-	*ngFor ="let course of CourseList; let i = index"
+	*ngFor ="let course of courseStream$ | async; let i = index"
 	[course]="course"
 	(deletedCourse)="toggleConfirmModalToDeleteCourse(course.id)"
 	(editToCourse)="openEditToCourse(course)">
