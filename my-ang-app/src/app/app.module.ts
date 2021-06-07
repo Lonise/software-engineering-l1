@@ -19,6 +19,8 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 import { LoadingBlockComponent } from './components/loading-block/loading-block.component';
 import { Interceptors } from './http/interceptors/Interceptors';
 import { AppService } from './app.service';
+import { StoreModule } from '@ngrx/store';
+import * as fromReducer from './store/courses.reducer'
 
 @NgModule({
 	declarations: [
@@ -39,7 +41,8 @@ import { AppService } from './app.service';
 		BrowserModule,
 		FormsModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		StoreModule.forRoot({ example: fromReducer.reducer})
 	],
 	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService, AppService, Interceptors],
 	bootstrap: [AppComponent]
