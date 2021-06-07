@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ExampleActions } from 'src/app/store/courses.action';
+import { CoursesActions } from 'src/app/store/courses.action';
 import { ExampleSelectors } from 'src/app/store/courses.selector';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
@@ -22,7 +22,7 @@ export class CoursesListPageComponent {
 
 		this.courseStream$ = this.store.select(ExampleSelectors.courses);
 
-		this.store.dispatch(ExampleActions.getCoursesData());
+		this.store.dispatch(CoursesActions.getCoursesData());
 	}
 
 		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
@@ -47,7 +47,7 @@ export class CoursesListPageComponent {
 
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
-		this.store.dispatch(ExampleActions.deleteCourse({courseId: this.currentDeletionCourseId}));
+		this.store.dispatch(CoursesActions.deleteCourse({courseId: this.currentDeletionCourseId}));
 		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
 	}
 }

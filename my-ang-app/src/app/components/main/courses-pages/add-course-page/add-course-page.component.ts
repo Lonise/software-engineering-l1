@@ -9,7 +9,7 @@ import { DateValidator } from './input-date/date-validator';
 import { DurationValidator } from './input-duration/duration-validator';
 import { AuthorsHttpService } from 'src/app/http/authors-http.service';
 import { IAuthorProperties } from 'src/app/components/Interfaces-and-classes/author/author';
-import { ExampleActions } from 'src/app/store/courses.action';
+import { CoursesActions } from 'src/app/store/courses.action';
 
 @Component({
 	selector: 'app-add-course-page',
@@ -114,10 +114,10 @@ export class AddCoursePageComponent implements OnInit {
 
 	public createNewCourse(): void {
 		if (this.isNewCourse) {
-			this.store.dispatch(ExampleActions.addNewCourse({course: new Course(this.courseControl.value)}));
+			this.store.dispatch(CoursesActions.addNewCourse({course: new Course(this.courseControl.value)}));
 			this.coursesListService.toggleAddNewCourse();
 		} else {
-			this.store.dispatch(ExampleActions.putCourse({course: this.courseControl.value, id: this.courseControl.value.id}));
+			this.store.dispatch(CoursesActions.putCourse({course: this.courseControl.value, id: this.courseControl.value.id}));
 			this.coursesListService.toggleAddNewCourse();
 		}
 	}
