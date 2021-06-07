@@ -16,7 +16,6 @@ import { CoursesPagesComponent } from '../components/main/courses-pages/courses-
 import { AuthGuard } from '../auth-guard';
 import { CoursesHttpService } from '../http/courses-http.service';
 import { CoursesBufferComponent } from '../components/main/courses-pages/courses-buffer/courses-buffer.component';
-import { CoursesStreamService } from '../http/courses-stream.service';
 import { InputDateComponent } from '../components/main/courses-pages/add-course-page/input-date/input-date.component';
 import { InputDurationComponent } from '../components/main/courses-pages/add-course-page/input-duration/input-duration.component';
 import { InputAuthorsComponent } from '../components/main/courses-pages/add-course-page/input-authors/input-authors.component';
@@ -46,6 +45,6 @@ import { AuthorsHttpService } from '../http/authors-http.service';
 		ReactiveFormsModule
 	],
 	exports: [CoursesPagesComponent],
-	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, CoursesStreamService, AuthorsHttpService ],
+	providers: [ FilterCoursesByInputPipe, AuthGuard, CoursesHttpService, AuthorsHttpService ],
 })
 export class CoursesModule { }

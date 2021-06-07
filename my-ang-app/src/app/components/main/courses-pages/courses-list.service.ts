@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CoursesHttpService } from 'src/app/http/courses-http.service';
-import { CoursesStreamService } from 'src/app/http/courses-stream.service';
 import { Course } from '../../Interfaces-and-classes/course/course';
 
 @Injectable()
 
 export class CoursesListService {
 
-	constructor(
-		private router: Router,
-		private coursesHttpService: CoursesHttpService,
-		private coursesStreamService: CoursesStreamService ) { }
+	constructor( private router: Router ) { }
 
 	public courseListData: Course[] = [];
 
@@ -27,7 +22,6 @@ export class CoursesListService {
 		this.isAddCourseVisible = !this.isAddCourseVisible;
 
 		if (this.isCourseListVisible) {
-			this.coursesStreamService.Courses$.next('#getAllCourses');
 			this.router.navigate(['courses']);
 		} else {
 			this.router.navigate(['courses/new']);
@@ -44,31 +38,11 @@ export class CoursesListService {
 		return this.isCourseListDataEmpty;
 	}
 
-	public addCourse(course: Course): void {
-		this.coursesHttpService.postCourse(course).subscribe(
-			val => {
-				this.coursesStreamService.Courses$.next('#getAllCourses');
-				this.router.navigate(['courses']);
-			}
-		);
-	}
-
 	public getActiveCourse(): Course | string {
 		if ( typeof this.activeCourse !== 'undefined') {
 			return this.activeCourse;
 		} else {
 			return 'incorrect id';
 		}
-	}
-
-	public removeCourse( id: string ): void {
-		if (this.courseListData.length - 1 <= 0) {
-			this.isCourseListDataEmpty = false;
-		}
-		this.coursesHttpService.deleteCourse(id).subscribe(
-			val => {
-				this.coursesStreamService.Courses$.next('#getAllCourses');
-			}
-		);
 	}
 }

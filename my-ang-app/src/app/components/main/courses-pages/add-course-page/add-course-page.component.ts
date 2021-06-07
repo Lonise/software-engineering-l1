@@ -33,7 +33,6 @@ export class AddCoursePageComponent implements OnInit {
 		private store: Store,
 		public coursesListService: CoursesListService,
 		private route: ActivatedRoute,
-		//private coursesHttpService: CoursesHttpService,
 		private formBuilder: FormBuilder,
 		private authorsHttpService: AuthorsHttpService
 		) {
