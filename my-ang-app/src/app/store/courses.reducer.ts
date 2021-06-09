@@ -4,20 +4,33 @@ import { IUserProperties } from "../components/Interfaces-and-classes/user/user"
 import { CoursesActions } from './courses.action'
 
 
-type activeCourseType = Course | 'NEW' | undefined;
+export type activeCourseType = Course | 'NEW' | undefined;
 
 export interface State {
 	courseList: Course[];
 	activeCourse: activeCourseType;
+	page: number;
+	size:number;
 }
 
 const initialState: State = {
 	courseList: [],
 	activeCourse: undefined,
+	page: 1,
+	size: 5,
 }
 
 const exampleReducer = createReducer(
 	initialState,
+	on(CoursesActions.activateCourse, (state, data) => ({
+		...state,
+		activeCourse: data.activeCourse,
+	})),
+	on(CoursesActions.deactivateCourse, (state) => ({
+		...state,
+		activeCourse: undefined,
+	})),
+
 	on(CoursesActions.getCoursesDataSuccess,  (state, { data }) => ({
 		...state, courseList: data,
 	}))

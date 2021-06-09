@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CoursesActions } from 'src/app/store/courses.action';
-import { ExampleSelectors } from 'src/app/store/courses.selector';
+import { CoursesSelectors } from 'src/app/store/courses.selector';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
@@ -17,17 +17,15 @@ import { CoursesListService } from '../courses-list.service';
 export class CoursesListPageComponent {
 
 	public courseStream$!: Observable<Course[]>;
+	public isCourseListEmpty!: boolean
+	public isDeleteCourseContainerVisible = false;
+	private currentDeletionCourseId!: string;
 
 	constructor( public coursesList: CoursesListService, private store: Store ) {
-
-		this.courseStream$ = this.store.select(ExampleSelectors.courses);
-
+		this.courseStream$ = this.store.select(CoursesSelectors.courses);
+		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses.length === 0)
 		this.store.dispatch(CoursesActions.getCoursesData());
 	}
-
-		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
-		public isDeleteCourseContainerVisible = false;
-		private currentDeletionCourseId!: string;
 
 	public showMoreCourses(): void {
 		console.log('Load more');
@@ -48,6 +46,5 @@ export class CoursesListPageComponent {
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
 		this.store.dispatch(CoursesActions.deleteCourse({courseId: this.currentDeletionCourseId}));
-		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
 	}
 }

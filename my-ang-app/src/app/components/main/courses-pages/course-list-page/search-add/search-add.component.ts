@@ -20,6 +20,7 @@ export class SearchAddComponent {
 	}
 
 	public showAddCoursePage(): void {
+		this.store.dispatch(CoursesActions.activateCourse({activeCourse: 'NEW'}));
 		this.toggleAddNewCourse.emit();
 	}
 }
