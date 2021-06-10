@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CoursesActions } from 'src/app/store/courses.action';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
 
@@ -9,21 +11,20 @@ import { Course } from '../../../Interfaces-and-classes/course/course';
 	styleUrls: ['./course.component.scss'],
 })
 
-export class CourseComponent implements OnInit {
+export class CourseComponent {
 
 	@Input() course!: Course;
 	@Output() deletedCourse = new EventEmitter<string>();
 	@Output() editToCourse = new EventEmitter<Course>();
 
-	ngOnInit(): void {
-		this.course.creationDate = new Date(this.course.creationDate);
-	}
+	constructor( private store: Store ) {}
 
 	public deleteCourse(id: string): void {
 		this.deletedCourse.emit(id);
 	}
 
 	public editCourse(course: Course): void {
+		this.store.dispatch(CoursesActions.activateCourse({activeCourse: course}));
 		this.editToCourse.emit(course);
 	}
 }

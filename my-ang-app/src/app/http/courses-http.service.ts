@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Course } from '../components/Interfaces-and-classes/course/course';
+import { IServerResponse } from '../components/Interfaces-and-classes/server-response';
+
+
 
 @Injectable()
 export class CoursesHttpService {
@@ -12,12 +15,12 @@ export class CoursesHttpService {
 
 	public isLoading = false;
 
-	public getCourses( url: string = this.url ): Observable<Course[]>{
-		return this.httpClient.get<Course[]>( url );
+	public getCourses( url: string = this.url ): Observable<IServerResponse>{
+		return this.httpClient.get<IServerResponse>( url );
 	}
 
-	public getPathOfCourses( start: number, count: number ): Observable<Course[]>{
-		return this.httpClient.get<Course[]>( `${this.url}?page=${start}&size=${count}` );
+	public getPathOfCourses( start: number, count: number ): Observable<IServerResponse>{
+		return this.httpClient.get<IServerResponse>( `${this.url}?start=${start}&count=${count}` );
 	}
 
 	public postCourse( course: Course ): Observable<Course[]>{
@@ -25,8 +28,8 @@ export class CoursesHttpService {
 	}
 
 	public putCourse( courseId: string, course: Course ): Observable<Course[]>{
-		course._id = undefined;
-		return this.httpClient.put<Course[]>( this.url + courseId, course );
+		const changedCourse = new Course({...course, _id: undefined});
+		return this.httpClient.put<Course[]>( this.url + courseId, changedCourse );
 	}
 
 	public deleteCourse( courseId: string ): Observable<Course[]>{

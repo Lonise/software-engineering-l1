@@ -3,7 +3,7 @@ import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 import { blueBorderClass, daysInTwoWeek, greenBorderClass, millisecondsInDay } from 'src/app/constants';
 
 @Directive({
-	selector: '[appCourse]'
+	selector: '[courseDateDirective]'
 })
 export class CourseDirective implements AfterViewInit {
 
@@ -13,7 +13,10 @@ export class CourseDirective implements AfterViewInit {
 	private currentDate = new Date();
 
 	ngAfterViewInit(): void {
-		const differenceDatesInDay: number =  Math.floor((+this.currentDate - +this.courseCreationDate) / millisecondsInDay);
+
+		const differenceDatesInDay: number =  Math.floor((
+			+this.currentDate - +(new Date( this.courseCreationDate ))
+		) / millisecondsInDay);
 
 		if ( differenceDatesInDay > 0 && differenceDatesInDay <= daysInTwoWeek ) {
 			this.elementRef.nativeElement.className = this.elementRef.nativeElement.className + greenBorderClass;

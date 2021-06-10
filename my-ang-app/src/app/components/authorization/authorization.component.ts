@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from './authorization.service';
 
 @Component({
@@ -30,15 +30,15 @@ export class AuthorizationComponent {
 		});
 	}
 
-	get _name() {
+	get _name(): AbstractControl | null {
 		return this.authControl.get('userName');
 	}
 
-	get _email() {
+	get _email(): AbstractControl | null {
 		return this.authControl.get('userEmail');
 	}
 
-	get _password() {
+	get _password(): AbstractControl | null {
 		return this.authControl.get('userPassword');
 	}
 	public authControl!: FormGroup;

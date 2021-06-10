@@ -7,8 +7,7 @@ import { Author } from '../components/Interfaces-and-classes/author/author';
 export class AuthorsHttpService {
 
 	constructor( private httpClient: HttpClient ) { }
-	private url = 'https://super-courses.herokuapp.com/courses/';
-
+	private url = 'https://super-courses.herokuapp.com/authors';
 	public getAuthors(): Observable<Author[]>{
 		return this.httpClient.get<Author[]>(this.url);
 	}

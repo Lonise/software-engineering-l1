@@ -16,7 +16,7 @@
 		no data. feel free to add new course.
 	</div>
 	<app-course
-	*ngFor ="let course of CourseList; let i = index"
+	*ngFor ="let course of courseStream$ | async; let i = index"
 	[course]="course"
 	(deletedCourse)="toggleConfirmModalToDeleteCourse(course.id)"
 	(editToCourse)="openEditToCourse(course)">
@@ -24,5 +24,12 @@
 </div>
 
 <div class="loadMore-container">
-	<button class="loadMoreButton" (click)="showMoreCourses()" [disabled]="isCourseListEmpty">load more</button>
+	<div class="" >
+		<button
+			*ngFor='let pageNumber of pagesCount | async'
+			[class.selectedPage]="currentPage === pageNumber"
+			(click)="goToPage(pageNumber)">
+			{{pageNumber}}
+		</button>
+	</div>
 </div>

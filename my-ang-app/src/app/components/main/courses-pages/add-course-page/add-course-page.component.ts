@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { CoursesHttpService } from 'src/app/http/courses-http.service';
-import { Course, ICourseProperties } from '../../../Interfaces-and-classes/course/course';
+import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
 import { DateValidator } from './input-date/date-validator';
 import { DurationValidator } from './input-duration/duration-validator';
 import { AuthorsHttpService } from 'src/app/http/authors-http.service';
 import { IAuthorProperties } from 'src/app/components/Interfaces-and-classes/author/author';
+import { CoursesActions } from 'src/app/store/courses.action';
+import { activeCourseType } from 'src/app/store/courses.reducer';
+import { CoursesSelectors } from 'src/app/store/courses.selector';
 
 @Component({
 	selector: 'app-add-course-page',
@@ -24,17 +27,23 @@ export class AddCoursePageComponent implements OnInit {
 	public authorsControl!: FormArray;
 	public authorsArray: IAuthorProperties[] = [];
 
-	private currentCourse!: string | Course;
+	private currentCourse: activeCourseType;
 	private isNewCourse = true;
 	private authorsFromBackEnd = this.authorsHttpService.getAuthors();
 
 	constructor(
+		private store: Store,
 		public coursesListService: CoursesListService,
 		private route: ActivatedRoute,
-		private coursesHttpService: CoursesHttpService,
 		private formBuilder: FormBuilder,
 		private authorsHttpService: AuthorsHttpService
 		) {
+
+			this.store.select(CoursesSelectors.activeCourse).subscribe(activeCourse => {
+				this.currentCourse = activeCourse;
+			});
+
+
 			this.courseControl = this.formBuilder.group({
 				_id: [''],
 				id: [''],
@@ -69,31 +78,29 @@ export class AddCoursePageComponent implements OnInit {
 			});
 		}
 
-		get _title() {
+		get _title(): AbstractControl | null {
 			return this.courseControl.get('title');
 		}
-		get _description() {
+		get _description(): AbstractControl | null {
 			return this.courseControl.get('description');
 		}
-		get _date() {
+		get _date(): AbstractControl | null {
 			return this.courseControl.get('creationDate');
 		}
-		get _duration() {
+		get _duration(): AbstractControl | null {
 			return this.courseControl.get('duration');
 		}
-		get _authors() {
+		get _authors(): AbstractControl | null {
 			return this.courseControl.get('authors');
 		}
-		get _isTopRated() {
+		get _isTopRated(): AbstractControl | null {
 			return this.courseControl.get('isTopRated');
 		}
 
 	private checkCurrentRoute(id: string | undefined): void {
-		this.coursesListService.isAddCourseVisible = true;
 		this.coursesListService.isCourseListVisible = false;
 
-		if ( typeof id !== 'undefined' ) {
-			this.currentCourse = this.coursesListService.getActiveCourse();
+		if ( typeof this.currentCourse !== 'undefined' ) {
 
 			if ( typeof this.currentCourse !== 'string') {
 
@@ -111,16 +118,17 @@ export class AddCoursePageComponent implements OnInit {
 		}
 	}
 
+	public closeAddCoursePage(): void {
+		this.store.dispatch(CoursesActions.deactivateCourse());
+		this.coursesListService.toggleAddNewCourse();
+	}
+
 	public createNewCourse(): void {
 		if (this.isNewCourse) {
-			this.coursesListService.addCourse(new Course(this.courseControl.value));
-			this.coursesListService.toggleAddNewCourse();
+			this.store.dispatch(CoursesActions.addNewCourse({course: new Course(this.courseControl.value)}));
 		} else {
-				this.coursesHttpService.putCourse(this.courseControl.value.id, this.courseControl.value)
-				.subscribe(val => {
-						this.coursesListService.toggleAddNewCourse();
-					}
-				);
+			this.store.dispatch(CoursesActions.putCourse({course: this.courseControl.value, id: this.courseControl.value.id}));
 		}
+		this.closeAddCoursePage();
 	}
 }

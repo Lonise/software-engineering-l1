@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CoursesActions } from 'src/app/store/courses.action';
 
 @Component({
 	selector: 'app-search-add',
@@ -7,18 +9,18 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class SearchAddComponent {
-	@Output() searchCourses = new EventEmitter<string>();
 	@Output() toggleAddNewCourse = new EventEmitter<string>();
 
+	constructor( private store: Store ) {}
 	public inputSearchCourses = '';
 	public newCourseFormVisible = false;
 
-	public emitTextForSearching(): void {
-		console.log(`Input value \'${this.inputSearchCourses}\'`);
-		this.searchCourses.emit(this.inputSearchCourses);
+	public inputSearching(): void {
+		this.store.dispatch(CoursesActions.searchCourses({ userInput: this.inputSearchCourses }));
 	}
 
 	public showAddCoursePage(): void {
+		this.store.dispatch(CoursesActions.activateCourse({activeCourse: 'NEW'}));
 		this.toggleAddNewCourse.emit();
 	}
 }

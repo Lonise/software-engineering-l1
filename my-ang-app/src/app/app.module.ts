@@ -19,6 +19,15 @@ import { AuthorizationHttpService } from './http/authorization-http.service';
 import { LoadingBlockComponent } from './components/loading-block/loading-block.component';
 import { Interceptors } from './http/interceptors/Interceptors';
 import { AppService } from './app.service';
+import { StoreModule } from '@ngrx/store';
+import * as fromReducer from './store/courses.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { GetCoursesEffect } from './store/getCourses.effect';
+import { SearchEffects } from './store/search.effect';
+import { DeleteCourseEffects } from './store/deleteCourse.effect';
+import { AddCourseEffects } from './store/addCourse.effect';
+import { PutCourseEffects } from './store/putCourse.effect';
+import { NavigatePage } from './store/navigatePage.effect';
 
 @NgModule({
 	declarations: [
@@ -39,7 +48,17 @@ import { AppService } from './app.service';
 		BrowserModule,
 		FormsModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		StoreModule.forRoot({ coursesStore: fromReducer.reducer}),
+		EffectsModule.forRoot(
+			[
+				GetCoursesEffect,
+				SearchEffects,
+				DeleteCourseEffects,
+				AddCourseEffects,
+				PutCourseEffects,
+				NavigatePage,
+			])
 	],
 	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService, AppService, Interceptors],
 	bootstrap: [AppComponent]

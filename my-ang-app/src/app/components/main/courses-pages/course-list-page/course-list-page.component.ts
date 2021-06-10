@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { CoursesActions } from 'src/app/store/courses.action';
+import { CoursesSelectors } from 'src/app/store/courses.selector';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
 import { CoursesListService } from '../courses-list.service';
@@ -10,20 +14,30 @@ import { CoursesListService } from '../courses-list.service';
 	styleUrls: ['./course-list-page.component.scss']
 })
 
-
 export class CoursesListPageComponent {
-	@Input() CourseList: Course[] | undefined;
 
-	public coursesCatalog: Course[] = [];
+	public courseStream$!: Observable<Course[]>;
+	public pageSize = 5;
+	public pagesCount!: Observable<number[]>;
+	public isCourseListEmpty!: boolean;
+	public isDeleteCourseContainerVisible = false;
+	public pagesNumbers!: number[];
+	public currentPage!: number;
+	private currentDeletionCourseId!: string;
 
-	constructor( public coursesList: CoursesListService ) {}
+	constructor( public coursesList: CoursesListService, private store: Store ) {
+		this.courseStream$ = this.store.select(CoursesSelectors.courses);
+		this.store.select(CoursesSelectors.currentPage).subscribe(v => this.currentPage = v);
+		this.pagesCount = this.store.select(CoursesSelectors.pagesNumbers);
 
-		public isCourseListEmpty: boolean = this.coursesList.isCourseListDataEmpty;
-		public isDeleteCourseContainerVisible = false;
-		private currentDeletionCourseId!: string;
+		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses ? courses.length === 0 : true);
+		this.store.dispatch(CoursesActions.getCoursesData());
+	}
 
-	public showMoreCourses(): void {
-		console.log('Load more');
+	public goToPage(page: number) {
+		const coursesStart = (page - 1) * this.pageSize;
+		this.currentPage = page;
+		this.store.dispatch(CoursesActions.goToPage({start: coursesStart, count: this.pageSize}));
 	}
 
 	public toggleConfirmModalToDeleteCourse( id?: string ): void {
@@ -40,7 +54,6 @@ export class CoursesListPageComponent {
 
 	public removeCourse(): void {
 		this.isDeleteCourseContainerVisible = false;
-		this.coursesList.removeCourse(this.currentDeletionCourseId);
-		this.isCourseListEmpty = this.coursesList.isCourseListDataEmpty;
+		this.store.dispatch(CoursesActions.deleteCourse({courseId: this.currentDeletionCourseId}));
 	}
 }
