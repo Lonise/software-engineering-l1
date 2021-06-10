@@ -1,0 +1,19 @@
+.backdrop {
+	z-index: 2;
+}
+
+.errorWrapper {
+	width: 400px;
+	height: 200px;
+	background-color: rgb(255, 126, 126);
+	border: 5px solid rgb(255, 62, 62);
+}
+
+.errorMessage {
+	margin: 20px;
+	text-align: center;
+}
+
+.closeErrorMessageButton {
+	padding: 10px;
+}

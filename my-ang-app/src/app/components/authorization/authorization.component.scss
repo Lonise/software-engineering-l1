@@ -1,0 +1,40 @@
+.logInWrapper {
+	width: 300px;
+	height: 450px;
+	background-color: rgb(108, 189, 255);
+}
+
+.LogInSignUp__title {
+	display: flex;
+	width: 80%;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.active {
+	background-color: rgba(43, 255, 0, 0.671);
+	border: 2px solid black;
+}
+
+input {
+	padding: 5px;
+}
+
+input:invalid, input:invalid:required{
+  border: 2px solid red;
+	border-radius: 5px;
+	background-color: rgb(255, 149, 149);
+}
+
+input:valid {
+  border: 2px solid black;
+	border-radius: 5px;
+}
+
+.errorMessage {
+	margin: 20px;
+	text-align: center;
+}
+.closeErrorMessageButton {
+	padding: 10px;
+}

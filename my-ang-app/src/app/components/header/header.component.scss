@@ -1,0 +1,19 @@
+.header {
+	width: 100%;
+	padding: 0 15px;
+	display: flex;
+	border-bottom: 2px solid black;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba($color: #ff880080, $alpha: 0.5);
+}
+
+.logo, .account {
+	display: flex;
+}
+
+.account_user, .logo_title {
+	margin: 0 10px;
+	display: flex;
+	align-items: center;
+}
