@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { Course } from '../../../Interfaces-and-classes/course/course';
@@ -41,7 +41,7 @@ export class AddCoursePageComponent implements OnInit {
 
 			this.store.select(CoursesSelectors.activeCourse).subscribe(activeCourse => {
 				this.currentCourse = activeCourse;
-			})
+			});
 
 
 			this.courseControl = this.formBuilder.group({
@@ -78,22 +78,22 @@ export class AddCoursePageComponent implements OnInit {
 			});
 		}
 
-		get _title() {
+		get _title(): AbstractControl | null {
 			return this.courseControl.get('title');
 		}
-		get _description() {
+		get _description(): AbstractControl | null {
 			return this.courseControl.get('description');
 		}
-		get _date() {
+		get _date(): AbstractControl | null {
 			return this.courseControl.get('creationDate');
 		}
-		get _duration() {
+		get _duration(): AbstractControl | null {
 			return this.courseControl.get('duration');
 		}
-		get _authors() {
+		get _authors(): AbstractControl | null {
 			return this.courseControl.get('authors');
 		}
-		get _isTopRated() {
+		get _isTopRated(): AbstractControl | null {
 			return this.courseControl.get('isTopRated');
 		}
 
@@ -118,7 +118,7 @@ export class AddCoursePageComponent implements OnInit {
 		}
 	}
 
-	public closeAddCoursePage() {
+	public closeAddCoursePage(): void {
 		this.store.dispatch(CoursesActions.deactivateCourse());
 		this.coursesListService.toggleAddNewCourse();
 	}

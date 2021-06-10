@@ -16,7 +16,7 @@ export class SearchAddComponent {
 	public newCourseFormVisible = false;
 
 	public inputSearching(): void {
-		this.store.dispatch(CoursesActions.searchCourses({ userInput:this.inputSearchCourses }));
+		this.store.dispatch(CoursesActions.searchCourses({ userInput: this.inputSearchCourses }));
 	}
 
 	public showAddCoursePage(): void {

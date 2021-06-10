@@ -17,9 +17,9 @@ import { CoursesListService } from '../courses-list.service';
 export class CoursesListPageComponent {
 
 	public courseStream$!: Observable<Course[]>;
-	public pageSize: number = 5;
-	public pagesCount!:Observable<number[]>;
-	public isCourseListEmpty!: boolean
+	public pageSize = 5;
+	public pagesCount!: Observable<number[]>;
+	public isCourseListEmpty!: boolean;
 	public isDeleteCourseContainerVisible = false;
 	public pagesNumbers!: number[];
 	public currentPage!: number;
@@ -30,14 +30,14 @@ export class CoursesListPageComponent {
 		this.store.select(CoursesSelectors.currentPage).subscribe(v => this.currentPage = v);
 		this.pagesCount = this.store.select(CoursesSelectors.pagesNumbers);
 
-		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses? courses.length === 0: true);
+		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses ? courses.length === 0 : true);
 		this.store.dispatch(CoursesActions.getCoursesData());
 	}
 
 	public goToPage(page: number) {
 		const coursesStart = (page - 1) * this.pageSize;
 		this.currentPage = page;
-		this.store.dispatch(CoursesActions.goToPage({start:coursesStart, count:this.pageSize}));
+		this.store.dispatch(CoursesActions.goToPage({start: coursesStart, count: this.pageSize}));
 	}
 
 	public toggleConfirmModalToDeleteCourse( id?: string ): void {

@@ -1,6 +1,6 @@
-import { Course } from "./course/course";
+import { Course } from './course/course';
 
 export interface IServerResponse {
-	list: Course[],
-	pagesNumbers: number[]
+	list: Course[];
+	pagesNumbers: number[];
 }

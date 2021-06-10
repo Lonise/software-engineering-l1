@@ -17,7 +17,7 @@ export class BreadcrumbsComponent implements OnInit {
 			} else {
 				this.activeCourseTitle =  undefined;
 			}
-		})
+		});
 	}
 	private activeCourseTitle: string | undefined;
 	public breadcrumbsPath!: string | string[];

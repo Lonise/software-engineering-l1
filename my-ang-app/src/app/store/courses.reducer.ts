@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import { Course } from "../components/Interfaces-and-classes/course/course";
-import { CoursesActions } from './courses.action'
+import { Action, createReducer, on } from '@ngrx/store';
+import { Course } from '../components/Interfaces-and-classes/course/course';
+import { CoursesActions } from './courses.action';
 
 
 export type activeCourseType = Course | 'NEW' | undefined;
@@ -17,9 +17,9 @@ const initialState: State = {
 	courseList: [],
 	activeCourse: undefined,
 	pageSize: 5,
-	pagesNumbers:[1,2],
+	pagesNumbers: [1, 2],
 	currentPage: 1,
-}
+};
 
 const exampleReducer = createReducer(
 	initialState,
@@ -33,10 +33,10 @@ const exampleReducer = createReducer(
 	})),
 
 	on(CoursesActions.getCoursesDataSuccess,  (state, { data }) => ({
-		...state, courseList: data.list, pagesNumbers:data.pagesNumbers
+		...state, courseList: data.list, pagesNumbers: data.pagesNumbers
 	}))
 );
 
-export function reducer(state: State | undefined, action: Action) {
-	return exampleReducer(state, action)
+export function reducer(state: State | undefined, action: Action): State {
+	return exampleReducer(state, action);
 }

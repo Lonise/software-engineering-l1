@@ -8,6 +8,6 @@ export function DurationValidator(): ValidatorFn {
 		return (
 			incomingValue > maximumDuration ||
 			incomingValue < minimumDuration
-		) ? { incomingValue: {'invalid': true} } : null;
+		) ? { incomingValue: {invalid: true} } : null;
 	};
 }

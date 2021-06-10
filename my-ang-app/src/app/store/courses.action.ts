@@ -5,7 +5,7 @@ import { activeCourseType } from './courses.reducer';
 
 export namespace CoursesActions {
 
-	export const goToPage = createAction('GOT_TO_PAGE', props<{start: number, count:number}>());
+	export const goToPage = createAction('GOT_TO_PAGE', props<{start: number, count: number}>());
 
 	export const activateCourse = createAction('ACTIVATE_COURSE', props<{activeCourse: activeCourseType}>());
 
