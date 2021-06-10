@@ -27,6 +27,7 @@ import { SearchEffects } from './store/search.effect';
 import { DeleteCourseEffects } from './store/deleteCourse.effect';
 import { AddCourseEffects } from './store/addCourse.effect';
 import { PutCourseEffects } from './store/putCourse.effect';
+import { NavigatePage } from './store/navigatePage.effect';
 
 @NgModule({
 	declarations: [
@@ -49,7 +50,15 @@ import { PutCourseEffects } from './store/putCourse.effect';
 		ReactiveFormsModule,
 		HttpClientModule,
 		StoreModule.forRoot({ coursesStore: fromReducer.reducer}),
-		EffectsModule.forRoot([GetCoursesEffect, SearchEffects, DeleteCourseEffects, AddCourseEffects, PutCourseEffects])
+		EffectsModule.forRoot(
+			[
+				GetCoursesEffect,
+				SearchEffects,
+				DeleteCourseEffects,
+				AddCourseEffects,
+				PutCourseEffects,
+				NavigatePage,
+			])
 	],
 	providers: [ AuthorizationService, CoursesListService, AuthorizationHttpService, AppService, Interceptors],
 	bootstrap: [AppComponent]

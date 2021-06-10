@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CoursesActions } from 'src/app/store/courses.action';
@@ -17,18 +17,27 @@ import { CoursesListService } from '../courses-list.service';
 export class CoursesListPageComponent {
 
 	public courseStream$!: Observable<Course[]>;
+	public pageSize: number = 5;
+	public pagesCount!:Observable<number[]>;
 	public isCourseListEmpty!: boolean
 	public isDeleteCourseContainerVisible = false;
+	public pagesNumbers!: number[];
+	public currentPage!: number;
 	private currentDeletionCourseId!: string;
 
 	constructor( public coursesList: CoursesListService, private store: Store ) {
 		this.courseStream$ = this.store.select(CoursesSelectors.courses);
-		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses.length === 0)
+		this.store.select(CoursesSelectors.currentPage).subscribe(v => this.currentPage = v);
+		this.pagesCount = this.store.select(CoursesSelectors.pagesNumbers);
+
+		this.courseStream$.subscribe(courses => this.isCourseListEmpty = courses? courses.length === 0: true);
 		this.store.dispatch(CoursesActions.getCoursesData());
 	}
 
-	public showMoreCourses(): void {
-		console.log('Load more');
+	public goToPage(page: number) {
+		const coursesStart = (page - 1) * this.pageSize;
+		this.currentPage = page;
+		this.store.dispatch(CoursesActions.goToPage({start:coursesStart, count:this.pageSize}));
 	}
 
 	public toggleConfirmModalToDeleteCourse( id?: string ): void {

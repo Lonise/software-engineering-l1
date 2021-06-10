@@ -1,8 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { Course } from '../components/Interfaces-and-classes/course/course';
+import { IServerResponse } from '../components/Interfaces-and-classes/server-response';
 import { activeCourseType } from './courses.reducer';
 
 export namespace CoursesActions {
+
+	export const goToPage = createAction('GOT_TO_PAGE', props<{start: number, count:number}>());
 
 	export const activateCourse = createAction('ACTIVATE_COURSE', props<{activeCourse: activeCourseType}>());
 
@@ -18,5 +21,5 @@ export namespace CoursesActions {
 
 	export const searchCourses = createAction('SEARCH_COURSES', props<{userInput: string}>());
 
-	export const getCoursesDataSuccess = createAction('GET_COURSES_DATA_SUCCESS', props<{ data: Course[] }>());
+	export const getCoursesDataSuccess = createAction('GET_COURSES_DATA_SUCCESS', props<{ data: IServerResponse }>());
 }

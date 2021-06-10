@@ -6,5 +6,9 @@ export namespace CoursesSelectors {
 
 	export const activeCourse = createSelector(state, (state) => state.activeCourse);
 
+	export const currentPage = createSelector(state, (state) => state.currentPage);
+
+	export const pagesNumbers = createSelector(state, (state) => state.pagesNumbers);
+
 	export const courses = createSelector(state, (state) => state.courseList);
 }

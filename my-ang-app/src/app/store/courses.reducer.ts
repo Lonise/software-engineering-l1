@@ -1,6 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { Course, ICourseProperties } from "../components/Interfaces-and-classes/course/course";
-import { IUserProperties } from "../components/Interfaces-and-classes/user/user";
+import { Course } from "../components/Interfaces-and-classes/course/course";
 import { CoursesActions } from './courses.action'
 
 
@@ -9,15 +8,17 @@ export type activeCourseType = Course | 'NEW' | undefined;
 export interface State {
 	courseList: Course[];
 	activeCourse: activeCourseType;
-	page: number;
-	size:number;
+	pageSize: number;
+	pagesNumbers: number[];
+	currentPage: number;
 }
 
 const initialState: State = {
 	courseList: [],
 	activeCourse: undefined,
-	page: 1,
-	size: 5,
+	pageSize: 5,
+	pagesNumbers:[1,2],
+	currentPage: 1,
 }
 
 const exampleReducer = createReducer(
@@ -32,7 +33,7 @@ const exampleReducer = createReducer(
 	})),
 
 	on(CoursesActions.getCoursesDataSuccess,  (state, { data }) => ({
-		...state, courseList: data,
+		...state, courseList: data.list, pagesNumbers:data.pagesNumbers
 	}))
 );
 
